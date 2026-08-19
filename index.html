@@ -3,9 +3,9 @@
 
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>القرآن الكريم</title>
+<title>القرآن الكريم | BY ADAM AHMED</title>
 
 <style>
 
@@ -20,7 +20,7 @@ padding:0
 --green2:#075e54;
 --gold:#d4a72c;
 --bg:#f3f7f5;
---card:#fff;
+--card:#ffffff;
 --text:#173b35;
 --border:#dce6e2;
 --quran:#fffdf5
@@ -42,15 +42,32 @@ line-height:1.8;
 transition:.3s
 }
 
+/* HEADER */
+
 header{
 background:linear-gradient(135deg,#064f47,#087f5b,#15947f);
-color:#fff;
+color:white;
 text-align:center;
-padding:28px 15px;
-position:relative
+padding:25px 15px;
+position:relative;
+box-shadow:0 4px 15px rgba(0,0,0,.15)
 }
 
-header h1{font-size:32px}
+.creator{
+font-size:15px;
+font-weight:bold;
+letter-spacing:3px;
+color:#ffd96a;
+margin-bottom:5px
+}
+
+header h1{
+font-size:32px
+}
+
+header p{
+opacity:.9
+}
 
 .theme{
 position:absolute;
@@ -58,17 +75,21 @@ left:12px;
 top:12px;
 background:rgba(255,255,255,.15);
 border:1px solid rgba(255,255,255,.4);
-color:#fff;
+color:white;
 padding:9px 12px;
 border-radius:12px;
 cursor:pointer
 }
+
+/* CONTAINER */
 
 .container{
 width:min(1150px,94%);
 margin:auto;
 padding:22px 0 60px
 }
+
+/* NAV */
 
 .nav{
 display:grid;
@@ -87,14 +108,23 @@ cursor:pointer;
 font-size:15px
 }
 
+button:hover{
+opacity:.9
+}
+
 .nav button{
 background:var(--card);
 color:var(--text);
 border:1px solid var(--border)
 }
 
-.section{display:none}
-.section.active{display:block}
+.section{
+display:none
+}
+
+.section.active{
+display:block
+}
 
 .card{
 background:var(--card);
@@ -110,6 +140,8 @@ font-size:24px;
 margin-bottom:15px
 }
 
+/* SEARCH */
+
 .search{
 display:flex;
 gap:10px
@@ -122,8 +154,11 @@ border:1px solid var(--border);
 border-radius:12px;
 background:var(--card);
 color:var(--text);
-font-size:16px
+font-size:16px;
+outline:none
 }
+
+/* SURAHS */
 
 .surahs{
 display:grid;
@@ -139,7 +174,8 @@ padding:16px;
 border:1px solid var(--border);
 border-radius:15px;
 background:var(--card);
-cursor:pointer
+cursor:pointer;
+transition:.2s
 }
 
 .surah:hover{
@@ -165,7 +201,11 @@ font-size:13px;
 color:#78908a
 }
 
-#reader{display:none}
+/* READER */
+
+#reader{
+display:none
+}
 
 .quran{
 background:var(--quran);
@@ -196,9 +236,10 @@ margin:20px
 }
 
 .quran-text{
-font-family:"Amiri","Traditional Arabic",serif;
+font-family:"Traditional Arabic",serif;
 font-size:30px;
-line-height:2.7
+line-height:2.7;
+text-align:justify
 }
 
 .ayah{
@@ -212,12 +253,11 @@ border-radius:50%;
 font-family:Tahoma;
 font-size:12px;
 color:var(--green);
-margin:0 4px;
+margin:0 5px;
 vertical-align:middle
 }
 
-
-/* ================= الصوت ================= */
+/* AUDIO */
 
 .audio-box{
 background:var(--card);
@@ -244,8 +284,7 @@ gap:8px;
 flex-wrap:wrap
 }
 
-
-/* ================= السبحة 3D ================= */
+/* TASBEEH */
 
 .tasbeeh{
 text-align:center
@@ -259,7 +298,7 @@ position:relative;
 perspective:900px;
 cursor:pointer;
 transform-style:preserve-3d;
-animation:rotate3d 8s linear infinite
+animation:rotate3d 10s linear infinite
 }
 
 @keyframes rotate3d{
@@ -289,8 +328,7 @@ circle at 30% 25%,
 box-shadow:
 inset -5px -6px 8px rgba(0,0,0,.45),
 inset 5px 5px 7px rgba(255,255,255,.35),
-0 5px 10px rgba(0,0,0,.4);
-transform-style:preserve-3d
+0 5px 10px rgba(0,0,0,.4)
 }
 
 .tasbeeh-center{
@@ -302,12 +340,7 @@ width:150px;
 height:150px;
 border-radius:50%;
 background:
-radial-gradient(
-circle at 35% 25%,
-#3a3a3a,
-#101010 65%,
-#000
-);
+radial-gradient(circle at 35% 25%,#3a3a3a,#101010 65%,#000);
 box-shadow:
 inset 0 0 25px #000,
 0 12px 25px rgba(0,0,0,.45);
@@ -324,10 +357,6 @@ font-size:45px;
 color:#61e7b3
 }
 
-.tasbeeh-center span{
-font-size:14px
-}
-
 .tasbeeh-buttons{
 display:flex;
 justify-content:center;
@@ -338,8 +367,7 @@ gap:10px
 background:#777
 }
 
-
-/* ================= الصلاة ================= */
+/* PRAYER */
 
 .prayer-grid{
 display:grid;
@@ -363,8 +391,7 @@ color:var(--green)
 font-size:20px
 }
 
-
-/* ================= القبلة ================= */
+/* QIBLA */
 
 .compass{
 width:230px;
@@ -376,7 +403,7 @@ display:flex;
 align-items:center;
 justify-content:center;
 position:relative;
-transition:.5s
+transition:.7s
 }
 
 .arrow{
@@ -388,10 +415,11 @@ font-size:42px;
 color:#d33
 }
 
-.kaaba{font-size:50px}
+.kaaba{
+font-size:50px
+}
 
-
-/* ================= الأذكار ================= */
+/* AZKAR */
 
 .zekr{
 font-family:"Traditional Arabic",serif;
@@ -403,9 +431,7 @@ border-radius:16px;
 margin-bottom:12px
 }
 
-.counter{
-margin-top:8px
-}
+/* MOBILE */
 
 @media(max-width:700px){
 
@@ -443,9 +469,17 @@ font-size:27px
 
 }
 
+/* FOOTER */
+
+footer{
+text-align:center;
+padding:25px;
+color:#78908a;
+font-size:14px
+}
+
 </style>
 </head>
-
 
 <body>
 
@@ -455,30 +489,45 @@ font-size:27px
 🌙 الوضع الداكن
 </button>
 
+<div class="creator">
+BY ADAM AHMED
+</div>
+
 <h1>📖 القرآن الكريم</h1>
 
-<p>القرآن • التلاوة • الأذكار • السبحة • الصلاة • القبلة</p>
+<p>
+القرآن • التلاوة • الأذكار • السبحة • الصلاة • القبلة
+</p>
 
 </header>
 
-
 <div class="container">
 
+<!-- MENU -->
 
 <div class="nav">
 
-<button onclick="section('quran')">📖 القرآن</button>
+<button onclick="section('quran')">
+📖 القرآن
+</button>
 
-<button onclick="section('azkar')">🤲 الأذكار</button>
+<button onclick="section('azkar')">
+🤲 الأذكار
+</button>
 
-<button onclick="section('tasbeeh')">📿 السبحة</button>
+<button onclick="section('tasbeeh')">
+📿 السبحة
+</button>
 
-<button onclick="section('prayer')">🕌 الصلاة</button>
+<button onclick="section('prayer')">
+🕌 الصلاة
+</button>
 
-<button onclick="section('qibla')">🧭 القبلة</button>
+<button onclick="section('qibla')">
+🧭 القبلة
+</button>
 
 </div>
-
 
 <!-- ================= القرآن ================= -->
 
@@ -486,29 +535,34 @@ font-size:27px
 
 <div class="card">
 
-<h2 class="title">🔍 البحث</h2>
+<h2 class="title">
+🔍 البحث في القرآن
+</h2>
 
 <div class="search">
 
 <input
 id="search"
-placeholder="ابحث في القرآن..."
+placeholder="ابحث عن كلمة في القرآن..."
 >
 
-<button onclick="searchQuran()">بحث</button>
+<button onclick="searchQuran()">
+بحث
+</button>
 
 </div>
 
 </div>
-
 
 <div id="surahList">
 
 <div class="card">
 
-<h2 class="title">📚 سور القرآن الكريم</h2>
+<h2 class="title">
+📚 سور القرآن الكريم
+</h2>
 
-<div id="surahs">
+<div id="surahs" class="surahs">
 جاري تحميل السور...
 </div>
 
@@ -516,66 +570,79 @@ placeholder="ابحث في القرآن..."
 
 </div>
 
-
 <div id="reader">
 
-<button onclick="back()">← جميع السور</button>
+<button onclick="back()">
+← العودة إلى السور
+</button>
 
 <br><br>
 
-
-<!-- مشغل الصوت -->
+<!-- الصوت -->
 
 <div class="audio-box">
 
-<h2 class="title">🎧 تلاوة القرآن</h2>
-
-<div class="audio-row">
+<h2 class="title">
+🎧 تلاوة القرآن الكريم
+</h2>
 
 <select id="reciters">
 
-<option>جاري تحميل القراء...</option>
+<option>
+جاري تحميل القراء...
+</option>
 
 </select>
 
-</div>
-
-<div class="audio-buttons">
-
-<button onclick="play()">▶️ تشغيل</button>
-
-<button onclick="pause()">⏸️ إيقاف</button>
-
-<button onclick="prevAyah()">⏮️ السابقة</button>
-
-<button onclick="nextAyah()">⏭️ التالية</button>
-
-</div>
+<br>
 
 <audio id="player" controls></audio>
 
+<div class="audio-buttons">
+
+<button onclick="play()">
+▶️ تشغيل
+</button>
+
+<button onclick="pause()">
+⏸️ إيقاف
+</button>
+
+<button onclick="prevAyah()">
+⏮️ السابقة
+</button>
+
+<button onclick="nextAyah()">
+⏭️ التالية
+</button>
+
+</div>
+
 <p id="audioInfo" class="small">
-اختر القارئ ثم اضغط تشغيل
+اختر القارئ
 </p>
 
 </div>
 
-
-<!-- القرآن -->
+<!-- المصحف -->
 
 <div class="quran">
 
 <div class="surah-title">
 
-<h2 id="surahName"></h2>
+<h2 id="surahName">
+</h2>
 
-<p id="surahInfo"></p>
+<p id="surahInfo">
+</p>
 
 </div>
 
-<div id="bismillah" class="bismillah"></div>
+<div id="bismillah" class="bismillah">
+</div>
 
-<div id="ayahs" class="quran-text"></div>
+<div id="ayahs" class="quran-text">
+</div>
 
 </div>
 
@@ -583,20 +650,21 @@ placeholder="ابحث في القرآن..."
 
 </section>
 
-
 <!-- ================= الأذكار ================= -->
 
 <section id="azkar" class="section">
 
 <div class="card">
 
-<h2 class="title">🤲 الأذكار</h2>
+<h2 class="title">
+🤲 أذكار
+</h2>
 
 <div class="zekr">
 
 سُبْحَانَ اللَّهِ وَبِحَمْدِهِ
 
-<br>
+<br><br>
 
 <button onclick="counter(this)">
 عدد التكرار: 0
@@ -608,7 +676,7 @@ placeholder="ابحث في القرآن..."
 
 أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ
 
-<br>
+<br><br>
 
 <button onclick="counter(this)">
 عدد التكرار: 0
@@ -622,7 +690,7 @@ placeholder="ابحث في القرآن..."
 لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ،
 وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ
 
-<br>
+<br><br>
 
 <button onclick="counter(this)">
 عدد التكرار: 0
@@ -634,30 +702,35 @@ placeholder="ابحث في القرآن..."
 
 </section>
 
-
 <!-- ================= السبحة ================= -->
 
 <section id="tasbeeh" class="section">
 
 <div class="card tasbeeh">
 
-<h2 class="title">📿 السبحة 3D</h2>
+<h2 class="title">
+📿 السبحة 3D
+</h2>
 
-<p>اضغط على أي خرزة للتسبيح</p>
-
+<p>
+اضغط على السبحة أو زر التسبيح
+</p>
 
 <div class="tasbeeh3d" id="beads">
 
 <div class="tasbeeh-center">
 
-<strong id="count">0</strong>
+<strong id="count">
+0
+</strong>
 
-<span>تسبيحة</span>
+<span>
+تسبيحة
+</span>
 
 </div>
 
 </div>
-
 
 <div class="tasbeeh-buttons">
 
@@ -675,26 +748,121 @@ placeholder="ابحث في القرآن..."
 
 </section>
 
-
 <!-- ================= الصلاة ================= -->
 
 <section id="prayer" class="section">
 
 <div class="card">
 
-<h2 class="title">🕌 مواقيت الصلاة</h2>
+<h2 class="title">
+🕌 مواقيت الصلاة
+</h2>
 
-<div class="search">
+<p style="margin-bottom:12px">
+اختر المحافظة:
+</p>
 
-<input id="city" placeholder="مثال: Cairo">
+<select id="city" onchange="prayer()">
 
-<button onclick="prayer()">عرض</button>
+<option value="">
+اختر المحافظة
+</option>
 
-</div>
+<option value="Cairo">
+القاهرة
+</option>
 
-<br>
+<option value="Giza">
+الجيزة
+</option>
 
-<p id="date" class="small"></p>
+<option value="Alexandria">
+الإسكندرية
+</option>
+
+<option value="Dakahlia">
+الدقهلية
+</option>
+
+<option value="Gharbia">
+الغربية
+</option>
+
+<option value="Sharqia">
+الشرقية
+</option>
+
+<option value="Monufia">
+المنوفية
+</option>
+
+<option value="Qalyubia">
+القليوبية
+</option>
+
+<option value="Kafr El Sheikh">
+كفر الشيخ
+</option>
+
+<option value="Damietta">
+دمياط
+</option>
+
+<option value="Beheira">
+البحيرة
+</option>
+
+<option value="Port Said">
+بورسعيد
+</option>
+
+<option value="Ismailia">
+الإسماعيلية
+</option>
+
+<option value="Suez">
+السويس
+</option>
+
+<option value="Fayoum">
+الفيوم
+</option>
+
+<option value="Beni Suef">
+بني سويف
+</option>
+
+<option value="Minya">
+المنيا
+</option>
+
+<option value="Assiut">
+أسيوط
+</option>
+
+<option value="Sohag">
+سوهاج
+</option>
+
+<option value="Qena">
+قنا
+</option>
+
+<option value="Luxor">
+الأقصر
+</option>
+
+<option value="Aswan">
+أسوان
+</option>
+
+</select>
+
+<br><br>
+
+<p id="date" class="small">
+اختر المحافظة لعرض المواقيت
+</p>
 
 <br>
 
@@ -731,14 +899,15 @@ placeholder="ابحث في القرآن..."
 
 </section>
 
-
 <!-- ================= القبلة ================= -->
 
 <section id="qibla" class="section">
 
 <div class="card" style="text-align:center">
 
-<h2 class="title">🧭 القبلة</h2>
+<h2 class="title">
+🧭 اتجاه القبلة
+</h2>
 
 <button onclick="qibla()">
 تحديد اتجاه القبلة
@@ -746,42 +915,59 @@ placeholder="ابحث في القرآن..."
 
 <div class="compass" id="compass">
 
-<div class="arrow">⬆</div>
+<div class="arrow">
+⬆
+</div>
 
-<div class="kaaba">🕋</div>
+<div class="kaaba">
+🕋
+</div>
 
 </div>
 
 <p id="qiblaInfo" class="small">
-اسمح للموقع باستخدام GPS
+اضغط على الزر لتحديد القبلة
 </p>
 
 </div>
 
 </section>
 
-
 </div>
 
+<footer>
+
+© 2026 BY ADAM AHMED
+
+</footer>
 
 <script>
-
-/* =====================================================
-   القرآن
-===================================================== */
 
 const API="https://api.alquran.cloud/v1";
 
 let currentSurah=1;
-
 let currentAyah=0;
-
 let ayahAudio=[];
-
 let reciterId="ar.alafasy";
 
+/* ================= الأقسام ================= */
 
-/* تحميل السور */
+function section(id){
+
+document.querySelectorAll(".section")
+.forEach(x=>x.classList.remove("active"));
+
+document.getElementById(id)
+.classList.add("active");
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+/* ================= السور ================= */
 
 async function loadSurahs(){
 
@@ -831,8 +1017,7 @@ document.getElementById("surahs").innerText=
 
 }
 
-
-/* القراء */
+/* ================= القراء ================= */
 
 async function loadReciters(){
 
@@ -846,35 +1031,21 @@ API+"/edition?format=audio&language=ar"
 
 const d=await r.json();
 
-const list=d.data.filter(x=>
-x.type==="versebyverse" ||
-x.format==="audio"
-);
-
-
-/*
- إزالة التكرار
-*/
-
 const unique=[];
-
 const ids=new Set();
 
-list.forEach(x=>{
+d.data.forEach(x=>{
 
 if(!ids.has(x.identifier)){
 
 ids.add(x.identifier);
-
 unique.push(x);
 
 }
 
 });
 
-
 select.innerHTML="";
-
 
 unique.forEach(x=>{
 
@@ -883,23 +1054,15 @@ const option=document.createElement("option");
 option.value=x.identifier;
 
 option.textContent=
-x.name ||
-x.englishName ||
-x.identifier;
+x.name || x.englishName || x.identifier;
 
 select.appendChild(option);
 
 });
 
-
-const afasy=
-unique.find(x=>x.identifier==="ar.alafasy");
-
-if(afasy){
+if(unique.some(x=>x.identifier==="ar.alafasy")){
 
 select.value="ar.alafasy";
-
-reciterId="ar.alafasy";
 
 }
 
@@ -910,7 +1073,6 @@ reciterId=this.value;
 await loadReciterAudio();
 
 };
-
 
 }catch(e){
 
@@ -926,24 +1088,18 @@ select.innerHTML=`
 
 }
 
-
-/* فتح سورة */
+/* ================= فتح السورة ================= */
 
 async function openSurah(number){
 
 currentSurah=number;
-
 currentAyah=0;
 
 document.getElementById("surahList").style.display="none";
-
 document.getElementById("reader").style.display="block";
 
 document.getElementById("surahName").innerText=
 "جاري التحميل...";
-
-document.getElementById("ayahs").innerHTML="";
-
 
 try{
 
@@ -955,8 +1111,7 @@ const d=await r.json();
 
 const s=d.data;
 
-document.getElementById("surahName").innerText=
-s.name;
+document.getElementById("surahName").innerText=s.name;
 
 document.getElementById("surahInfo").innerText=
 `${arabic(s.numberOfAyahs)} آية`;
@@ -965,7 +1120,6 @@ document.getElementById("bismillah").innerText=
 number===9
 ?""
 :"بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ";
-
 
 let text="";
 
@@ -1001,13 +1155,7 @@ document.getElementById("ayahs").innerText=
 
 }
 
-
-/*
- جلب الصوت من API نفسه
-
-وده أهم تعديل:
-مش بنفترض bitrate أو رابط قارئ.
-*/
+/* ================= الصوت ================= */
 
 async function loadReciterAudio(){
 
@@ -1035,56 +1183,35 @@ document.getElementById("player").src=
 ayahAudio[0];
 
 info.innerText=
-`تم تجهيز ${arabic(ayahAudio.length)} آية للتلاوة`;
+`تم تجهيز ${arabic(ayahAudio.length)} آية`;
 
 }else{
 
 info.innerText=
-"لا توجد تلاوة لهذا القارئ.";
+"لا توجد تلاوة متاحة";
 
 }
 
 }catch(e){
 
 info.innerText=
-"تعذر تحميل صوت هذا القارئ.";
+"تعذر تحميل صوت القارئ";
 
 }
 
 }
-
-
-/* تشغيل */
 
 function play(){
 
-if(!ayahAudio.length){
-
-loadReciterAudio().then(()=>{
-
-document.getElementById("player").play();
-
-});
-
-return;
-
-}
-
 document.getElementById("player").play();
 
 }
-
-
-/* إيقاف */
 
 function pause(){
 
 document.getElementById("player").pause();
 
 }
-
-
-/* التالية */
 
 function nextAyah(){
 
@@ -1101,9 +1228,6 @@ document.getElementById("player").play();
 
 }
 
-
-/* السابقة */
-
 function prevAyah(){
 
 if(currentAyah>0){
@@ -1118,12 +1242,6 @@ document.getElementById("player").play();
 }
 
 }
-
-
-/*
- لما الآية تخلص:
-تشغل اللي بعدها تلقائياً
-*/
 
 document.getElementById("player")
 .addEventListener("ended",()=>{
@@ -1141,8 +1259,7 @@ document.getElementById("player").play();
 
 });
 
-
-/* العودة */
+/* ================= العودة ================= */
 
 function back(){
 
@@ -1152,15 +1269,9 @@ document.getElementById("surahList").style.display="block";
 
 document.getElementById("player").pause();
 
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
 }
 
-
-/* الأرقام */
+/* ================= الأرقام ================= */
 
 function arabic(n){
 
@@ -1171,10 +1282,7 @@ x=>"٠١٢٣٤٥٦٧٨٩"[x]
 
 }
 
-
-/* =====================================================
-   السبحة 3D
-===================================================== */
+/* ================= السبحة ================= */
 
 const beads=document.getElementById("beads");
 
@@ -1186,31 +1294,20 @@ const bead=document.createElement("div");
 
 bead.className="bead";
 
-const angle=
-(i/totalBeads)*Math.PI*2;
+const angle=(i/totalBeads)*Math.PI*2;
 
 const radius=128;
 
-const x=
-165+
-Math.cos(angle)*radius-
-15;
+const x=165+Math.cos(angle)*radius-15;
 
-const y=
-165+
-Math.sin(angle)*radius-
-15;
+const y=165+Math.sin(angle)*radius-15;
 
 bead.style.left=x+"px";
-
 bead.style.top=y+"px";
 
-bead.style.transform=
-`translateZ(${Math.sin(angle)*35}px)`;
+bead.onclick=(e)=>{
 
-bead.onclick=(event)=>{
-
-event.stopPropagation();
+e.stopPropagation();
 
 tasbeeh();
 
@@ -1220,10 +1317,8 @@ beads.appendChild(bead);
 
 }
 
-
 let tasbeehCount=
 Number(localStorage.getItem("tasbeehCount")||0);
-
 
 function updateCount(){
 
@@ -1237,18 +1332,19 @@ tasbeehCount
 
 }
 
-
 function tasbeeh(){
 
 tasbeehCount++;
 
 updateCount();
 
-if(navigator.vibrate)
+if(navigator.vibrate){
+
 navigator.vibrate(25);
 
 }
 
+}
 
 function resetTasbeeh(){
 
@@ -1260,10 +1356,7 @@ updateCount();
 
 updateCount();
 
-
-/* =====================================================
-   الوضع الداكن
-===================================================== */
+/* ================= الوضع الداكن ================= */
 
 function darkMode(){
 
@@ -1278,7 +1371,6 @@ updateTheme();
 
 }
 
-
 function updateTheme(){
 
 document.getElementById("theme").innerText=
@@ -1288,7 +1380,6 @@ document.body.classList.contains("dark")
 
 }
 
-
 if(localStorage.getItem("dark")==="true"){
 
 document.body.classList.add("dark");
@@ -1297,30 +1388,7 @@ document.body.classList.add("dark");
 
 updateTheme();
 
-
-/* =====================================================
-   الأقسام
-===================================================== */
-
-function section(id){
-
-document.querySelectorAll(".section")
-.forEach(x=>x.classList.remove("active"));
-
-document.getElementById(id)
-.classList.add("active");
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-}
-
-
-/* =====================================================
-   الأذكار
-===================================================== */
+/* ================= الأذكار ================= */
 
 function counter(btn){
 
@@ -1335,10 +1403,7 @@ btn.innerText=
 
 }
 
-
-/* =====================================================
-   البحث
-===================================================== */
+/* ================= البحث ================= */
 
 async function searchQuran(){
 
@@ -1357,7 +1422,9 @@ document.getElementById("surahList").innerHTML=`
 
 <div class="card">
 
-<h2 class="title">نتائج البحث</h2>
+<h2 class="title">
+نتائج البحث
+</h2>
 
 <div id="results">
 جاري البحث...
@@ -1400,9 +1467,13 @@ ${x.text}
 <br>
 
 <span class="small">
+
 سورة ${x.surah.name}
+
 -
+
 الآية ${arabic(x.numberInSurah)}
+
 </span>
 
 </div>
@@ -1418,19 +1489,14 @@ document.getElementById("results")
 
 }
 
-
-/* =====================================================
-   الصلاة
-===================================================== */
+/* ================= مواقيت الصلاة ================= */
 
 async function prayer(){
 
 const city=
-document.getElementById("city").value.trim();
+document.getElementById("city").value;
 
 if(!city){
-
-alert("اكتب اسم المدينة");
 
 return;
 
@@ -1439,7 +1505,7 @@ return;
 try{
 
 const r=await fetch(
-`https://api.aladhan.com/v1/timingsByCity?city=${encodeURIComponent(city)}&country=&method=5`
+`https://api.aladhan.com/v1/timingsByCity?city=${encodeURIComponent(city)}&country=Egypt&method=5`
 );
 
 const d=await r.json();
@@ -1452,28 +1518,63 @@ document.getElementById("date").innerText=
 document.getElementById("times").innerHTML=`
 
 <div class="prayer">
-<strong>الفجر</strong>
-<span>${t.Fajr}</span>
+
+<strong>
+🌅 الفجر
+</strong>
+
+<span>
+${t.Fajr}
+</span>
+
 </div>
 
 <div class="prayer">
-<strong>الظهر</strong>
-<span>${t.Dhuhr}</span>
+
+<strong>
+☀️ الظهر
+</strong>
+
+<span>
+${t.Dhuhr}
+</span>
+
 </div>
 
 <div class="prayer">
-<strong>العصر</strong>
-<span>${t.Asr}</span>
+
+<strong>
+🌤️ العصر
+</strong>
+
+<span>
+${t.Asr}
+</span>
+
 </div>
 
 <div class="prayer">
-<strong>المغرب</strong>
-<span>${t.Maghrib}</span>
+
+<strong>
+🌇 المغرب
+</strong>
+
+<span>
+${t.Maghrib}
+</span>
+
 </div>
 
 <div class="prayer">
-<strong>العشاء</strong>
-<span>${t.Isha}</span>
+
+<strong>
+🌙 العشاء
+</strong>
+
+<span>
+${t.Isha}
+</span>
+
 </div>
 
 `;
@@ -1486,10 +1587,7 @@ alert("تعذر تحميل مواقيت الصلاة");
 
 }
 
-
-/* =====================================================
-   القبلة
-===================================================== */
+/* ================= القبلة ================= */
 
 function qibla(){
 
@@ -1505,10 +1603,10 @@ document.getElementById("qiblaInfo").innerText=
 "جاري تحديد موقعك...";
 
 navigator.geolocation.getCurrentPosition(
+
 async position=>{
 
 const lat=position.coords.latitude;
-
 const lon=position.coords.longitude;
 
 try{
@@ -1535,18 +1633,19 @@ document.getElementById("qiblaInfo").innerText=
 }
 
 },
+
 ()=>{
 
 document.getElementById("qiblaInfo").innerText=
 "اسمح للموقع باستخدام GPS";
 
 }
+
 );
 
+/* ================= تشغيل الموقع ================= */
 
-/* =====================================================
-   بدء الموقع
-===================================================== */
+}
 
 loadSurahs();
 
