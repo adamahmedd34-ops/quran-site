@@ -691,9 +691,7 @@ BY ADAM AHMED
 📤 مشاركة الموقع
 </button>
 
-<a href="tel:01017133588">
-📞 01017133588
-</a>
+
 
 <a
 href="https://wa.me/201017133588?text=السلام%20عليكم،%20أريد%20التواصل%20معكم%20بخصوص%20موقع%20سراج"
@@ -896,31 +894,84 @@ onclick="closeReader()">
 
 <div class="card">
 
-<h2 class="title">
-🤲 الأذكار والأدعية
-</h2>
+function openAzkar(type){
 
-<p class="small">
-قسم الأذكار جاهز ويمكنك إضافة الأذكار الخاصة بك.
-</p>
+    const home = document.getElementById("azkarHome");
+    const content = document.getElementById("azkarContent");
+    const title = document.getElementById("azkarTitle");
+    const list = document.getElementById("azkarList");
 
-<div style="margin-top:20px">
+    if(!home || !content || !title || !list){
+        console.error("عناصر الأذكار غير موجودة");
+        return;
+    }
 
-<div class="favorite">
-<div class="favorite-text">
-سُبْحَانَ اللَّهِ وَبِحَمْدِهِ
-</div>
-<div class="small">
-ذكر مختصر
-</div>
-</div>
+    const data = azkarData[type];
 
-</div>
+    if(!data){
+        list.innerHTML = `
+            <div class="empty">
+                تعذر تحميل هذا القسم.
+            </div>
+        `;
+        return;
+    }
 
-</div>
+    home.style.display = "none";
+    content.classList.add("active");
 
-</section>
+    title.textContent = data.title;
 
+    list.innerHTML = "";
+
+    data.items.forEach((item, index) => {
+
+        const text = item[0];
+        const repeat = Number(item[1]) || 1;
+
+        const div = document.createElement("div");
+        div.className = "zekr";
+
+        div.innerHTML = `
+            <div class="zekr-text">
+                ${text}
+            </div>
+
+            <div class="zekr-bottom">
+
+                <span class="small">
+                    التكرار: ${ar(repeat)}
+                </span>
+
+                <div>
+
+                    <button
+                        class="count-btn"
+                        data-count="0"
+                        onclick="countZekr(this)">
+                        العدد: ٠
+                    </button>
+
+                    <button
+                        class="reset-btn"
+                        onclick="resetZekr(this)">
+                        تصفير
+                    </button>
+
+                </div>
+
+            </div>
+        `;
+
+        list.appendChild(div);
+
+    });
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
 
 <!-- السبحة -->
 
