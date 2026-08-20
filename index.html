@@ -9,10 +9,10 @@
 <!-- Google Search Console -->
 <meta name="google-site-verification" content="C0AZ2NPp_Ejy84IoPREkpsm0WzDp9d2tdM3Y7dAKAt8" />
 
-<meta name="description" content="القرآن الكريم - قراءة القرآن الكريم، التلاوة، الأذكار، السبحة، مواقيت الصلاة واتجاه القبلة.">
-<meta name="keywords" content="قرآن, القرآن الكريم, مصحف, تلاوة, أذكار, مواقيت الصلاة, القبلة">
+<meta name="description" content="نور القرآن - القرآن الكريم والتلاوة والأذكار ومواقيت الصلاة واتجاه القبلة.">
+<meta name="keywords" content="نور القرآن, قرآن, القرآن الكريم, مصحف, تلاوة, أذكار, مواقيت الصلاة, القبلة">
 
-<title>القرآن الكريم | BY ADAM AHMED</title>
+<title>نور القرآن | BY ADAM AHMED</title>
 
 <style>
 
@@ -27,7 +27,7 @@ padding:0;
 --green2:#075e54;
 --gold:#d4a72c;
 --bg:#f3f7f5;
---card:#fff;
+--card:#ffffff;
 --text:#173b35;
 --border:#dce6e2;
 --quran:#fffdf5;
@@ -67,7 +67,7 @@ margin-bottom:5px;
 }
 
 header h1{
-font-size:32px;
+font-size:34px;
 }
 
 header p{
@@ -286,15 +286,19 @@ animation:rotate3d 10s linear infinite;
 }
 
 @keyframes rotate3d{
+
 0%{
 transform:rotateX(12deg) rotateY(0deg);
 }
+
 50%{
 transform:rotateX(-8deg) rotateY(180deg);
 }
+
 100%{
 transform:rotateX(12deg) rotateY(360deg);
 }
+
 }
 
 .bead{
@@ -302,16 +306,20 @@ position:absolute;
 width:30px;
 height:30px;
 border-radius:50%;
-background:radial-gradient(
+
+background:
+radial-gradient(
 circle at 30% 25%,
 #72f0c0,
 #0c9b6b 45%,
 #034b38 100%
 );
+
 box-shadow:
 inset -5px -6px 8px rgba(0,0,0,.45),
 inset 5px 5px 7px rgba(255,255,255,.35),
 0 5px 10px rgba(0,0,0,.4);
+
 cursor:pointer;
 }
 
@@ -323,15 +331,19 @@ transform:translate(-50%,-50%);
 width:150px;
 height:150px;
 border-radius:50%;
-background:radial-gradient(
+
+background:
+radial-gradient(
 circle at 35% 25%,
 #3a3a3a,
 #101010 65%,
 #000
 );
+
 box-shadow:
 inset 0 0 25px #000,
 0 12px 25px rgba(0,0,0,.45);
+
 display:flex;
 flex-direction:column;
 align-items:center;
@@ -449,12 +461,13 @@ height:280px;
 }
 
 header h1{
-font-size:27px;
+font-size:28px;
 }
 
 }
 
 </style>
+
 </head>
 
 <body>
@@ -469,7 +482,7 @@ font-size:27px;
 BY ADAM AHMED
 </div>
 
-<h1>📖 القرآن الكريم</h1>
+<h1>📖 نور القرآن</h1>
 
 <p>
 القرآن • التلاوة • الأذكار • السبحة • الصلاة • القبلة
@@ -502,6 +515,7 @@ BY ADAM AHMED
 </button>
 
 </div>
+
 
 <!-- القرآن -->
 
@@ -552,6 +566,9 @@ placeholder="ابحث عن كلمة في القرآن..."
 
 <br><br>
 
+
+<!-- التلاوة -->
+
 <div class="audio-box">
 
 <h2 class="title">
@@ -559,7 +576,11 @@ placeholder="ابحث عن كلمة في القرآن..."
 </h2>
 
 <select id="reciters">
-<option>جاري تحميل القراء...</option>
+
+<option>
+جاري تحميل القراء...
+</option>
+
 </select>
 
 <audio id="player" controls></audio>
@@ -590,6 +611,9 @@ placeholder="ابحث عن كلمة في القرآن..."
 
 </div>
 
+
+<!-- المصحف -->
+
 <div class="quran">
 
 <div class="surah-title">
@@ -609,6 +633,7 @@ placeholder="ابحث عن كلمة في القرآن..."
 </div>
 
 </section>
+
 
 <!-- الأذكار -->
 
@@ -662,6 +687,7 @@ placeholder="ابحث عن كلمة في القرآن..."
 
 </section>
 
+
 <!-- السبحة -->
 
 <section id="tasbeeh" class="section">
@@ -680,9 +706,13 @@ placeholder="ابحث عن كلمة في القرآن..."
 
 <div class="tasbeeh-center">
 
-<strong id="count">0</strong>
+<strong id="count">
+0
+</strong>
 
-<span>تسبيحة</span>
+<span>
+تسبيحة
+</span>
 
 </div>
 
@@ -704,7 +734,8 @@ placeholder="ابحث عن كلمة في القرآن..."
 
 </section>
 
-<!-- الصلاة -->
+
+<!-- مواقيت الصلاة -->
 
 <section id="prayer" class="section">
 
@@ -724,28 +755,93 @@ placeholder="ابحث عن كلمة في القرآن..."
 اختر المحافظة
 </option>
 
-<option value="Cairo">القاهرة</option>
-<option value="Giza">الجيزة</option>
-<option value="Alexandria">الإسكندرية</option>
-<option value="Dakahlia">الدقهلية</option>
-<option value="Gharbia">الغربية</option>
-<option value="Sharqia">الشرقية</option>
-<option value="Monufia">المنوفية</option>
-<option value="Qalyubia">القليوبية</option>
-<option value="Kafr El Sheikh">كفر الشيخ</option>
-<option value="Damietta">دمياط</option>
-<option value="Beheira">البحيرة</option>
-<option value="Port Said">بورسعيد</option>
-<option value="Ismailia">الإسماعيلية</option>
-<option value="Suez">السويس</option>
-<option value="Fayoum">الفيوم</option>
-<option value="Beni Suef">بني سويف</option>
-<option value="Minya">المنيا</option>
-<option value="Assiut">أسيوط</option>
-<option value="Sohag">سوهاج</option>
-<option value="Qena">قنا</option>
-<option value="Luxor">الأقصر</option>
-<option value="Aswan">أسوان</option>
+<option value="Cairo">
+القاهرة
+</option>
+
+<option value="Giza">
+الجيزة
+</option>
+
+<option value="Alexandria">
+الإسكندرية
+</option>
+
+<option value="Dakahlia">
+الدقهلية
+</option>
+
+<option value="Gharbia">
+الغربية
+</option>
+
+<option value="Sharqia">
+الشرقية
+</option>
+
+<option value="Monufia">
+المنوفية
+</option>
+
+<option value="Qalyubia">
+القليوبية
+</option>
+
+<option value="Kafr El Sheikh">
+كفر الشيخ
+</option>
+
+<option value="Damietta">
+دمياط
+</option>
+
+<option value="Beheira">
+البحيرة
+</option>
+
+<option value="Port Said">
+بورسعيد
+</option>
+
+<option value="Ismailia">
+الإسماعيلية
+</option>
+
+<option value="Suez">
+السويس
+</option>
+
+<option value="Fayoum">
+الفيوم
+</option>
+
+<option value="Beni Suef">
+بني سويف
+</option>
+
+<option value="Minya">
+المنيا
+</option>
+
+<option value="Assiut">
+أسيوط
+</option>
+
+<option value="Sohag">
+سوهاج
+</option>
+
+<option value="Qena">
+قنا
+</option>
+
+<option value="Luxor">
+الأقصر
+</option>
+
+<option value="Aswan">
+أسوان
+</option>
 
 </select>
 
@@ -790,6 +886,7 @@ placeholder="ابحث عن كلمة في القرآن..."
 
 </section>
 
+
 <!-- القبلة -->
 
 <section id="qibla" class="section">
@@ -826,9 +923,13 @@ placeholder="ابحث عن كلمة في القرآن..."
 
 </div>
 
+
 <footer>
-© 2026 BY ADAM AHMED
+
+© 2026 نور القرآن | BY ADAM AHMED
+
 </footer>
+
 
 <script>
 
@@ -838,6 +939,9 @@ let currentSurah=1;
 let currentAyah=0;
 let ayahAudio=[];
 let reciterId="ar.alafasy";
+
+
+/* الأقسام */
 
 function section(id){
 
@@ -854,11 +958,15 @@ behavior:"smooth"
 
 }
 
+
+/* السور */
+
 async function loadSurahs(){
 
 try{
 
 const r=await fetch(API+"/surah");
+
 const d=await r.json();
 
 let html="";
@@ -901,6 +1009,9 @@ document.getElementById("surahs").innerText=
 
 }
 
+
+/* القراء */
+
 async function loadReciters(){
 
 const select=document.getElementById("reciters");
@@ -921,6 +1032,7 @@ d.data.forEach(x=>{
 if(!ids.has(x.identifier)){
 
 ids.add(x.identifier);
+
 unique.push(x);
 
 }
@@ -943,7 +1055,9 @@ select.appendChild(option);
 });
 
 if(unique.some(x=>x.identifier==="ar.alafasy")){
+
 select.value="ar.alafasy";
+
 }
 
 select.onchange=async function(){
@@ -968,12 +1082,17 @@ select.innerHTML=`
 
 }
 
+
+/* فتح السورة */
+
 async function openSurah(number){
 
 currentSurah=number;
+
 currentAyah=0;
 
 document.getElementById("surahList").style.display="none";
+
 document.getElementById("reader").style.display="block";
 
 try{
@@ -983,6 +1102,7 @@ const r=await fetch(
 );
 
 const d=await r.json();
+
 const s=d.data;
 
 document.getElementById("surahName").innerText=s.name;
@@ -1029,6 +1149,9 @@ document.getElementById("ayahs").innerText=
 
 }
 
+
+/* الصوت */
+
 async function loadReciterAudio(){
 
 const info=document.getElementById("audioInfo");
@@ -1069,11 +1192,15 @@ info.innerText=
 }
 
 function play(){
+
 document.getElementById("player").play();
+
 }
 
 function pause(){
+
 document.getElementById("player").pause();
+
 }
 
 function nextAyah(){
@@ -1122,14 +1249,21 @@ document.getElementById("player").play();
 
 });
 
+
+/* العودة */
+
 function back(){
 
 document.getElementById("reader").style.display="none";
+
 document.getElementById("surahList").style.display="block";
 
 document.getElementById("player").pause();
 
 }
+
+
+/* الأرقام العربية */
 
 function arabic(n){
 
@@ -1140,9 +1274,11 @@ x=>"٠١٢٣٤٥٦٧٨٩"[x]
 
 }
 
-/* السبحة */
+
+/* السبحة 3D */
 
 const beads=document.getElementById("beads");
+
 const totalBeads=33;
 
 for(let i=0;i<totalBeads;i++){
@@ -1152,17 +1288,23 @@ const bead=document.createElement("div");
 bead.className="bead";
 
 const angle=(i/totalBeads)*Math.PI*2;
+
 const radius=128;
 
 const x=165+Math.cos(angle)*radius-15;
+
 const y=165+Math.sin(angle)*radius-15;
 
 bead.style.left=x+"px";
+
 bead.style.top=y+"px";
 
 bead.onclick=(e)=>{
+
 e.stopPropagation();
+
 tasbeeh();
+
 };
 
 beads.appendChild(bead);
@@ -1191,7 +1333,9 @@ tasbeehCount++;
 updateCount();
 
 if(navigator.vibrate){
+
 navigator.vibrate(25);
+
 }
 
 }
@@ -1199,11 +1343,13 @@ navigator.vibrate(25);
 function resetTasbeeh(){
 
 tasbeehCount=0;
+
 updateCount();
 
 }
 
 updateCount();
+
 
 /* الوضع الداكن */
 
@@ -1230,10 +1376,13 @@ document.body.classList.contains("dark")
 }
 
 if(localStorage.getItem("dark")==="true"){
+
 document.body.classList.add("dark");
+
 }
 
 updateTheme();
+
 
 /* الأذكار */
 
@@ -1249,6 +1398,7 @@ btn.innerText=
 "عدد التكرار: "+arabic(n);
 
 }
+
 
 /* البحث */
 
@@ -1316,7 +1466,9 @@ ${x.text}
 <span class="small">
 
 سورة ${x.surah.name}
+
 -
+
 الآية ${arabic(x.numberInSurah)}
 
 </span>
@@ -1334,6 +1486,7 @@ document.getElementById("results")
 
 }
 
+
 /* مواقيت الصلاة */
 
 async function prayer(){
@@ -1342,7 +1495,9 @@ const city=
 document.getElementById("city").value;
 
 if(!city){
+
 return;
+
 }
 
 try{
@@ -1361,28 +1516,63 @@ document.getElementById("date").innerText=
 document.getElementById("times").innerHTML=`
 
 <div class="prayer">
-<strong>🌅 الفجر</strong>
-<span>${t.Fajr}</span>
+
+<strong>
+🌅 الفجر
+</strong>
+
+<span>
+${t.Fajr}
+</span>
+
 </div>
 
 <div class="prayer">
-<strong>☀️ الظهر</strong>
-<span>${t.Dhuhr}</span>
+
+<strong>
+☀️ الظهر
+</strong>
+
+<span>
+${t.Dhuhr}
+</span>
+
 </div>
 
 <div class="prayer">
-<strong>🌤️ العصر</strong>
-<span>${t.Asr}</span>
+
+<strong>
+🌤️ العصر
+</strong>
+
+<span>
+${t.Asr}
+</span>
+
 </div>
 
 <div class="prayer">
-<strong>🌇 المغرب</strong>
-<span>${t.Maghrib}</span>
+
+<strong>
+🌇 المغرب
+</strong>
+
+<span>
+${t.Maghrib}
+</span>
+
 </div>
 
 <div class="prayer">
-<strong>🌙 العشاء</strong>
-<span>${t.Isha}</span>
+
+<strong>
+🌙 العشاء
+</strong>
+
+<span>
+${t.Isha}
+</span>
+
 </div>
 
 `;
@@ -1395,6 +1585,7 @@ alert("تعذر تحميل مواقيت الصلاة");
 
 }
 
+
 /* القبلة */
 
 function qibla(){
@@ -1402,6 +1593,7 @@ function qibla(){
 if(!navigator.geolocation){
 
 alert("المتصفح لا يدعم GPS");
+
 return;
 
 }
@@ -1414,6 +1606,7 @@ navigator.geolocation.getCurrentPosition(
 async position=>{
 
 const lat=position.coords.latitude;
+
 const lon=position.coords.longitude;
 
 try{
@@ -1452,7 +1645,11 @@ document.getElementById("qiblaInfo").innerText=
 
 }
 
+
+/* تشغيل */
+
 loadSurahs();
+
 loadReciters();
 
 </script>
