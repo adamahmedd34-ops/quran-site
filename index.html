@@ -2,472 +2,463 @@
 <html lang="ar" dir="rtl">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Google Search Console -->
-<meta name="google-site-verification" content="C0AZ2NPp_Ejy84IoPREkpsm0WzDp9d2tdM3Y7dAKAt8" />
+<meta name="google-site-verification" content="C0AZ2NPp_Ejy84IoPREkpsm0WzDp9d2tdM3Y7dAKAt8">
 
-<meta name="description" content="نور القرآن - القرآن الكريم والتلاوة والأذكار ومواقيت الصلاة واتجاه القبلة.">
-<meta name="keywords" content="نور القرآن, قرآن, القرآن الكريم, مصحف, تلاوة, أذكار, مواقيت الصلاة, القبلة">
+<meta name="description" content="سراج - القرآن الكريم والتلاوة والأذكار ومواقيت الصلاة واتجاه القبلة.">
+<meta name="keywords" content="سراج, القرآن الكريم, قرآن, مصحف, تلاوة, أذكار, سبحة, مواقيت الصلاة, القبلة">
 
-<title>نور القرآن | BY ADAM AHMED</title>
+<title>سراج | BY ADAM AHMED</title>
 
 <style>
-
 *{
-box-sizing:border-box;
-margin:0;
-padding:0;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 :root{
---green:#087f5b;
---green2:#075e54;
---gold:#d4a72c;
---bg:#f3f7f5;
---card:#ffffff;
---text:#173b35;
---border:#dce6e2;
---quran:#fffdf5;
+  --green:#087f5b;
+  --green2:#075e54;
+  --gold:#d4a72c;
+  --bg:#f3f7f5;
+  --card:#fff;
+  --text:#173b35;
+  --border:#dce6e2;
+  --quran:#fffdf5;
 }
 
 body.dark{
---bg:#0b1211;
---card:#17201e;
---text:#f5f8f7;
---border:#2b3935;
---quran:#121918;
+  --bg:#0b1211;
+  --card:#17201e;
+  --text:#f5f8f7;
+  --border:#2b3935;
+  --quran:#121918;
 }
 
 body{
-font-family:Tahoma,Arial,sans-serif;
-background:var(--bg);
-color:var(--text);
-line-height:1.8;
-transition:.3s;
+  font-family:Tahoma,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.8;
+  transition:.3s;
 }
 
 header{
-background:linear-gradient(135deg,#064f47,#087f5b,#15947f);
-color:white;
-text-align:center;
-padding:25px 15px;
-position:relative;
-box-shadow:0 4px 15px rgba(0,0,0,.15);
+  background:linear-gradient(135deg,#064f47,#087f5b,#15947f);
+  color:white;
+  text-align:center;
+  padding:25px 15px;
+  position:relative;
+  box-shadow:0 4px 15px rgba(0,0,0,.15);
 }
 
 .creator{
-font-size:15px;
-font-weight:bold;
-letter-spacing:3px;
-color:#ffd96a;
-margin-bottom:5px;
+  font-size:15px;
+  font-weight:bold;
+  letter-spacing:3px;
+  color:#ffd96a;
+  margin-bottom:5px;
 }
 
 header h1{
-font-size:34px;
+  font-size:36px;
 }
 
 header p{
-opacity:.9;
+  opacity:.9;
 }
 
 .theme{
-position:absolute;
-left:12px;
-top:12px;
-background:rgba(255,255,255,.15);
-border:1px solid rgba(255,255,255,.4);
-color:white;
-padding:9px 12px;
-border-radius:12px;
-cursor:pointer;
+  position:absolute;
+  left:12px;
+  top:12px;
+  background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.4);
+  color:white;
+  padding:9px 12px;
+  border-radius:12px;
+  cursor:pointer;
 }
 
 .container{
-width:min(1150px,94%);
-margin:auto;
-padding:22px 0 60px;
+  width:min(1150px,94%);
+  margin:auto;
+  padding:22px 0 60px;
 }
 
 .nav{
-display:grid;
-grid-template-columns:repeat(5,1fr);
-gap:9px;
-margin-bottom:20px;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:9px;
+  margin-bottom:20px;
 }
 
 button{
-border:0;
-background:var(--green);
-color:white;
-padding:12px 17px;
-border-radius:12px;
-cursor:pointer;
-font-size:15px;
+  border:0;
+  background:var(--green);
+  color:white;
+  padding:12px 17px;
+  border-radius:12px;
+  cursor:pointer;
+  font-size:15px;
 }
 
 button:hover{
-opacity:.9;
+  opacity:.9;
 }
 
 .nav button{
-background:var(--card);
-color:var(--text);
-border:1px solid var(--border);
+  background:var(--card);
+  color:var(--text);
+  border:1px solid var(--border);
 }
 
 .section{
-display:none;
+  display:none;
 }
 
 .section.active{
-display:block;
+  display:block;
 }
 
 .card{
-background:var(--card);
-border:1px solid var(--border);
-border-radius:18px;
-padding:20px;
-margin-bottom:16px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:20px;
+  margin-bottom:16px;
 }
 
 .title{
-color:var(--green);
-font-size:24px;
-margin-bottom:15px;
+  color:var(--green);
+  font-size:24px;
+  margin-bottom:15px;
 }
 
 .search{
-display:flex;
-gap:10px;
+  display:flex;
+  gap:10px;
 }
 
 input,select{
-width:100%;
-padding:14px;
-border:1px solid var(--border);
-border-radius:12px;
-background:var(--card);
-color:var(--text);
-font-size:16px;
-outline:none;
+  width:100%;
+  padding:14px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:var(--card);
+  color:var(--text);
+  font-size:16px;
+  outline:none;
 }
 
 .surahs{
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-gap:12px;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:12px;
 }
 
 .surah{
-display:flex;
-align-items:center;
-gap:12px;
-padding:16px;
-border:1px solid var(--border);
-border-radius:15px;
-background:var(--card);
-cursor:pointer;
-transition:.2s;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:16px;
+  border:1px solid var(--border);
+  border-radius:15px;
+  background:var(--card);
+  cursor:pointer;
+  transition:.2s;
 }
 
 .surah:hover{
-border-color:var(--green);
-transform:translateY(-2px);
+  border-color:var(--green);
+  transform:translateY(-2px);
 }
 
 .num{
-width:45px;
-height:45px;
-border-radius:50%;
-background:#e5f2ed;
-color:var(--green);
-display:flex;
-align-items:center;
-justify-content:center;
-font-weight:bold;
-flex-shrink:0;
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  background:#e5f2ed;
+  color:var(--green);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+  flex-shrink:0;
 }
 
 .small{
-font-size:13px;
-color:#78908a;
+  font-size:13px;
+  color:#78908a;
 }
 
 #reader{
-display:none;
+  display:none;
 }
 
 .quran{
-background:var(--quran);
-border:1px solid var(--border);
-border-radius:20px;
-padding:28px 25px;
+  background:var(--quran);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:28px 25px;
 }
 
 .surah-title{
-text-align:center;
-border-bottom:1px solid var(--border);
-padding-bottom:18px;
-margin-bottom:20px;
+  text-align:center;
+  border-bottom:1px solid var(--border);
+  padding-bottom:18px;
+  margin-bottom:20px;
 }
 
 .surah-title h2{
-font-family:"Traditional Arabic",serif;
-font-size:38px;
-color:var(--green);
+  font-family:"Traditional Arabic",serif;
+  font-size:38px;
+  color:var(--green);
 }
 
 .bismillah{
-font-family:"Traditional Arabic",serif;
-text-align:center;
-font-size:30px;
-color:var(--gold);
-margin:20px;
+  font-family:"Traditional Arabic",serif;
+  text-align:center;
+  font-size:30px;
+  color:var(--gold);
+  margin:20px;
 }
 
 .quran-text{
-font-family:"Traditional Arabic",serif;
-font-size:30px;
-line-height:2.7;
-text-align:justify;
+  font-family:"Traditional Arabic",serif;
+  font-size:30px;
+  line-height:2.7;
+  text-align:justify;
 }
 
 .ayah{
-display:inline-flex;
-align-items:center;
-justify-content:center;
-width:38px;
-height:38px;
-border:2px solid var(--green);
-border-radius:50%;
-font-family:Tahoma;
-font-size:12px;
-color:var(--green);
-margin:0 5px;
-vertical-align:middle;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:38px;
+  height:38px;
+  border:2px solid var(--green);
+  border-radius:50%;
+  font-family:Tahoma;
+  font-size:12px;
+  color:var(--green);
+  margin:0 5px;
+  vertical-align:middle;
 }
 
 .audio-box{
-background:var(--card);
-border:1px solid var(--border);
-border-radius:18px;
-padding:20px;
-margin-bottom:15px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:20px;
+  margin-bottom:15px;
 }
 
 audio{
-width:100%;
-margin:10px 0;
+  width:100%;
+  margin:10px 0;
 }
 
 .audio-buttons{
-display:flex;
-gap:8px;
-flex-wrap:wrap;
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
 }
 
 .tasbeeh{
-text-align:center;
+  text-align:center;
 }
 
 .tasbeeh3d{
-width:330px;
-height:330px;
-margin:30px auto;
-position:relative;
-perspective:900px;
-transform-style:preserve-3d;
-animation:rotate3d 10s linear infinite;
+  width:330px;
+  height:330px;
+  margin:30px auto;
+  position:relative;
+  perspective:900px;
+  transform-style:preserve-3d;
+  animation:rotate3d 10s linear infinite;
 }
 
 @keyframes rotate3d{
-
-0%{
-transform:rotateX(12deg) rotateY(0deg);
-}
-
-50%{
-transform:rotateX(-8deg) rotateY(180deg);
-}
-
-100%{
-transform:rotateX(12deg) rotateY(360deg);
-}
-
+  0%{
+    transform:rotateX(12deg) rotateY(0deg);
+  }
+  50%{
+    transform:rotateX(-8deg) rotateY(180deg);
+  }
+  100%{
+    transform:rotateX(12deg) rotateY(360deg);
+  }
 }
 
 .bead{
-position:absolute;
-width:30px;
-height:30px;
-border-radius:50%;
-
-background:
-radial-gradient(
-circle at 30% 25%,
-#72f0c0,
-#0c9b6b 45%,
-#034b38 100%
-);
-
-box-shadow:
-inset -5px -6px 8px rgba(0,0,0,.45),
-inset 5px 5px 7px rgba(255,255,255,.35),
-0 5px 10px rgba(0,0,0,.4);
-
-cursor:pointer;
+  position:absolute;
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  background:radial-gradient(
+    circle at 30% 25%,
+    #72f0c0,
+    #0c9b6b 45%,
+    #034b38 100%
+  );
+  box-shadow:
+    inset -5px -6px 8px rgba(0,0,0,.45),
+    inset 5px 5px 7px rgba(255,255,255,.35),
+    0 5px 10px rgba(0,0,0,.4);
+  cursor:pointer;
 }
 
 .tasbeeh-center{
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-width:150px;
-height:150px;
-border-radius:50%;
-
-background:
-radial-gradient(
-circle at 35% 25%,
-#3a3a3a,
-#101010 65%,
-#000
-);
-
-box-shadow:
-inset 0 0 25px #000,
-0 12px 25px rgba(0,0,0,.45);
-
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-color:white;
-z-index:10;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  background:radial-gradient(
+    circle at 35% 25%,
+    #3a3a3a,
+    #101010 65%,
+    #000
+  );
+  box-shadow:
+    inset 0 0 25px #000,
+    0 12px 25px rgba(0,0,0,.45);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  z-index:10;
 }
 
 .tasbeeh-center strong{
-font-size:45px;
-color:#61e7b3;
+  font-size:45px;
+  color:#61e7b3;
 }
 
 .tasbeeh-buttons{
-display:flex;
-justify-content:center;
-gap:10px;
+  display:flex;
+  justify-content:center;
+  gap:10px;
 }
 
 .reset{
-background:#777;
+  background:#777;
 }
 
 .prayer-grid{
-display:grid;
-grid-template-columns:repeat(5,1fr);
-gap:10px;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:10px;
 }
 
 .prayer{
-text-align:center;
-padding:16px 5px;
-border:1px solid var(--border);
-border-radius:14px;
+  text-align:center;
+  padding:16px 5px;
+  border:1px solid var(--border);
+  border-radius:14px;
 }
 
 .prayer strong{
-display:block;
-color:var(--green);
+  display:block;
+  color:var(--green);
 }
 
 .prayer span{
-font-size:20px;
+  font-size:20px;
 }
 
 .compass{
-width:230px;
-height:230px;
-border:8px solid var(--green);
-border-radius:50%;
-margin:30px auto;
-display:flex;
-align-items:center;
-justify-content:center;
-position:relative;
-transition:.7s;
+  width:230px;
+  height:230px;
+  border:8px solid var(--green);
+  border-radius:50%;
+  margin:30px auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  transition:.7s;
 }
 
 .arrow{
-position:absolute;
-top:5px;
-left:50%;
-transform:translateX(-50%);
-font-size:42px;
-color:#d33;
+  position:absolute;
+  top:5px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:42px;
+  color:#d33;
 }
 
 .kaaba{
-font-size:50px;
+  font-size:50px;
 }
 
 .zekr{
-font-family:"Traditional Arabic",serif;
-font-size:23px;
-line-height:2.3;
-padding:20px;
-border:1px solid var(--border);
-border-radius:16px;
-margin-bottom:12px;
+  font-family:"Traditional Arabic",serif;
+  font-size:23px;
+  line-height:2.3;
+  padding:20px;
+  border:1px solid var(--border);
+  border-radius:16px;
+  margin-bottom:12px;
+}
+
+.result{
+  background:var(--card);
+  border:1px solid var(--border);
+  padding:15px;
+  border-radius:15px;
+  margin:10px 0;
+  cursor:pointer;
 }
 
 footer{
-text-align:center;
-padding:25px;
-color:#78908a;
-font-size:14px;
+  text-align:center;
+  padding:25px;
+  color:#78908a;
+  font-size:14px;
 }
 
 @media(max-width:700px){
 
-.nav{
-grid-template-columns:repeat(2,1fr);
-}
+  .nav{
+    grid-template-columns:repeat(2,1fr);
+  }
 
-.search{
-flex-direction:column;
-}
+  .search{
+    flex-direction:column;
+  }
 
-.quran{
-padding:20px 13px;
-}
+  .quran{
+    padding:20px 13px;
+  }
 
-.quran-text{
-font-size:24px;
-line-height:2.6;
-}
+  .quran-text{
+    font-size:24px;
+    line-height:2.6;
+  }
 
-.prayer-grid{
-grid-template-columns:repeat(2,1fr);
-}
+  .prayer-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
 
-.tasbeeh3d{
-width:280px;
-height:280px;
-}
+  .tasbeeh3d{
+    width:280px;
+    height:280px;
+  }
 
-header h1{
-font-size:28px;
+  header h1{
+    font-size:30px;
+  }
 }
-
-}
-
 </style>
-
 </head>
 
 <body>
@@ -482,7 +473,7 @@ font-size:28px;
 BY ADAM AHMED
 </div>
 
-<h1>📖 نور القرآن</h1>
+<h1>📖 سراج</h1>
 
 <p>
 القرآن • التلاوة • الأذكار • السبحة • الصلاة • القبلة
@@ -531,7 +522,7 @@ BY ADAM AHMED
 
 <input
 id="search"
-placeholder="ابحث عن كلمة في القرآن..."
+placeholder="اكتب كلمة أو جزءًا من آية..."
 >
 
 <button onclick="searchQuran()">
@@ -566,9 +557,6 @@ placeholder="ابحث عن كلمة في القرآن..."
 
 <br><br>
 
-
-<!-- التلاوة -->
-
 <div class="audio-box">
 
 <h2 class="title">
@@ -576,11 +564,7 @@ placeholder="ابحث عن كلمة في القرآن..."
 </h2>
 
 <select id="reciters">
-
-<option>
-جاري تحميل القراء...
-</option>
-
+<option>جاري تحميل القراء...</option>
 </select>
 
 <audio id="player" controls></audio>
@@ -610,9 +594,6 @@ placeholder="ابحث عن كلمة في القرآن..."
 </p>
 
 </div>
-
-
-<!-- المصحف -->
 
 <div class="quran">
 
@@ -735,7 +716,7 @@ placeholder="ابحث عن كلمة في القرآن..."
 </section>
 
 
-<!-- مواقيت الصلاة -->
+<!-- الصلاة -->
 
 <section id="prayer" class="section">
 
@@ -755,93 +736,28 @@ placeholder="ابحث عن كلمة في القرآن..."
 اختر المحافظة
 </option>
 
-<option value="Cairo">
-القاهرة
-</option>
-
-<option value="Giza">
-الجيزة
-</option>
-
-<option value="Alexandria">
-الإسكندرية
-</option>
-
-<option value="Dakahlia">
-الدقهلية
-</option>
-
-<option value="Gharbia">
-الغربية
-</option>
-
-<option value="Sharqia">
-الشرقية
-</option>
-
-<option value="Monufia">
-المنوفية
-</option>
-
-<option value="Qalyubia">
-القليوبية
-</option>
-
-<option value="Kafr El Sheikh">
-كفر الشيخ
-</option>
-
-<option value="Damietta">
-دمياط
-</option>
-
-<option value="Beheira">
-البحيرة
-</option>
-
-<option value="Port Said">
-بورسعيد
-</option>
-
-<option value="Ismailia">
-الإسماعيلية
-</option>
-
-<option value="Suez">
-السويس
-</option>
-
-<option value="Fayoum">
-الفيوم
-</option>
-
-<option value="Beni Suef">
-بني سويف
-</option>
-
-<option value="Minya">
-المنيا
-</option>
-
-<option value="Assiut">
-أسيوط
-</option>
-
-<option value="Sohag">
-سوهاج
-</option>
-
-<option value="Qena">
-قنا
-</option>
-
-<option value="Luxor">
-الأقصر
-</option>
-
-<option value="Aswan">
-أسوان
-</option>
+<option value="Cairo">القاهرة</option>
+<option value="Giza">الجيزة</option>
+<option value="Alexandria">الإسكندرية</option>
+<option value="Dakahlia">الدقهلية</option>
+<option value="Gharbia">الغربية</option>
+<option value="Sharqia">الشرقية</option>
+<option value="Monufia">المنوفية</option>
+<option value="Qalyubia">القليوبية</option>
+<option value="Kafr El Sheikh">كفر الشيخ</option>
+<option value="Damietta">دمياط</option>
+<option value="Beheira">البحيرة</option>
+<option value="Port Said">بورسعيد</option>
+<option value="Ismailia">الإسماعيلية</option>
+<option value="Suez">السويس</option>
+<option value="Fayoum">الفيوم</option>
+<option value="Beni Suef">بني سويف</option>
+<option value="Minya">المنيا</option>
+<option value="Assiut">أسيوط</option>
+<option value="Sohag">سوهاج</option>
+<option value="Qena">قنا</option>
+<option value="Luxor">الأقصر</option>
+<option value="Aswan">أسوان</option>
 
 </select>
 
@@ -923,11 +839,8 @@ placeholder="ابحث عن كلمة في القرآن..."
 
 </div>
 
-
 <footer>
-
-© 2026 نور القرآن | BY ADAM AHMED
-
+© 2026 سراج | BY ADAM AHMED
 </footer>
 
 
@@ -966,7 +879,6 @@ async function loadSurahs(){
 try{
 
 const r=await fetch(API+"/surah");
-
 const d=await r.json();
 
 let html="";
@@ -1032,7 +944,6 @@ d.data.forEach(x=>{
 if(!ids.has(x.identifier)){
 
 ids.add(x.identifier);
-
 unique.push(x);
 
 }
@@ -1088,11 +999,9 @@ select.innerHTML=`
 async function openSurah(number){
 
 currentSurah=number;
-
 currentAyah=0;
 
 document.getElementById("surahList").style.display="none";
-
 document.getElementById("reader").style.display="block";
 
 try{
@@ -1102,7 +1011,6 @@ const r=await fetch(
 );
 
 const d=await r.json();
-
 const s=d.data;
 
 document.getElementById("surahName").innerText=s.name;
@@ -1192,15 +1100,11 @@ info.innerText=
 }
 
 function play(){
-
 document.getElementById("player").play();
-
 }
 
 function pause(){
-
 document.getElementById("player").pause();
-
 }
 
 function nextAyah(){
@@ -1255,7 +1159,6 @@ document.getElementById("player").play();
 function back(){
 
 document.getElementById("reader").style.display="none";
-
 document.getElementById("surahList").style.display="block";
 
 document.getElementById("player").pause();
@@ -1292,17 +1195,14 @@ const angle=(i/totalBeads)*Math.PI*2;
 const radius=128;
 
 const x=165+Math.cos(angle)*radius-15;
-
 const y=165+Math.sin(angle)*radius-15;
 
 bead.style.left=x+"px";
-
 bead.style.top=y+"px";
 
 bead.onclick=(e)=>{
 
 e.stopPropagation();
-
 tasbeeh();
 
 };
@@ -1333,9 +1233,7 @@ tasbeehCount++;
 updateCount();
 
 if(navigator.vibrate){
-
 navigator.vibrate(25);
-
 }
 
 }
@@ -1343,7 +1241,6 @@ navigator.vibrate(25);
 function resetTasbeeh(){
 
 tasbeehCount=0;
-
 updateCount();
 
 }
@@ -1400,7 +1297,7 @@ btn.innerText=
 }
 
 
-/* البحث */
+/* البحث في القرآن */
 
 async function searchQuran(){
 
@@ -1409,7 +1306,7 @@ document.getElementById("search").value.trim();
 
 if(!word){
 
-alert("اكتب كلمة للبحث");
+alert("اكتب كلمة أو جزءًا من آية");
 
 return;
 
@@ -1420,7 +1317,7 @@ document.getElementById("surahList").innerHTML=`
 <div class="card">
 
 <h2 class="title">
-نتائج البحث
+🔍 نتائج البحث عن: ${word}
 </h2>
 
 <div id="results">
@@ -1451,19 +1348,18 @@ return;
 }
 
 document.getElementById("results").innerHTML=
-results.slice(0,40).map(x=>`
+results.slice(0,50).map(x=>`
 
 <div
-class="zekr"
-style="cursor:pointer"
+class="result"
 onclick="openSurah(${x.surah.number})"
 >
 
+<div style="font-family:'Traditional Arabic';font-size:24px">
 ${x.text}
+</div>
 
-<br>
-
-<span class="small">
+<div class="small">
 
 سورة ${x.surah.name}
 
@@ -1471,7 +1367,7 @@ ${x.text}
 
 الآية ${arabic(x.numberInSurah)}
 
-</span>
+</div>
 
 </div>
 
@@ -1495,9 +1391,7 @@ const city=
 document.getElementById("city").value;
 
 if(!city){
-
 return;
-
 }
 
 try{
@@ -1516,63 +1410,28 @@ document.getElementById("date").innerText=
 document.getElementById("times").innerHTML=`
 
 <div class="prayer">
-
-<strong>
-🌅 الفجر
-</strong>
-
-<span>
-${t.Fajr}
-</span>
-
+<strong>🌅 الفجر</strong>
+<span>${t.Fajr}</span>
 </div>
 
 <div class="prayer">
-
-<strong>
-☀️ الظهر
-</strong>
-
-<span>
-${t.Dhuhr}
-</span>
-
+<strong>☀️ الظهر</strong>
+<span>${t.Dhuhr}</span>
 </div>
 
 <div class="prayer">
-
-<strong>
-🌤️ العصر
-</strong>
-
-<span>
-${t.Asr}
-</span>
-
+<strong>🌤️ العصر</strong>
+<span>${t.Asr}</span>
 </div>
 
 <div class="prayer">
-
-<strong>
-🌇 المغرب
-</strong>
-
-<span>
-${t.Maghrib}
-</span>
-
+<strong>🌇 المغرب</strong>
+<span>${t.Maghrib}</span>
 </div>
 
 <div class="prayer">
-
-<strong>
-🌙 العشاء
-</strong>
-
-<span>
-${t.Isha}
-</span>
-
+<strong>🌙 العشاء</strong>
+<span>${t.Isha}</span>
 </div>
 
 `;
@@ -1593,7 +1452,6 @@ function qibla(){
 if(!navigator.geolocation){
 
 alert("المتصفح لا يدعم GPS");
-
 return;
 
 }
@@ -1606,7 +1464,6 @@ navigator.geolocation.getCurrentPosition(
 async position=>{
 
 const lat=position.coords.latitude;
-
 const lon=position.coords.longitude;
 
 try{
@@ -1646,10 +1503,9 @@ document.getElementById("qiblaInfo").innerText=
 }
 
 
-/* تشغيل */
+/* تشغيل الموقع */
 
 loadSurahs();
-
 loadReciters();
 
 </script>
