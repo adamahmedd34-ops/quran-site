@@ -1,2014 +1,1514 @@
-```csharp
-using System;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Text;
-using System.Windows.Forms;
-using System.ComponentModel;
-using System.Collections.Generic;
-using Timer = System.Windows.Forms.Timer;
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 
-namespace saree3_Barcode
-{
-    public class MainDashboard : Form
-    {
-        // ============================================================
-        // THEME
-        // ============================================================
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        private readonly Color BackgroundColor = Color.FromArgb(15, 18, 24);
-        private readonly Color SidebarColor = Color.FromArgb(21, 26, 34);
-        private readonly Color HeaderColor = Color.FromArgb(24, 29, 38);
-        private readonly Color CardColor = Color.FromArgb(28, 34, 44);
-        private readonly Color CardHoverColor = Color.FromArgb(34, 41, 53);
-        private readonly Color BorderColor = Color.FromArgb(48, 57, 72);
+<meta name="google-site-verification" content="C0AZ2NPp_Ejy84IoPREkpsm0WzDp9d2tdM3Y7dAKAt8">
 
-        private readonly Color Orange = Color.FromArgb(245, 158, 11);
-        private readonly Color Blue = Color.FromArgb(59, 130, 246);
-        private readonly Color Purple = Color.FromArgb(139, 92, 246);
-        private readonly Color Green = Color.FromArgb(34, 197, 94);
-        private readonly Color Red = Color.FromArgb(239, 68, 68);
+<meta name="description" content="سراج - القرآن الكريم والتلاوة والأذكار ومواقيت الصلاة واتجاه القبلة.">
+<meta name="keywords" content="سراج, القرآن الكريم, قرآن, مصحف, تلاوة, أذكار, سبحة, مواقيت الصلاة, القبلة">
 
-        private readonly Color TextPrimary = Color.White;
-        private readonly Color TextSecondary = Color.FromArgb(155, 165, 180);
-        private readonly Color TextMuted = Color.FromArgb(105, 115, 130);
-        private readonly Color DisabledColor = Color.FromArgb(70, 78, 92);
+<title>سراج | BY ADAM AHMED</title>
 
-        // ============================================================
-        // USER / SHIFT
-        // ============================================================
-
-        private string currentUserName = "مدير النظام";
-
-        private bool shiftActive;
-        private DateTime shiftStartTime;
-
-        private decimal shiftSales;
-        private int shiftProducts;
-        private int shiftBarcodes;
-
-        // ============================================================
-        // CONTROLS
-        // ============================================================
-
-        private Panel pnlHeader = null!;
-        private Panel pnlSidebar = null!;
-        private Panel pnlContent = null!;
-        private Panel pnlOperations = null!;
-
-        private Label lblTitle = null!;
-        private Label lblDateTime = null!;
-        private Label lblUserName = null!;
-        private Label lblShiftStatus = null!;
-        private Label lblWelcome = null!;
-        private Label lblWelcomeSub = null!;
-
-        private Button btnStartShift = null!;
-        private Button btnEndShift = null!;
-        private Button btnExit = null!;
-        private Button btnMaximize = null!;
-        private Button btnMinimize = null!;
-
-        private ActionCard cardSales = null!;
-        private ActionCard cardBarcode = null!;
-        private ActionCard cardPrint = null!;
-        private ActionCard cardInventory = null!;
-
-        private DashboardCard cardSalesStats = null!;
-        private DashboardCard cardProductsStats = null!;
-        private DashboardCard cardBarcodeStats = null!;
-        private DashboardCard cardUsersStats = null!;
-
-        private Timer timerClock = null!;
-
-        // ============================================================
-        // OPERATIONS
-        // ============================================================
-
-        private class OperationItem
-        {
-            public string Time { get; set; } = "";
-            public string Operation { get; set; } = "";
-            public string User { get; set; } = "";
-            public string Value { get; set; } = "";
-            public Color Color { get; set; }
-        }
-
-        private readonly List<OperationItem> operations = new();
-
-        // ============================================================
-        // CONSTRUCTOR
-        // ============================================================
-
-        public MainDashboard()
-        {
-            InitializeDashboard();
-        }
-
-        // ============================================================
-        // INITIALIZE
-        // ============================================================
-
-        private void InitializeDashboard()
-        {
-            Text = "saree3_Barcode";
-            StartPosition = FormStartPosition.CenterScreen;
-            WindowState = FormWindowState.Maximized;
-            FormBorderStyle = FormBorderStyle.None;
-            BackColor = BackgroundColor;
-            RightToLeft = RightToLeft.Yes;
-            DoubleBuffered = true;
-
-            SetStyle(
-                ControlStyles.AllPaintingInWmPaint |
-                ControlStyles.UserPaint |
-                ControlStyles.OptimizedDoubleBuffer |
-                ControlStyles.ResizeRedraw,
-                true);
-
-            CreateHeader();
-            CreateSidebar();
-            CreateContent();
-
-            Resize += MainDashboard_Resize;
-
-            SetShiftState(false);
-            PositionContent();
-        }
-
-        // ============================================================
-        // HEADER
-        // ============================================================
-
-        private void CreateHeader()
-        {
-            pnlHeader = new Panel
-            {
-                Dock = DockStyle.Top,
-                Height = 68,
-                BackColor = HeaderColor
-            };
-
-            Controls.Add(pnlHeader);
-
-            Panel bottomLine = new Panel
-            {
-                Height = 2,
-                Dock = DockStyle.Bottom,
-                BackColor = Orange
-            };
-
-            pnlHeader.Controls.Add(bottomLine);
-
-            lblTitle = new Label
-            {
-                Text = "لوحة التحكم",
-                Font = new Font("Segoe UI", 15, FontStyle.Bold),
-                ForeColor = TextPrimary,
-                AutoSize = true,
-                BackColor = HeaderColor
-            };
-
-            pnlHeader.Controls.Add(lblTitle);
-
-            lblUserName = new Label
-            {
-                Text = "👤  " + currentUserName,
-                Font = new Font("Segoe UI", 9.5f, FontStyle.Bold),
-                ForeColor = Color.FromArgb(255, 193, 90),
-                AutoSize = true,
-                BackColor = HeaderColor
-            };
-
-            pnlHeader.Controls.Add(lblUserName);
-
-            lblDateTime = new Label
-            {
-                Font = new Font("Segoe UI", 9),
-                ForeColor = TextSecondary,
-                AutoSize = true,
-                BackColor = HeaderColor
-            };
-
-            pnlHeader.Controls.Add(lblDateTime);
-
-            lblShiftStatus = new Label
-            {
-                Text = "● الشفت مغلق",
-                Font = new Font("Segoe UI", 9, FontStyle.Bold),
-                ForeColor = Red,
-                AutoSize = true,
-                BackColor = HeaderColor
-            };
-
-            pnlHeader.Controls.Add(lblShiftStatus);
-
-            btnStartShift = CreateHeaderButton(
-                "▶  بدء الشفت",
-                Green);
-
-            btnStartShift.Click += BtnStartShift_Click;
-            pnlHeader.Controls.Add(btnStartShift);
-
-            btnEndShift = CreateHeaderButton(
-                "■  إنهاء الشفت",
-                Red);
-
-            btnEndShift.Click += BtnEndShift_Click;
-            pnlHeader.Controls.Add(btnEndShift);
-
-            btnMinimize = CreateWindowButton("─");
-            btnMinimize.Click += (s, e) =>
-            {
-                WindowState = FormWindowState.Minimized;
-            };
-            pnlHeader.Controls.Add(btnMinimize);
-
-            btnMaximize = CreateWindowButton("□");
-            btnMaximize.Click += BtnMaximize_Click;
-            pnlHeader.Controls.Add(btnMaximize);
-
-            btnExit = CreateWindowButton("×", true);
-            btnExit.Click += BtnExit_Click;
-            pnlHeader.Controls.Add(btnExit);
-
-            timerClock = new Timer
-            {
-                Interval = 1000
-            };
-
-            timerClock.Tick += TimerClock_Tick;
-            timerClock.Start();
-
-            UpdateDateTime();
-        }
-
-        // ============================================================
-        // HEADER BUTTON
-        // ============================================================
-
-        private Button CreateHeaderButton(string text, Color color)
-        {
-            Button button = new Button
-            {
-                Text = text,
-                Size = new Size(112, 36),
-                FlatStyle = FlatStyle.Flat,
-                BackColor = color,
-                ForeColor = Color.White,
-                Font = new Font("Segoe UI", 9, FontStyle.Bold),
-                Cursor = Cursors.Hand,
-                TabStop = false
-            };
-
-            button.FlatAppearance.BorderSize = 0;
-
-            Color normal = color;
-
-            button.MouseEnter += (s, e) =>
-            {
-                if (button.Enabled)
-                    button.BackColor = LightenColor(normal, 18);
-            };
-
-            button.MouseLeave += (s, e) =>
-            {
-                button.BackColor =
-                    button.Enabled ? normal : DisabledColor;
-            };
-
-            return button;
-        }
-
-        // ============================================================
-        // WINDOW BUTTON
-        // ============================================================
-
-        private Button CreateWindowButton(string text, bool danger = false)
-        {
-            Button button = new Button
-            {
-                Text = text,
-                Size = new Size(44, 42),
-                FlatStyle = FlatStyle.Flat,
-                BackColor = danger
-                    ? Color.FromArgb(180, 52, 62)
-                    : Color.FromArgb(32, 38, 49),
-                ForeColor = Color.White,
-                Font = new Font("Segoe UI", 13, FontStyle.Bold),
-                Cursor = Cursors.Hand,
-                TabStop = false
-            };
-
-            button.FlatAppearance.BorderSize = 0;
-
-            Color normal = button.BackColor;
-
-            button.MouseEnter += (s, e) =>
-            {
-                button.BackColor = danger
-                    ? Color.FromArgb(220, 65, 75)
-                    : Color.FromArgb(55, 63, 78);
-            };
-
-            button.MouseLeave += (s, e) =>
-            {
-                button.BackColor = normal;
-            };
-
-            return button;
-        }
-
-        // ============================================================
-        // SIDEBAR
-        // ============================================================
-
-        private void CreateSidebar()
-        {
-            pnlSidebar = new Panel
-            {
-                Dock = DockStyle.Right,
-                Width = 245,
-                BackColor = SidebarColor
-            };
-
-            Controls.Add(pnlSidebar);
-
-            Label logo = new Label
-            {
-                Text = "saree3",
-                Font = new Font("Segoe UI", 26, FontStyle.Bold),
-                ForeColor = Orange,
-                AutoSize = true,
-                BackColor = SidebarColor
-            };
-
-            pnlSidebar.Controls.Add(logo);
-
-            Label sub = new Label
-            {
-                Text = "BARCODE & POS SYSTEM",
-                Font = new Font("Segoe UI", 7.5f, FontStyle.Bold),
-                ForeColor = TextMuted,
-                AutoSize = true,
-                BackColor = SidebarColor
-            };
-
-            pnlSidebar.Controls.Add(sub);
-
-            Panel line = new Panel
-            {
-                Height = 1,
-                Width = 195,
-                BackColor = BorderColor
-            };
-
-            pnlSidebar.Controls.Add(line);
-
-            AddSidebarButton("⌂", "الرئيسية", 115, true, (s, e) => { });
-            AddSidebarButton("🛒", "المبيعات", 170, false, BtnSales_Click);
-            AddSidebarButton("📦", "المخزون", 225, false, BtnInventory_Click);
-            AddSidebarButton("▦", "الباركود", 280, false, BtnBarcode_Click);
-            AddSidebarButton("🖨", "الطباعة", 335, false, BtnPrint_Click);
-            AddSidebarButton("👥", "المستخدمين", 390, false, BtnUsers_Click);
-            AddSidebarButton("⚙", "الإعدادات", 445, false, BtnSettings_Click);
-            AddSidebarButton("▥", "التقارير", 500, false, BtnReports_Click);
-            AddSidebarButton("⇥", "تسجيل الخروج", 555, false, BtnExit_Click);
-
-            Label version = new Label
-            {
-                Text = "Tijaraty • Version 1.0.0",
-                Font = new Font("Segoe UI", 8),
-                ForeColor = TextMuted,
-                AutoSize = true,
-                BackColor = SidebarColor
-            };
-
-            pnlSidebar.Controls.Add(version);
-
-            pnlSidebar.Resize += (s, e) =>
-            {
-                logo.Left = (pnlSidebar.Width - logo.Width) / 2;
-                logo.Top = 20;
-
-                sub.Left = (pnlSidebar.Width - sub.Width) / 2;
-                sub.Top = 62;
-
-                line.Left = (pnlSidebar.Width - line.Width) / 2;
-                line.Top = 96;
-
-                version.Left = (pnlSidebar.Width - version.Width) / 2;
-                version.Top = pnlSidebar.Height - 35;
-            };
-        }
-
-        // ============================================================
-        // SIDEBAR BUTTON
-        // ============================================================
-
-        private void AddSidebarButton(
-            string icon,
-            string text,
-            int top,
-            bool selected,
-            EventHandler click)
-        {
-            SidebarButton button = new SidebarButton
-            {
-                IconText = icon,
-                Title = text,
-                Selected = selected,
-                Location = new Point(18, top),
-                Size = new Size(209, 48)
-            };
-
-            button.Click += click;
-
-            pnlSidebar.Controls.Add(button);
-        }
-
-        // ============================================================
-        // CONTENT
-        // ============================================================
-
-        private void CreateContent()
-        {
-            pnlContent = new Panel
-            {
-                BackColor = BackgroundColor,
-                Dock = DockStyle.Fill,
-                Padding = new Padding(30, 25, 30, 20)
-            };
-
-            Controls.Add(pnlContent);
-            pnlContent.BringToFront();
-
-            lblWelcome = new Label
-            {
-                Text = "مرحباً بك في saree3_Barcode 👋",
-                Font = new Font("Segoe UI", 24, FontStyle.Bold),
-                ForeColor = TextPrimary,
-                AutoSize = true,
-                BackColor = BackgroundColor
-            };
-
-            pnlContent.Controls.Add(lblWelcome);
-
-            lblWelcomeSub = new Label
-            {
-                Text = "إدارة المبيعات والباركود والمخزون بسهولة وسرعة",
-                Font = new Font("Segoe UI", 10.5f),
-                ForeColor = TextSecondary,
-                AutoSize = true,
-                BackColor = BackgroundColor
-            };
-
-            pnlContent.Controls.Add(lblWelcomeSub);
-
-            cardSales = new ActionCard
-            {
-                Title = "المبيعات",
-                Description = "إدارة عمليات البيع والفواتير",
-                IconText = "🛒",
-                StartColor = Color.FromArgb(245, 158, 11),
-                EndColor = Color.FromArgb(180, 95, 5),
-                AccentColor = Orange
-            };
-            cardSales.Click += BtnSales_Click;
-            pnlContent.Controls.Add(cardSales);
-
-            cardBarcode = new ActionCard
-            {
-                Title = "الباركود",
-                Description = "إنشاء وإدارة الباركود",
-                IconText = "▦",
-                StartColor = Color.FromArgb(59, 130, 246),
-                EndColor = Color.FromArgb(29, 78, 216),
-                AccentColor = Blue
-            };
-            cardBarcode.Click += BtnBarcode_Click;
-            pnlContent.Controls.Add(cardBarcode);
-
-            cardPrint = new ActionCard
-            {
-                Title = "الطباعة",
-                Description = "طباعة المنتجات والباركود",
-                IconText = "🖨",
-                StartColor = Color.FromArgb(139, 92, 246),
-                EndColor = Color.FromArgb(109, 40, 217),
-                AccentColor = Purple
-            };
-            cardPrint.Click += BtnPrint_Click;
-            pnlContent.Controls.Add(cardPrint);
-
-            cardInventory = new ActionCard
-            {
-                Title = "المخزون",
-                Description = "إدارة ومتابعة المخزون",
-                IconText = "📦",
-                StartColor = Color.FromArgb(34, 197, 94),
-                EndColor = Color.FromArgb(21, 128, 61),
-                AccentColor = Green
-            };
-            cardInventory.Click += BtnInventory_Click;
-            pnlContent.Controls.Add(cardInventory);
-
-            cardSalesStats = CreateStatsCard(
-                "المبيعات في الشفت",
-                "0 ج",
-                "تم تصفير الشفت",
-                "🛒",
-                Orange);
-
-            cardProductsStats = CreateStatsCard(
-                "المنتجات في الشفت",
-                "0",
-                "0 منتج في الشفت",
-                "□",
-                Green);
-
-            cardBarcodeStats = CreateStatsCard(
-                "الباركود في الشفت",
-                "0",
-                "0 باركود في الشفت",
-                "▦",
-                Blue);
-
-            cardUsersStats = CreateStatsCard(
-                "المستخدمين",
-                "6",
-                "3 مستخدمين متصلين",
-                "👥",
-                Purple);
-
-            pnlContent.Controls.Add(cardSalesStats);
-            pnlContent.Controls.Add(cardProductsStats);
-            pnlContent.Controls.Add(cardBarcodeStats);
-            pnlContent.Controls.Add(cardUsersStats);
-
-            CreateOperationsPanel();
-        }
-
-        private DashboardCard CreateStatsCard(
-            string title,
-            string value,
-            string description,
-            string icon,
-            Color accent)
-        {
-            return new DashboardCard
-            {
-                Title = title,
-                Value = value,
-                Description = description,
-                IconText = icon,
-                AccentColor = accent
-            };
-        }
-
-        // ============================================================
-        // OPERATIONS
-        // ============================================================
-
-        private void CreateOperationsPanel()
-        {
-            pnlOperations = new Panel
-            {
-                BackColor = CardColor
-            };
-
-            pnlContent.Controls.Add(pnlOperations);
-
-            Label title = new Label
-            {
-                Text = "آخر العمليات",
-                Font = new Font("Segoe UI", 13, FontStyle.Bold),
-                ForeColor = TextPrimary,
-                AutoSize = true,
-                Location = new Point(22, 16),
-                BackColor = CardColor
-            };
-
-            pnlOperations.Controls.Add(title);
-
-            Label subtitle = new Label
-            {
-                Text = "آخر الإجراءات التي تمت داخل الشفت الحالي",
-                Font = new Font("Segoe UI", 8.5f),
-                ForeColor = TextMuted,
-                AutoSize = true,
-                Location = new Point(22, 42),
-                BackColor = CardColor
-            };
-
-            pnlOperations.Controls.Add(subtitle);
-        }
-
-        // ============================================================
-        // POSITION
-        // ============================================================
-
-        private void PositionContent()
-        {
-            if (pnlContent == null)
-                return;
-
-            int width = pnlContent.ClientSize.Width;
-
-            if (width <= 0)
-                return;
-
-            // Header
-            if (lblTitle != null)
-            {
-                lblTitle.Left = Math.Max(20, (width - lblTitle.Width) / 2);
-                lblTitle.Top = 20;
-            }
-
-            if (lblUserName != null)
-            {
-                lblUserName.Left = 25;
-                lblUserName.Top = 24;
-            }
-
-            if (lblDateTime != null)
-            {
-                lblDateTime.Left = 155;
-                lblDateTime.Top = 25;
-            }
-
-            if (btnStartShift != null)
-                btnStartShift.Location = new Point(320, 16);
-
-            if (btnEndShift != null)
-                btnEndShift.Location = new Point(440, 16);
-
-            if (lblShiftStatus != null)
-            {
-                lblShiftStatus.Left = 560;
-                lblShiftStatus.Top = 25;
-            }
-
-            if (btnExit != null)
-                btnExit.Location = new Point(ClientSize.Width - 48, 13);
-
-            if (btnMaximize != null)
-                btnMaximize.Location = new Point(ClientSize.Width - 96, 13);
-
-            if (btnMinimize != null)
-                btnMinimize.Location = new Point(ClientSize.Width - 144, 13);
-
-            // Welcome
-            lblWelcome.Left =
-                Math.Max(25, (width - lblWelcome.Width) / 2);
-
-            lblWelcome.Top = 25;
-
-            lblWelcomeSub.Left =
-                Math.Max(25, (width - lblWelcomeSub.Width) / 2);
-
-            lblWelcomeSub.Top = 68;
-
-            // Main action cards
-            int cardWidth = 190;
-            int cardHeight = 175;
-            int gap = 18;
-
-            ActionCard[] cards =
-            {
-                cardSales,
-                cardBarcode,
-                cardPrint,
-                cardInventory
-            };
-
-            int totalCardsWidth =
-                (cardWidth * cards.Length) +
-                (gap * (cards.Length - 1));
-
-            int cardsLeft =
-                Math.Max(20, (width - totalCardsWidth) / 2);
-
-            for (int i = 0; i < cards.Length; i++)
-            {
-                cards[i].Size =
-                    new Size(cardWidth, cardHeight);
-
-                cards[i].Location =
-                    new Point(
-                        cardsLeft + ((cardWidth + gap) * i),
-                        105);
-            }
-
-            // Statistics
-            int statsTop = 300;
-            int statsGap = 14;
-            int statsLeft = 0;
-
-            int availableWidth =
-                width - statsLeft;
-
-            int statsWidth =
-                (availableWidth - (statsGap * 3)) / 4;
-
-            if (statsWidth < 150)
-                statsWidth = 150;
-
-            DashboardCard[] stats =
-            {
-                cardSalesStats,
-                cardProductsStats,
-                cardBarcodeStats,
-                cardUsersStats
-            };
-
-            for (int i = 0; i < stats.Length; i++)
-            {
-                stats[i].Size =
-                    new Size(statsWidth, 105);
-
-                stats[i].Location =
-                    new Point(
-                        statsLeft + ((statsWidth + statsGap) * i),
-                        statsTop);
-            }
-
-            // Operations
-            int operationsTop = 425;
-
-            pnlOperations.Location =
-                new Point(0, operationsTop);
-
-            pnlOperations.Size =
-                new Size(
-                    Math.Max(500, width),
-                    Math.Max(180, pnlContent.ClientSize.Height - operationsTop - 10));
-        }
-
-        // ============================================================
-        // RESIZE
-        // ============================================================
-
-        private void MainDashboard_Resize(
-            object? sender,
-            EventArgs e)
-        {
-            PositionContent();
-        }
-
-        // ============================================================
-        // CLOCK
-        // ============================================================
-
-        private void TimerClock_Tick(
-            object? sender,
-            EventArgs e)
-        {
-            UpdateDateTime();
-        }
-
-        private void UpdateDateTime()
-        {
-            if (lblDateTime == null)
-                return;
-
-            lblDateTime.Text =
-                DateTime.Now.ToString(
-                    "hh:mm:ss tt  •  yyyy/MM/dd");
-        }
-
-        // ============================================================
-        // SHIFT
-        // ============================================================
-
-        private void BtnStartShift_Click(
-            object? sender,
-            EventArgs e)
-        {
-            if (shiftActive)
-            {
-                MessageBox.Show(
-                    "الشفت مفتوح بالفعل.",
-                    "بدء الشفت",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-
-                return;
-            }
-
-            DialogResult result =
-                MessageBox.Show(
-                    "هل تريد بدء شفت جديد؟",
-                    "بدء الشفت",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question);
-
-            if (result != DialogResult.Yes)
-                return;
-
-            ResetShiftData();
-
-            shiftStartTime = DateTime.Now;
-
-            SetShiftState(true);
-
-            AddOperation(
-                DateTime.Now.ToString("HH:mm"),
-                "بدء الشفت",
-                currentUserName,
-                "-",
-                Green);
-
-            MessageBox.Show(
-                "تم بدء الشفت بنجاح.",
-                "بدء الشفت",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
-        }
-
-        private void BtnEndShift_Click(
-            object? sender,
-            EventArgs e)
-        {
-            if (!shiftActive)
-            {
-                MessageBox.Show(
-                    "لا يوجد شفت مفتوح حالياً.",
-                    "إنهاء الشفت",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-
-                return;
-            }
-
-            string summary =
-                "هل تريد إنهاء الشفت الحالي؟\n\n" +
-                "بداية الشفت: " +
-                shiftStartTime.ToString("HH:mm") +
-                "\n" +
-                "المبيعات: " +
-                shiftSales.ToString("0.00") +
-                " ج\n" +
-                "المنتجات: " +
-                shiftProducts +
-                "\n" +
-                "الباركود: " +
-                shiftBarcodes;
-
-            DialogResult result =
-                MessageBox.Show(
-                    summary,
-                    "تأكيد إنهاء الشفت",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Warning);
-
-            if (result != DialogResult.Yes)
-                return;
-
-            AddOperation(
-                DateTime.Now.ToString("HH:mm"),
-                "إنهاء الشفت",
-                currentUserName,
-                shiftSales.ToString("0.00") + " ج",
-                Red);
-
-            SetShiftState(false);
-            ResetShiftData();
-
-            MessageBox.Show(
-                "تم إنهاء الشفت بنجاح.",
-                "إنهاء الشفت",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
-        }
-
-        private void SetShiftState(bool active)
-        {
-            shiftActive = active;
-
-            if (active)
-            {
-                lblShiftStatus.Text = "● الشفت مفتوح";
-                lblShiftStatus.ForeColor = Green;
-
-                btnStartShift.Enabled = false;
-                btnEndShift.Enabled = true;
-
-                btnStartShift.BackColor = DisabledColor;
-                btnEndShift.BackColor = Red;
-            }
-            else
-            {
-                lblShiftStatus.Text = "● الشفت مغلق";
-                lblShiftStatus.ForeColor = Red;
-
-                btnStartShift.Enabled = true;
-                btnEndShift.Enabled = false;
-
-                btnStartShift.BackColor = Green;
-                btnEndShift.BackColor = DisabledColor;
-            }
-
-            UpdateCardsState(active);
-        }
-
-        private void UpdateCardsState(bool active)
-        {
-            cardSales?.SetLocked(!active);
-            cardBarcode?.SetLocked(!active);
-            cardPrint?.SetLocked(!active);
-            cardInventory?.SetLocked(!active);
-        }
-
-        private bool CheckShift()
-        {
-            if (shiftActive)
-                return true;
-
-            MessageBox.Show(
-                "🔒 يجب بدء الشفت أولاً قبل استخدام هذا القسم.",
-                "الشفت مغلق",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Warning);
-
-            return false;
-        }
-
-        private void ResetShiftData()
-        {
-            shiftSales = 0;
-            shiftProducts = 0;
-            shiftBarcodes = 0;
-
-            if (cardSalesStats != null)
-            {
-                cardSalesStats.Value = "0 ج";
-                cardSalesStats.Description = "تم تصفير الشفت";
-                cardSalesStats.Invalidate();
-            }
-
-            if (cardProductsStats != null)
-            {
-                cardProductsStats.Value = "0";
-                cardProductsStats.Description = "0 منتج في الشفت";
-                cardProductsStats.Invalidate();
-            }
-
-            if (cardBarcodeStats != null)
-            {
-                cardBarcodeStats.Value = "0";
-                cardBarcodeStats.Description = "0 باركود في الشفت";
-                cardBarcodeStats.Invalidate();
-            }
-
-            operations.Clear();
-
-            RebuildOperationsPanel();
-        }
-
-        // ============================================================
-        // OPERATIONS
-        // ============================================================
-
-        private void AddOperation(
-            string time,
-            string operation,
-            string user,
-            string value,
-            Color color)
-        {
-            operations.Insert(
-                0,
-                new OperationItem
-                {
-                    Time = time,
-                    Operation = operation,
-                    User = user,
-                    Value = value,
-                    Color = color
-                });
-
-            if (operations.Count > 10)
-                operations.RemoveAt(operations.Count - 1);
-
-            RebuildOperationsPanel();
-        }
-
-        private void RebuildOperationsPanel()
-        {
-            if (pnlOperations == null)
-                return;
-
-            for (int i = pnlOperations.Controls.Count - 1; i >= 0; i--)
-            {
-                Control control = pnlOperations.Controls[i];
-
-                if (control.Tag?.ToString() == "operation")
-                {
-                    pnlOperations.Controls.RemoveAt(i);
-                    control.Dispose();
-                }
-            }
-
-            int top = 70;
-
-            foreach (OperationItem item in operations)
-            {
-                AddOperationRow(
-                    item.Time,
-                    item.Operation,
-                    item.User,
-                    item.Value,
-                    item.Color,
-                    top);
-
-                top += 38;
-            }
-
-            pnlOperations.Invalidate();
-        }
-
-        private void AddOperationRow(
-            string time,
-            string operation,
-            string user,
-            string value,
-            Color color,
-            int top)
-        {
-            Panel row = new Panel
-            {
-                Height = 34,
-                Width = Math.Max(500, pnlOperations.Width - 40),
-                Location = new Point(20, top),
-                BackColor = Color.FromArgb(25, 30, 39),
-                Tag = "operation"
-            };
-
-            Label lblTime = CreateOperationLabel(
-                time, 20, 7, TextMuted);
-
-            Label lblOperation = CreateOperationLabel(
-                operation, 105, 7, TextPrimary);
-
-            Label lblUser = CreateOperationLabel(
-                user, 300, 7, TextSecondary);
-
-            Label lblValue = CreateOperationLabel(
-                value, 470, 7, color);
-
-            row.Controls.Add(lblTime);
-            row.Controls.Add(lblOperation);
-            row.Controls.Add(lblUser);
-            row.Controls.Add(lblValue);
-
-            pnlOperations.Controls.Add(row);
-        }
-
-        private Label CreateOperationLabel(
-            string text,
-            int left,
-            int top,
-            Color color)
-        {
-            return new Label
-            {
-                Text = text,
-                Font = new Font(
-                    "Segoe UI",
-                    8.5f,
-                    FontStyle.Bold),
-                ForeColor = color,
-                AutoSize = true,
-                Location = new Point(left, top),
-                BackColor = Color.Transparent,
-                Tag = "operation"
-            };
-        }
-
-        // ============================================================
-        // OPEN FORMS
-        // ============================================================
-
-        private void BtnSales_Click(
-            object? sender,
-            EventArgs e)
-        {
-            if (!CheckShift())
-                return;
-
-            try
-            {
-                using SalesForm form = new SalesForm();
-                form.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                ShowError(ex);
-            }
-        }
-
-        private void BtnInventory_Click(
-            object? sender,
-            EventArgs e)
-        {
-            if (!CheckShift())
-                return;
-
-            try
-            {
-                using InventoryForm form = new InventoryForm();
-                form.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                ShowError(ex);
-            }
-        }
-
-        private void BtnBarcode_Click(
-            object? sender,
-            EventArgs e)
-        {
-            if (!CheckShift())
-                return;
-
-            try
-            {
-                using BarcodeForm form = new BarcodeForm();
-                form.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                ShowError(ex);
-            }
-        }
-
-        private void BtnPrint_Click(
-            object? sender,
-            EventArgs e)
-        {
-            if (!CheckShift())
-                return;
-
-            try
-            {
-                using ProductsForm form = new ProductsForm();
-                form.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                ShowError(ex);
-            }
-        }
-
-        private void BtnUsers_Click(
-            object? sender,
-            EventArgs e)
-        {
-            if (!CheckShift())
-                return;
-
-            try
-            {
-                using UsersForm form = new UsersForm();
-                form.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                ShowError(ex);
-            }
-        }
-
-        private void BtnSettings_Click(
-            object? sender,
-            EventArgs e)
-        {
-            if (!CheckShift())
-                return;
-
-            try
-            {
-                using SettingsForm form = new SettingsForm();
-                form.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                ShowError(ex);
-            }
-        }
-
-        private void BtnReports_Click(
-            object? sender,
-            EventArgs e)
-        {
-            if (!CheckShift())
-                return;
-
-            MessageBox.Show(
-                "قسم التقارير جاهز للإضافة.",
-                "التقارير",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
-        }
-
-        // ============================================================
-        // WINDOW
-        // ============================================================
-
-        private void BtnMaximize_Click(
-            object? sender,
-            EventArgs e)
-        {
-            WindowState =
-                WindowState == FormWindowState.Maximized
-                    ? FormWindowState.Normal
-                    : FormWindowState.Maximized;
-
-            PositionContent();
-        }
-
-        private void BtnExit_Click(
-            object? sender,
-            EventArgs e)
-        {
-            DialogResult result =
-                MessageBox.Show(
-                    "هل تريد بالفعل إغلاق البرنامج؟",
-                    "تأكيد الخروج",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
-                Application.Exit();
-        }
-
-        private void ShowError(Exception ex)
-        {
-            MessageBox.Show(
-                ex.Message,
-                "خطأ",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Error);
-        }
-
-        protected override void OnFormClosed(
-            FormClosedEventArgs e)
-        {
-            if (timerClock != null)
-            {
-                timerClock.Stop();
-                timerClock.Dispose();
-            }
-
-            base.OnFormClosed(e);
-        }
-
-        // ============================================================
-        // HELPERS
-        // ============================================================
-
-        private static Color LightenColor(Color color, int amount)
-        {
-            return Color.FromArgb(
-                color.A,
-                Math.Min(255, color.R + amount),
-                Math.Min(255, color.G + amount),
-                Math.Min(255, color.B + amount));
-        }
-
-        private static GraphicsPath RoundedPath(
-            Rectangle rect,
-            int radius)
-        {
-            GraphicsPath path = new GraphicsPath();
-
-            int diameter = radius * 2;
-
-            path.AddArc(
-                rect.X,
-                rect.Y,
-                diameter,
-                diameter,
-                180,
-                90);
-
-            path.AddArc(
-                rect.Right - diameter,
-                rect.Y,
-                diameter,
-                diameter,
-                270,
-                90);
-
-            path.AddArc(
-                rect.Right - diameter,
-                rect.Bottom - diameter,
-                diameter,
-                diameter,
-                0,
-                90);
-
-            path.AddArc(
-                rect.X,
-                rect.Bottom - diameter,
-                diameter,
-                diameter,
-                90,
-                90);
-
-            path.CloseFigure();
-
-            return path;
-        }
-    }
-
-    // ================================================================
-    // ACTION CARD
-    // ================================================================
-
-    public class ActionCard : Control
-    {
-        [Browsable(false)]
-        [DesignerSerializationVisibility(
-            DesignerSerializationVisibility.Hidden)]
-        public string Title { get; set; } = "";
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(
-            DesignerSerializationVisibility.Hidden)]
-        public string Description { get; set; } = "";
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(
-            DesignerSerializationVisibility.Hidden)]
-        public string IconText { get; set; } = "";
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(
-            DesignerSerializationVisibility.Hidden)]
-        public Color StartColor { get; set; }
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(
-            DesignerSerializationVisibility.Hidden)]
-        public Color EndColor { get; set; }
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(
-            DesignerSerializationVisibility.Hidden)]
-        public Color AccentColor { get; set; }
-
-        private bool hover;
-        private bool locked;
-
-        public ActionCard()
-        {
-            Size = new Size(190, 175);
-            Cursor = Cursors.Hand;
-            DoubleBuffered = true;
-
-            SetStyle(
-                ControlStyles.AllPaintingInWmPaint |
-                ControlStyles.UserPaint |
-                ControlStyles.OptimizedDoubleBuffer |
-                ControlStyles.ResizeRedraw,
-                true);
-        }
-
-        public void SetLocked(bool value)
-        {
-            locked = value;
-            Cursor = locked ? Cursors.No : Cursors.Hand;
-            Invalidate();
-        }
-
-        protected override void OnMouseEnter(EventArgs e)
-        {
-            base.OnMouseEnter(e);
-            hover = true;
-            Invalidate();
-        }
-
-        protected override void OnMouseLeave(EventArgs e)
-        {
-            base.OnMouseLeave(e);
-            hover = false;
-            Invalidate();
-        }
-
-        protected override void OnClick(EventArgs e)
-        {
-            if (locked)
-                return;
-
-            base.OnClick(e);
-        }
-
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            base.OnPaint(e);
-
-            Graphics g = e.Graphics;
-
-            g.SmoothingMode = SmoothingMode.AntiAlias;
-            g.TextRenderingHint =
-                TextRenderingHint.ClearTypeGridFit;
-
-            Rectangle rect =
-                new Rectangle(
-                    3,
-                    3,
-                    Width - 6,
-                    Height - 6);
-
-            using GraphicsPath path =
-                RoundedPath(rect, 18);
-
-            Color first;
-            Color second;
-
-            if (locked)
-            {
-                first = Color.FromArgb(30, 36, 46);
-                second = Color.FromArgb(24, 29, 38);
-            }
-            else
-            {
-                first = hover
-                    ? Lighten(StartColor, 12)
-                    : StartColor;
-
-                second = hover
-                    ? Lighten(EndColor, 12)
-                    : EndColor;
-            }
-
-            using LinearGradientBrush brush =
-                new LinearGradientBrush(
-                    rect,
-                    first,
-                    second,
-                    45f);
-
-            g.FillPath(brush, path);
-
-            using Pen border =
-                new Pen(
-                    locked
-                        ? Color.FromArgb(52, 60, 74)
-                        : Color.FromArgb(80, 255, 255, 255));
-
-            g.DrawPath(border, path);
-
-            int circleSize = 62;
-
-            Rectangle circle =
-                new Rectangle(
-                    (Width - circleSize) / 2,
-                    14,
-                    circleSize,
-                    circleSize);
-
-            using SolidBrush circleBrush =
-                new SolidBrush(
-                    locked
-                        ? Color.FromArgb(38, 44, 54)
-                        : Color.FromArgb(45, 255, 255, 255));
-
-            g.FillEllipse(circleBrush, circle);
-
-            string icon =
-                locked ? "🔒" : IconText;
-
-            using Font iconFont =
-                new Font("Segoe UI Emoji", 23);
-
-            SizeF iconSize =
-                g.MeasureString(icon, iconFont);
-
-            g.DrawString(
-                icon,
-                iconFont,
-                Brushes.White,
-                (Width - iconSize.Width) / 2,
-                24);
-
-            using Font titleFont =
-                new Font(
-                    "Segoe UI",
-                    13.5f,
-                    FontStyle.Bold);
-
-            using StringFormat center =
-                new StringFormat
-                {
-                    Alignment = StringAlignment.Center,
-                    LineAlignment = StringAlignment.Center
-                };
-
-            Rectangle titleRect =
-                new Rectangle(
-                    10,
-                    82,
-                    Width - 20,
-                    30);
-
-            g.DrawString(
-                locked ? "مغلق" : Title,
-                titleFont,
-                Brushes.White,
-                titleRect,
-                center);
-
-            using Font descFont =
-                new Font("Segoe UI", 8.5f);
-
-            Rectangle descRect =
-                new Rectangle(
-                    10,
-                    111,
-                    Width - 20,
-                    25);
-
-            using SolidBrush descBrush =
-                new SolidBrush(
-                    locked
-                        ? Color.FromArgb(135, 145, 160)
-                        : Color.FromArgb(235, 255, 255, 255));
-
-            g.DrawString(
-                locked
-                    ? "ابدأ الشفت أولاً"
-                    : Description,
-                descFont,
-                descBrush,
-                descRect,
-                center);
-
-            using Pen linePen =
-                new Pen(Color.FromArgb(70, 255, 255, 255));
-
-            g.DrawLine(
-                linePen,
-                18,
-                Height - 30,
-                Width - 18,
-                Height - 30);
-
-            using Font bottomFont =
-                new Font(
-                    "Segoe UI",
-                    8.5f,
-                    FontStyle.Bold);
-
-            g.DrawString(
-                locked
-                    ? "🔒  ابدأ الشفت أولاً"
-                    : "فتح  ←",
-                bottomFont,
-                locked
-                    ? new SolidBrush(Color.FromArgb(120, 130, 145))
-                    : Brushes.White,
-                new Rectangle(
-                    0,
-                    Height - 27,
-                    Width,
-                    20),
-                center);
-        }
-
-        private static GraphicsPath RoundedPath(
-            Rectangle rect,
-            int radius)
-        {
-            return MainDashboardRoundedPath(rect, radius);
-        }
-
-        private static GraphicsPath MainDashboardRoundedPath(
-            Rectangle rect,
-            int radius)
-        {
-            GraphicsPath path = new GraphicsPath();
-
-            int d = radius * 2;
-
-            path.AddArc(rect.X, rect.Y, d, d, 180, 90);
-            path.AddArc(
-                rect.Right - d,
-                rect.Y,
-                d,
-                d,
-                270,
-                90);
-
-            path.AddArc(
-                rect.Right - d,
-                rect.Bottom - d,
-                d,
-                d,
-                0,
-                90);
-
-            path.AddArc(
-                rect.X,
-                rect.Bottom - d,
-                d,
-                d,
-                90,
-                90);
-
-            path.CloseFigure();
-
-            return path;
-        }
-
-        private static Color Lighten(Color color, int amount)
-        {
-            return Color.FromArgb(
-                color.A,
-                Math.Min(255, color.R + amount),
-                Math.Min(255, color.G + amount),
-                Math.Min(255, color.B + amount));
-        }
-    }
-
-    // ================================================================
-    // DASHBOARD CARD
-    // ================================================================
-
-    public class DashboardCard : Control
-    {
-        [Browsable(false)]
-        [DesignerSerializationVisibility(
-            DesignerSerializationVisibility.Hidden)]
-        public string Title { get; set; } = "";
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(
-            DesignerSerializationVisibility.Hidden)]
-        public string Value { get; set; } = "";
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(
-            DesignerSerializationVisibility.Hidden)]
-        public string Description { get; set; } = "";
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(
-            DesignerSerializationVisibility.Hidden)]
-        public string IconText { get; set; } = "";
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(
-            DesignerSerializationVisibility.Hidden)]
-        public Color AccentColor { get; set; }
-
-        public DashboardCard()
-        {
-            DoubleBuffered = true;
-
-            BackColor = Color.FromArgb(28, 34, 44);
-
-            SetStyle(
-                ControlStyles.AllPaintingInWmPaint |
-                ControlStyles.UserPaint |
-                ControlStyles.OptimizedDoubleBuffer |
-                ControlStyles.ResizeRedraw,
-                true);
-        }
-
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            base.OnPaint(e);
-
-            Graphics g = e.Graphics;
-
-            g.SmoothingMode = SmoothingMode.AntiAlias;
-            g.TextRenderingHint =
-                TextRenderingHint.ClearTypeGridFit;
-
-            Rectangle rect =
-                new Rectangle(
-                    1,
-                    1,
-                    Width - 3,
-                    Height - 3);
-
-            using GraphicsPath path =
-                RoundedPath(rect, 14);
-
-            using SolidBrush brush =
-                new SolidBrush(
-                    Color.FromArgb(28, 34, 44));
-
-            g.FillPath(brush, path);
-
-            using Pen border =
-                new Pen(Color.FromArgb(50, 60, 75));
-
-            g.DrawPath(border, path);
-
-            using SolidBrush accent =
-                new SolidBrush(AccentColor);
-
-            g.FillRectangle(
-                accent,
-                0,
-                12,
-                4,
-                Height - 24);
-
-            using Font iconFont =
-                new Font("Segoe UI Emoji", 18);
-
-            SizeF iconSize =
-                g.MeasureString(
-                    IconText,
-                    iconFont);
-
-            g.DrawString(
-                IconText,
-                iconFont,
-                Brushes.White,
-                Width - iconSize.Width - 15,
-                9);
-
-            using Font titleFont =
-                new Font(
-                    "Segoe UI",
-                    8.5f,
-                    FontStyle.Bold);
-
-            using SolidBrush titleBrush =
-                new SolidBrush(
-                    Color.FromArgb(160, 170, 185));
-
-            g.DrawString(
-                Title,
-                titleFont,
-                titleBrush,
-                new Rectangle(
-                    15,
-                    9,
-                    Width - 65,
-                    25));
-
-            using Font valueFont =
-                new Font(
-                    "Segoe UI",
-                    19,
-                    FontStyle.Bold);
-
-            g.DrawString(
-                Value,
-                valueFont,
-                Brushes.White,
-                new Rectangle(
-                    15,
-                    32,
-                    Width - 30,
-                    35));
-
-            using Font descFont =
-                new Font(
-                    "Segoe UI",
-                    8,
-                    FontStyle.Bold);
-
-            using SolidBrush descBrush =
-                new SolidBrush(AccentColor);
-
-            g.DrawString(
-                Description,
-                descFont,
-                descBrush,
-                new Rectangle(
-                    15,
-                    Height - 28,
-                    Width - 25,
-                    20));
-        }
-
-        private static GraphicsPath RoundedPath(
-            Rectangle rect,
-            int radius)
-        {
-            GraphicsPath path = new GraphicsPath();
-
-            int d = radius * 2;
-
-            path.AddArc(rect.X, rect.Y, d, d, 180, 90);
-            path.AddArc(
-                rect.Right - d,
-                rect.Y,
-                d,
-                d,
-                270,
-                90);
-
-            path.AddArc(
-                rect.Right - d,
-                rect.Bottom - d,
-                d,
-                d,
-                0,
-                90);
-
-            path.AddArc(
-                rect.X,
-                rect.Bottom - d,
-                d,
-                d,
-                90,
-                90);
-
-            path.CloseFigure();
-
-            return path;
-        }
-    }
-
-    // ================================================================
-    // SIDEBAR BUTTON
-    // ================================================================
-
-    public class SidebarButton : Control
-    {
-        [Browsable(false)]
-        [DesignerSerializationVisibility(
-            DesignerSerializationVisibility.Hidden)]
-        public string Title { get; set; } = "";
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(
-            DesignerSerializationVisibility.Hidden)]
-        public string IconText { get; set; } = "";
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(
-            DesignerSerializationVisibility.Hidden)]
-        public bool Selected { get; set; }
-
-        private bool hover;
-
-        public SidebarButton()
-        {
-            DoubleBuffered = true;
-            Cursor = Cursors.Hand;
-
-            BackColor =
-                Color.FromArgb(21, 26, 34);
-
-            SetStyle(
-                ControlStyles.AllPaintingInWmPaint |
-                ControlStyles.UserPaint |
-                ControlStyles.OptimizedDoubleBuffer |
-                ControlStyles.ResizeRedraw,
-                true);
-        }
-
-        protected override void OnMouseEnter(EventArgs e)
-        {
-            base.OnMouseEnter(e);
-            hover = true;
-            Invalidate();
-        }
-
-        protected override void OnMouseLeave(EventArgs e)
-        {
-            base.OnMouseLeave(e);
-            hover = false;
-            Invalidate();
-        }
-
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            base.OnPaint(e);
-
-            Graphics g = e.Graphics;
-
-            g.SmoothingMode = SmoothingMode.AntiAlias;
-            g.TextRenderingHint =
-                TextRenderingHint.ClearTypeGridFit;
-
-            if (Selected || hover)
-            {
-                using SolidBrush background =
-                    new SolidBrush(
-                        Selected
-                            ? Color.FromArgb(45, 52, 66)
-                            : Color.FromArgb(34, 40, 51));
-
-                using GraphicsPath path =
-                    RoundedPath(
-                        new Rectangle(
-                            2,
-                            2,
-                            Width - 4,
-                            Height - 4),
-                        10);
-
-                g.FillPath(background, path);
-            }
-
-            if (Selected)
-            {
-                using SolidBrush accent =
-                    new SolidBrush(
-                        Color.FromArgb(245, 158, 11));
-
-                g.FillRectangle(
-                    accent,
-                    Width - 4,
-                    5,
-                    4,
-                    Height - 10);
-            }
-
-            Color textColor =
-                Selected || hover
-                    ? Color.White
-                    : Color.FromArgb(145, 155, 170);
-
-            using Font iconFont =
-                new Font("Segoe UI Emoji", 14);
-
-            using SolidBrush textBrush =
-                new SolidBrush(textColor);
-
-            g.DrawString(
-                IconText,
-                iconFont,
-                textBrush,
-                18,
-                11);
-
-            using Font titleFont =
-                new Font(
-                    "Segoe UI",
-                    10,
-                    FontStyle.Bold);
-
-            using StringFormat format =
-                new StringFormat
-                {
-                    Alignment = StringAlignment.Near,
-                    LineAlignment = StringAlignment.Center
-                };
-
-            using SolidBrush titleBrush =
-                new SolidBrush(textColor);
-
-            g.DrawString(
-                Title,
-                titleFont,
-                titleBrush,
-                new Rectangle(
-                    58,
-                    5,
-                    Width - 70,
-                    Height - 10),
-                format);
-        }
-
-        private static GraphicsPath RoundedPath(
-            Rectangle rect,
-            int radius)
-        {
-            GraphicsPath path = new GraphicsPath();
-
-            int d = radius * 2;
-
-            path.AddArc(rect.X, rect.Y, d, d, 180, 90);
-            path.AddArc(
-                rect.Right - d,
-                rect.Y,
-                d,
-                d,
-                270,
-                90);
-
-            path.AddArc(
-                rect.Right - d,
-                rect.Bottom - d,
-                d,
-                d,
-                0,
-                90);
-
-            path.AddArc(
-                rect.X,
-                rect.Bottom - d,
-                d,
-                d,
-                90,
-                90);
-
-            path.CloseFigure();
-
-            return path;
-        }
-    }
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
-```
+
+:root{
+  --green:#087f5b;
+  --green2:#075e54;
+  --gold:#d4a72c;
+  --bg:#f3f7f5;
+  --card:#fff;
+  --text:#173b35;
+  --border:#dce6e2;
+  --quran:#fffdf5;
+}
+
+body.dark{
+  --bg:#0b1211;
+  --card:#17201e;
+  --text:#f5f8f7;
+  --border:#2b3935;
+  --quran:#121918;
+}
+
+body{
+  font-family:Tahoma,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.8;
+  transition:.3s;
+}
+
+header{
+  background:linear-gradient(135deg,#064f47,#087f5b,#15947f);
+  color:white;
+  text-align:center;
+  padding:25px 15px;
+  position:relative;
+  box-shadow:0 4px 15px rgba(0,0,0,.15);
+}
+
+.creator{
+  font-size:15px;
+  font-weight:bold;
+  letter-spacing:3px;
+  color:#ffd96a;
+  margin-bottom:5px;
+}
+
+header h1{
+  font-size:36px;
+}
+
+header p{
+  opacity:.9;
+}
+
+.theme{
+  position:absolute;
+  left:12px;
+  top:12px;
+  background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.4);
+  color:white;
+  padding:9px 12px;
+  border-radius:12px;
+  cursor:pointer;
+}
+
+.container{
+  width:min(1150px,94%);
+  margin:auto;
+  padding:22px 0 60px;
+}
+
+.nav{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:9px;
+  margin-bottom:20px;
+}
+
+button{
+  border:0;
+  background:var(--green);
+  color:white;
+  padding:12px 17px;
+  border-radius:12px;
+  cursor:pointer;
+  font-size:15px;
+}
+
+button:hover{
+  opacity:.9;
+}
+
+.nav button{
+  background:var(--card);
+  color:var(--text);
+  border:1px solid var(--border);
+}
+
+.section{
+  display:none;
+}
+
+.section.active{
+  display:block;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:20px;
+  margin-bottom:16px;
+}
+
+.title{
+  color:var(--green);
+  font-size:24px;
+  margin-bottom:15px;
+}
+
+.search{
+  display:flex;
+  gap:10px;
+}
+
+input,select{
+  width:100%;
+  padding:14px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:var(--card);
+  color:var(--text);
+  font-size:16px;
+  outline:none;
+}
+
+.surahs{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:12px;
+}
+
+.surah{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:16px;
+  border:1px solid var(--border);
+  border-radius:15px;
+  background:var(--card);
+  cursor:pointer;
+  transition:.2s;
+}
+
+.surah:hover{
+  border-color:var(--green);
+  transform:translateY(-2px);
+}
+
+.num{
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  background:#e5f2ed;
+  color:var(--green);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+  flex-shrink:0;
+}
+
+.small{
+  font-size:13px;
+  color:#78908a;
+}
+
+#reader{
+  display:none;
+}
+
+.quran{
+  background:var(--quran);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:28px 25px;
+}
+
+.surah-title{
+  text-align:center;
+  border-bottom:1px solid var(--border);
+  padding-bottom:18px;
+  margin-bottom:20px;
+}
+
+.surah-title h2{
+  font-family:"Traditional Arabic",serif;
+  font-size:38px;
+  color:var(--green);
+}
+
+.bismillah{
+  font-family:"Traditional Arabic",serif;
+  text-align:center;
+  font-size:30px;
+  color:var(--gold);
+  margin:20px;
+}
+
+.quran-text{
+  font-family:"Traditional Arabic",serif;
+  font-size:30px;
+  line-height:2.7;
+  text-align:justify;
+}
+
+.ayah{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:38px;
+  height:38px;
+  border:2px solid var(--green);
+  border-radius:50%;
+  font-family:Tahoma;
+  font-size:12px;
+  color:var(--green);
+  margin:0 5px;
+  vertical-align:middle;
+}
+
+.audio-box{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:20px;
+  margin-bottom:15px;
+}
+
+audio{
+  width:100%;
+  margin:10px 0;
+}
+
+.audio-buttons{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.tasbeeh{
+  text-align:center;
+}
+
+.tasbeeh3d{
+  width:330px;
+  height:330px;
+  margin:30px auto;
+  position:relative;
+  perspective:900px;
+  transform-style:preserve-3d;
+  animation:rotate3d 10s linear infinite;
+}
+
+@keyframes rotate3d{
+  0%{
+    transform:rotateX(12deg) rotateY(0deg);
+  }
+  50%{
+    transform:rotateX(-8deg) rotateY(180deg);
+  }
+  100%{
+    transform:rotateX(12deg) rotateY(360deg);
+  }
+}
+
+.bead{
+  position:absolute;
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  background:radial-gradient(
+    circle at 30% 25%,
+    #72f0c0,
+    #0c9b6b 45%,
+    #034b38 100%
+  );
+  box-shadow:
+    inset -5px -6px 8px rgba(0,0,0,.45),
+    inset 5px 5px 7px rgba(255,255,255,.35),
+    0 5px 10px rgba(0,0,0,.4);
+  cursor:pointer;
+}
+
+.tasbeeh-center{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  background:radial-gradient(
+    circle at 35% 25%,
+    #3a3a3a,
+    #101010 65%,
+    #000
+  );
+  box-shadow:
+    inset 0 0 25px #000,
+    0 12px 25px rgba(0,0,0,.45);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  z-index:10;
+}
+
+.tasbeeh-center strong{
+  font-size:45px;
+  color:#61e7b3;
+}
+
+.tasbeeh-buttons{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+}
+
+.reset{
+  background:#777;
+}
+
+.prayer-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:10px;
+}
+
+.prayer{
+  text-align:center;
+  padding:16px 5px;
+  border:1px solid var(--border);
+  border-radius:14px;
+}
+
+.prayer strong{
+  display:block;
+  color:var(--green);
+}
+
+.prayer span{
+  font-size:20px;
+}
+
+.compass{
+  width:230px;
+  height:230px;
+  border:8px solid var(--green);
+  border-radius:50%;
+  margin:30px auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  transition:.7s;
+}
+
+.arrow{
+  position:absolute;
+  top:5px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:42px;
+  color:#d33;
+}
+
+.kaaba{
+  font-size:50px;
+}
+
+.zekr{
+  font-family:"Traditional Arabic",serif;
+  font-size:23px;
+  line-height:2.3;
+  padding:20px;
+  border:1px solid var(--border);
+  border-radius:16px;
+  margin-bottom:12px;
+}
+
+.result{
+  background:var(--card);
+  border:1px solid var(--border);
+  padding:15px;
+  border-radius:15px;
+  margin:10px 0;
+  cursor:pointer;
+}
+
+footer{
+  text-align:center;
+  padding:25px;
+  color:#78908a;
+  font-size:14px;
+}
+
+@media(max-width:700px){
+
+  .nav{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .search{
+    flex-direction:column;
+  }
+
+  .quran{
+    padding:20px 13px;
+  }
+
+  .quran-text{
+    font-size:24px;
+    line-height:2.6;
+  }
+
+  .prayer-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .tasbeeh3d{
+    width:280px;
+    height:280px;
+  }
+
+  header h1{
+    font-size:30px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<button class="theme" onclick="darkMode()" id="theme">
+🌙 الوضع الداكن
+</button>
+
+<div class="creator">
+BY ADAM AHMED
+</div>
+
+<h1>📖 سراج</h1>
+
+<p>
+القرآن • التلاوة • الأذكار • السبحة • الصلاة • القبلة
+</p>
+
+</header>
+
+<div class="container">
+
+<div class="nav">
+
+<button onclick="section('quran')">
+📖 القرآن
+</button>
+
+<button onclick="section('azkar')">
+🤲 الأذكار
+</button>
+
+<button onclick="section('tasbeeh')">
+📿 السبحة
+</button>
+
+<button onclick="section('prayer')">
+🕌 الصلاة
+</button>
+
+<button onclick="section('qibla')">
+🧭 القبلة
+</button>
+
+</div>
+
+
+<!-- القرآن -->
+
+<section id="quran" class="section active">
+
+<div class="card">
+
+<h2 class="title">
+🔍 البحث في القرآن
+</h2>
+
+<div class="search">
+
+<input
+id="search"
+placeholder="اكتب كلمة أو جزءًا من آية..."
+>
+
+<button onclick="searchQuran()">
+بحث
+</button>
+
+</div>
+
+</div>
+
+<div id="surahList">
+
+<div class="card">
+
+<h2 class="title">
+📚 سور القرآن الكريم
+</h2>
+
+<div id="surahs" class="surahs">
+جاري تحميل السور...
+</div>
+
+</div>
+
+</div>
+
+<div id="reader">
+
+<button onclick="back()">
+← العودة إلى السور
+</button>
+
+<br><br>
+
+<div class="audio-box">
+
+<h2 class="title">
+🎧 تلاوة القرآن الكريم
+</h2>
+
+<select id="reciters">
+<option>جاري تحميل القراء...</option>
+</select>
+
+<audio id="player" controls></audio>
+
+<div class="audio-buttons">
+
+<button onclick="play()">
+▶️ تشغيل
+</button>
+
+<button onclick="pause()">
+⏸️ إيقاف
+</button>
+
+<button onclick="prevAyah()">
+⏮️ السابقة
+</button>
+
+<button onclick="nextAyah()">
+⏭️ التالية
+</button>
+
+</div>
+
+<p id="audioInfo" class="small">
+اختر القارئ
+</p>
+
+</div>
+
+<div class="quran">
+
+<div class="surah-title">
+
+<h2 id="surahName"></h2>
+
+<p id="surahInfo"></p>
+
+</div>
+
+<div id="bismillah" class="bismillah"></div>
+
+<div id="ayahs" class="quran-text"></div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- الأذكار -->
+
+<section id="azkar" class="section">
+
+<div class="card">
+
+<h2 class="title">
+🤲 الأذكار
+</h2>
+
+<div class="zekr">
+
+سُبْحَانَ اللَّهِ وَبِحَمْدِهِ
+
+<br><br>
+
+<button onclick="counter(this)">
+عدد التكرار: 0
+</button>
+
+</div>
+
+<div class="zekr">
+
+أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ
+
+<br><br>
+
+<button onclick="counter(this)">
+عدد التكرار: 0
+</button>
+
+</div>
+
+<div class="zekr">
+
+لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ،
+لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ،
+وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ
+
+<br><br>
+
+<button onclick="counter(this)">
+عدد التكرار: 0
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- السبحة -->
+
+<section id="tasbeeh" class="section">
+
+<div class="card tasbeeh">
+
+<h2 class="title">
+📿 السبحة 3D
+</h2>
+
+<p>
+اضغط على زر التسبيح
+</p>
+
+<div class="tasbeeh3d" id="beads">
+
+<div class="tasbeeh-center">
+
+<strong id="count">
+0
+</strong>
+
+<span>
+تسبيحة
+</span>
+
+</div>
+
+</div>
+
+<div class="tasbeeh-buttons">
+
+<button onclick="tasbeeh()">
+📿 تسبيح
+</button>
+
+<button class="reset" onclick="resetTasbeeh()">
+تصفير
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- الصلاة -->
+
+<section id="prayer" class="section">
+
+<div class="card">
+
+<h2 class="title">
+🕌 مواقيت الصلاة
+</h2>
+
+<p style="margin-bottom:12px">
+اختر المحافظة:
+</p>
+
+<select id="city" onchange="prayer()">
+
+<option value="">
+اختر المحافظة
+</option>
+
+<option value="Cairo">القاهرة</option>
+<option value="Giza">الجيزة</option>
+<option value="Alexandria">الإسكندرية</option>
+<option value="Dakahlia">الدقهلية</option>
+<option value="Gharbia">الغربية</option>
+<option value="Sharqia">الشرقية</option>
+<option value="Monufia">المنوفية</option>
+<option value="Qalyubia">القليوبية</option>
+<option value="Kafr El Sheikh">كفر الشيخ</option>
+<option value="Damietta">دمياط</option>
+<option value="Beheira">البحيرة</option>
+<option value="Port Said">بورسعيد</option>
+<option value="Ismailia">الإسماعيلية</option>
+<option value="Suez">السويس</option>
+<option value="Fayoum">الفيوم</option>
+<option value="Beni Suef">بني سويف</option>
+<option value="Minya">المنيا</option>
+<option value="Assiut">أسيوط</option>
+<option value="Sohag">سوهاج</option>
+<option value="Qena">قنا</option>
+<option value="Luxor">الأقصر</option>
+<option value="Aswan">أسوان</option>
+
+</select>
+
+<br><br>
+
+<p id="date" class="small">
+اختر المحافظة لعرض المواقيت
+</p>
+
+<br>
+
+<div id="times" class="prayer-grid">
+
+<div class="prayer">
+<strong>🌅 الفجر</strong>
+<span>--</span>
+</div>
+
+<div class="prayer">
+<strong>☀️ الظهر</strong>
+<span>--</span>
+</div>
+
+<div class="prayer">
+<strong>🌤️ العصر</strong>
+<span>--</span>
+</div>
+
+<div class="prayer">
+<strong>🌇 المغرب</strong>
+<span>--</span>
+</div>
+
+<div class="prayer">
+<strong>🌙 العشاء</strong>
+<span>--</span>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- القبلة -->
+
+<section id="qibla" class="section">
+
+<div class="card" style="text-align:center">
+
+<h2 class="title">
+🧭 اتجاه القبلة
+</h2>
+
+<button onclick="qibla()">
+تحديد اتجاه القبلة
+</button>
+
+<div class="compass" id="compass">
+
+<div class="arrow">
+⬆
+</div>
+
+<div class="kaaba">
+🕋
+</div>
+
+</div>
+
+<p id="qiblaInfo" class="small">
+اضغط على الزر لتحديد القبلة
+</p>
+
+</div>
+
+</section>
+
+</div>
+
+<footer>
+© 2026 سراج | BY ADAM AHMED
+</footer>
+
+
+<script>
+
+const API="https://api.alquran.cloud/v1";
+
+let currentSurah=1;
+let currentAyah=0;
+let ayahAudio=[];
+let reciterId="ar.alafasy";
+
+
+/* الأقسام */
+
+function section(id){
+
+document.querySelectorAll(".section")
+.forEach(x=>x.classList.remove("active"));
+
+document.getElementById(id)
+.classList.add("active");
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+
+/* السور */
+
+async function loadSurahs(){
+
+try{
+
+const r=await fetch(API+"/surah");
+const d=await r.json();
+
+let html="";
+
+d.data.forEach(s=>{
+
+html+=`
+
+<div class="surah"
+onclick="openSurah(${s.number})">
+
+<div class="num">
+${arabic(s.number)}
+</div>
+
+<div>
+
+<strong>${s.name}</strong>
+
+<div class="small">
+${arabic(s.numberOfAyahs)} آية
+</div>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("surahs").innerHTML=html;
+
+}catch(e){
+
+document.getElementById("surahs").innerText=
+"تعذر تحميل السور";
+
+}
+
+}
+
+
+/* القراء */
+
+async function loadReciters(){
+
+const select=document.getElementById("reciters");
+
+try{
+
+const r=await fetch(
+API+"/edition?format=audio&language=ar"
+);
+
+const d=await r.json();
+
+const unique=[];
+const ids=new Set();
+
+d.data.forEach(x=>{
+
+if(!ids.has(x.identifier)){
+
+ids.add(x.identifier);
+unique.push(x);
+
+}
+
+});
+
+select.innerHTML="";
+
+unique.forEach(x=>{
+
+const option=document.createElement("option");
+
+option.value=x.identifier;
+
+option.textContent=
+x.name || x.englishName || x.identifier;
+
+select.appendChild(option);
+
+});
+
+if(unique.some(x=>x.identifier==="ar.alafasy")){
+
+select.value="ar.alafasy";
+
+}
+
+select.onchange=async function(){
+
+reciterId=this.value;
+
+await loadReciterAudio();
+
+};
+
+}catch(e){
+
+select.innerHTML=`
+
+<option value="ar.alafasy">
+مشاري العفاسي
+</option>
+
+`;
+
+}
+
+}
+
+
+/* فتح السورة */
+
+async function openSurah(number){
+
+currentSurah=number;
+currentAyah=0;
+
+document.getElementById("surahList").style.display="none";
+document.getElementById("reader").style.display="block";
+
+try{
+
+const r=await fetch(
+`${API}/surah/${number}/quran-uthmani`
+);
+
+const d=await r.json();
+const s=d.data;
+
+document.getElementById("surahName").innerText=s.name;
+
+document.getElementById("surahInfo").innerText=
+`${arabic(s.numberOfAyahs)} آية`;
+
+document.getElementById("bismillah").innerText=
+number===9
+?""
+:"بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ";
+
+let text="";
+
+s.ayahs.forEach(a=>{
+
+text+=a.text;
+
+text+=`
+
+<span class="ayah">
+﴿${arabic(a.numberInSurah)}﴾
+</span>
+
+`;
+
+});
+
+document.getElementById("ayahs").innerHTML=text;
+
+await loadReciterAudio();
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}catch(e){
+
+document.getElementById("ayahs").innerText=
+"حدث خطأ في تحميل السورة";
+
+}
+
+}
+
+
+/* الصوت */
+
+async function loadReciterAudio(){
+
+const info=document.getElementById("audioInfo");
+
+info.innerText="جاري تجهيز التلاوة...";
+
+try{
+
+const r=await fetch(
+`${API}/surah/${currentSurah}/${reciterId}`
+);
+
+const d=await r.json();
+
+ayahAudio=d.data.ayahs
+.map(a=>a.audio)
+.filter(Boolean);
+
+currentAyah=0;
+
+if(ayahAudio.length){
+
+document.getElementById("player").src=
+ayahAudio[0];
+
+info.innerText=
+`تم تجهيز ${arabic(ayahAudio.length)} آية`;
+
+}
+
+}catch(e){
+
+info.innerText=
+"تعذر تحميل صوت القارئ";
+
+}
+
+}
+
+function play(){
+document.getElementById("player").play();
+}
+
+function pause(){
+document.getElementById("player").pause();
+}
+
+function nextAyah(){
+
+if(currentAyah<ayahAudio.length-1){
+
+currentAyah++;
+
+document.getElementById("player").src=
+ayahAudio[currentAyah];
+
+document.getElementById("player").play();
+
+}
+
+}
+
+function prevAyah(){
+
+if(currentAyah>0){
+
+currentAyah--;
+
+document.getElementById("player").src=
+ayahAudio[currentAyah];
+
+document.getElementById("player").play();
+
+}
+
+}
+
+document.getElementById("player")
+.addEventListener("ended",()=>{
+
+if(currentAyah<ayahAudio.length-1){
+
+currentAyah++;
+
+document.getElementById("player").src=
+ayahAudio[currentAyah];
+
+document.getElementById("player").play();
+
+}
+
+});
+
+
+/* العودة */
+
+function back(){
+
+document.getElementById("reader").style.display="none";
+document.getElementById("surahList").style.display="block";
+
+document.getElementById("player").pause();
+
+}
+
+
+/* الأرقام العربية */
+
+function arabic(n){
+
+return String(n).replace(
+/[0-9]/g,
+x=>"٠١٢٣٤٥٦٧٨٩"[x]
+);
+
+}
+
+
+/* السبحة 3D */
+
+const beads=document.getElementById("beads");
+
+const totalBeads=33;
+
+for(let i=0;i<totalBeads;i++){
+
+const bead=document.createElement("div");
+
+bead.className="bead";
+
+const angle=(i/totalBeads)*Math.PI*2;
+
+const radius=128;
+
+const x=165+Math.cos(angle)*radius-15;
+const y=165+Math.sin(angle)*radius-15;
+
+bead.style.left=x+"px";
+bead.style.top=y+"px";
+
+bead.onclick=(e)=>{
+
+e.stopPropagation();
+tasbeeh();
+
+};
+
+beads.appendChild(bead);
+
+}
+
+let tasbeehCount=
+Number(localStorage.getItem("tasbeehCount")||0);
+
+function updateCount(){
+
+document.getElementById("count").innerText=
+arabic(tasbeehCount);
+
+localStorage.setItem(
+"tasbeehCount",
+tasbeehCount
+);
+
+}
+
+function tasbeeh(){
+
+tasbeehCount++;
+
+updateCount();
+
+if(navigator.vibrate){
+navigator.vibrate(25);
+}
+
+}
+
+function resetTasbeeh(){
+
+tasbeehCount=0;
+updateCount();
+
+}
+
+updateCount();
+
+
+/* الوضع الداكن */
+
+function darkMode(){
+
+document.body.classList.toggle("dark");
+
+localStorage.setItem(
+"dark",
+document.body.classList.contains("dark")
+);
+
+updateTheme();
+
+}
+
+function updateTheme(){
+
+document.getElementById("theme").innerText=
+document.body.classList.contains("dark")
+?"☀️ الوضع النهاري"
+:"🌙 الوضع الداكن";
+
+}
+
+if(localStorage.getItem("dark")==="true"){
+
+document.body.classList.add("dark");
+
+}
+
+updateTheme();
+
+
+/* الأذكار */
+
+function counter(btn){
+
+let n=Number(btn.dataset.n||0);
+
+n++;
+
+btn.dataset.n=n;
+
+btn.innerText=
+"عدد التكرار: "+arabic(n);
+
+}
+
+
+/* البحث في القرآن */
+
+async function searchQuran(){
+
+const word=
+document.getElementById("search").value.trim();
+
+if(!word){
+
+alert("اكتب كلمة أو جزءًا من آية");
+
+return;
+
+}
+
+document.getElementById("surahList").innerHTML=`
+
+<div class="card">
+
+<h2 class="title">
+🔍 نتائج البحث عن: ${word}
+</h2>
+
+<div id="results">
+جاري البحث...
+</div>
+
+</div>
+
+`;
+
+try{
+
+const r=await fetch(
+`${API}/search/${encodeURIComponent(word)}/all/ar`
+);
+
+const d=await r.json();
+
+const results=d.data.matches||[];
+
+if(!results.length){
+
+document.getElementById("results")
+.innerText="لا توجد نتائج";
+
+return;
+
+}
+
+document.getElementById("results").innerHTML=
+results.slice(0,50).map(x=>`
+
+<div
+class="result"
+onclick="openSurah(${x.surah.number})"
+>
+
+<div style="font-family:'Traditional Arabic';font-size:24px">
+${x.text}
+</div>
+
+<div class="small">
+
+سورة ${x.surah.name}
+
+-
+
+الآية ${arabic(x.numberInSurah)}
+
+</div>
+
+</div>
+
+`).join("");
+
+}catch(e){
+
+document.getElementById("results")
+.innerText="حدث خطأ في البحث";
+
+}
+
+}
+
+
+/* مواقيت الصلاة */
+
+async function prayer(){
+
+const city=
+document.getElementById("city").value;
+
+if(!city){
+return;
+}
+
+try{
+
+const r=await fetch(
+`https://api.aladhan.com/v1/timingsByCity?city=${encodeURIComponent(city)}&country=Egypt&method=5`
+);
+
+const d=await r.json();
+
+const t=d.data.timings;
+
+document.getElementById("date").innerText=
+`${d.data.date.readable} - ${city}`;
+
+document.getElementById("times").innerHTML=`
+
+<div class="prayer">
+<strong>🌅 الفجر</strong>
+<span>${t.Fajr}</span>
+</div>
+
+<div class="prayer">
+<strong>☀️ الظهر</strong>
+<span>${t.Dhuhr}</span>
+</div>
+
+<div class="prayer">
+<strong>🌤️ العصر</strong>
+<span>${t.Asr}</span>
+</div>
+
+<div class="prayer">
+<strong>🌇 المغرب</strong>
+<span>${t.Maghrib}</span>
+</div>
+
+<div class="prayer">
+<strong>🌙 العشاء</strong>
+<span>${t.Isha}</span>
+</div>
+
+`;
+
+}catch(e){
+
+alert("تعذر تحميل مواقيت الصلاة");
+
+}
+
+}
+
+
+/* القبلة */
+
+function qibla(){
+
+if(!navigator.geolocation){
+
+alert("المتصفح لا يدعم GPS");
+return;
+
+}
+
+document.getElementById("qiblaInfo").innerText=
+"جاري تحديد موقعك...";
+
+navigator.geolocation.getCurrentPosition(
+
+async position=>{
+
+const lat=position.coords.latitude;
+const lon=position.coords.longitude;
+
+try{
+
+const r=await fetch(
+`https://api.aladhan.com/v1/qibla/${lat}/${lon}`
+);
+
+const d=await r.json();
+
+const direction=d.data.direction;
+
+document.getElementById("compass").style.transform=
+`rotate(${direction}deg)`;
+
+document.getElementById("qiblaInfo").innerText=
+`اتجاه القبلة: ${Math.round(direction)}°`;
+
+}catch(e){
+
+document.getElementById("qiblaInfo").innerText=
+"تعذر تحديد القبلة";
+
+}
+
+},
+
+()=>{
+
+document.getElementById("qiblaInfo").innerText=
+"اسمح للموقع باستخدام GPS";
+
+}
+
+);
+
+}
+
+
+/* تشغيل الموقع */
+
+loadSurahs();
+loadReciters();
+
+</script>
+
+</body>
+</html>
