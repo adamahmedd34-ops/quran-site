@@ -287,14 +287,14 @@ footer{text-align:center;color:var(--muted);padding:25px}
 
 <header class="header">
 <button class="theme" onclick="toggleDark()" id="themeBtn">🌙 الوضع الداكن</button>
-<div class="creator">BY ADAM AHMED</div>
+
 <div class="logo">📖 سراج</div>
 <p>القرآن الكريم • الأذكار • الصلاة • القبلة • السبحة</p>
 </header>
 
 <div class="contact-bar">
 <button onclick="shareWebsite()">📤 مشاركة الموقع</button>
-<a href="tel:01017133588">📞 01017133588</a>
+
 <a href="https://wa.me/201017133588?text=السلام%20عليكم،%20أريد%20التواصل%20معكم%20بخصوص%20موقع%20سراج" target="_blank" rel="noopener">💬 واتساب</a>
 <button onclick="installApp()">📱 تثبيت التطبيق</button>
 <button onclick="openSettings()">⚙️ الإعدادات</button>
@@ -454,72 +454,108 @@ footer{text-align:center;color:var(--muted);padding:25px}
 </div>
 </section>
 
+<!-- الأذكار -->
+
 <section id="azkar" class="section">
 
 <div class="card">
-<h2 class="title">🤲 الأذكار والأدعية</h2>
 
-<div class="grid">
+<h2 class="title">
+🤲 الأذكار والأدعية
+</h2>
 
-<div class="favorite">
+<div class="grid azkar-grid">
+
+<div class="favorite azkar-card">
+
 <h3>🌅 أذكار الصباح</h3>
-<div class="favorite-text">أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ</div>
-<button class="primary" onclick="addAzkarFavorite('أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ')">❤️ حفظ</button>
+
+<div class="favorite-text">
+أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ
 </div>
 
-<div class="favorite">
+<button class="primary"
+onclick="addAzkarFavorite(
+'أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ'
+)">
+حفظ ❤️
+</button>
+
+</div>
+
+
+<div class="favorite azkar-card">
+
 <h3>🌇 أذكار المساء</h3>
-<div class="favorite-text">أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ</div>
-<button class="primary" onclick="addAzkarFavorite('أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ')">❤️ حفظ</button>
+
+<div class="favorite-text">
+أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ
 </div>
 
-<div class="favorite">
+<button class="primary"
+onclick="addAzkarFavorite(
+'أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ'
+)">
+حفظ ❤️
+</button>
+
+</div>
+
+
+<div class="favorite azkar-card">
+
 <h3>🤲 ذكر</h3>
-<div class="favorite-text">سُبْحَانَ اللَّهِ وَبِحَمْدِهِ</div>
-<button class="primary" onclick="addAzkarFavorite('سُبْحَانَ اللَّهِ وَبِحَمْدِهِ')">❤️ حفظ</button>
+
+<div class="favorite-text">
+سُبْحَانَ اللَّهِ وَبِحَمْدِهِ
 </div>
 
-<div class="favorite">
+<button class="primary"
+onclick="addAzkarFavorite(
+'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ'
+)">
+حفظ ❤️
+</button>
+
+</div>
+
+
+<div class="favorite azkar-card">
+
 <h3>🤲 الاستغفار</h3>
-<div class="favorite-text">أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ</div>
-<button class="primary" onclick="addAzkarFavorite('أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ')">❤️ حفظ</button>
+
+<div class="favorite-text">
+أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ
+</div>
+
+<button class="primary"
+onclick="addAzkarFavorite(
+'أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ'
+)">
+حفظ ❤️
+</button>
+
 </div>
 
 </div>
+
 </div>
+
 
 <div class="card">
-<h2 class="title">❤️ أذكاري المحفوظة</h2>
-<div id="azkarFavorites" class="favorites-grid"></div>
+
+<h2 class="title">
+❤️ أذكاري المحفوظة
+</h2>
+
+<div id="azkarFavorites"
+class="favorites-grid">
+</div>
+
 </div>
 
 </section>
 
-<section id="tasbeeh" class="section">
-
-<div class="card" style="text-align:center">
-
-<h2 class="title">📿 السبحة الإلكترونية</h2>
-
-<select id="tasbeehType" style="max-width:400px;margin:auto">
-<option>سُبْحَانَ اللَّهِ</option>
-<option>الْحَمْدُ لِلَّهِ</option>
-<option>اللَّهُ أَكْبَرُ</option>
-<option>أَسْتَغْفِرُ اللَّهَ</option>
-<option>لَا إِلَٰهَ إِلَّا اللَّهُ</option>
-</select>
-
-<div class="tasbeeh-number" id="tasbeehCount">٠</div>
-
-<button class="primary" onclick="tasbeeh()">📿 تسبيح</button>
-<button class="secondary" onclick="resetTasbeeh()">تصفير</button>
-
-</div>
-</section>
-
-<section id="prayer" class="section">
-
-<div class="card">
 
 <h2 class="title">🕌 مواقيت الصلاة</h2>
 
