@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-content="width=device-width,initial-scale=1,viewport-fit=cover">
+content="width=device-width, initial-scale=1, viewport-fit=cover">
 
 <meta name="theme-color" content="#087f5b">
 
@@ -17,894 +17,1365 @@ content="سراج - الأذكار والأدعية">
 
 <style>
 
-/* =========================
+/* =====================================================
    الأساسيات
-========================= */
+===================================================== */
 
 *{
-box-sizing:border-box;
-margin:0;
-padding:0;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
 :root{
 
---green:#087f5b;
---green2:#0da47f;
+    --green:#087f5b;
+    --green2:#0da47f;
+    --green-dark:#064c43;
 
---bg:#f3f7f5;
---card:#ffffff;
+    --bg:#f3f7f5;
+    --card:#ffffff;
 
---text:#173b35;
---muted:#71847f;
+    --text:#173b35;
+    --muted:#71847f;
 
---border:#dce7e2;
+    --border:#dce7e2;
 
---gold:#c99b28;
+    --gold:#c99b28;
+    --danger:#d64545;
 
---danger:#d64545;
+    --soft:#eaf8f2;
+    --soft-gold:#f4ead0;
 
---soft:#eaf8f2;
+    --shadow:
+        0 8px 25px rgba(0,0,0,.06);
 
+    --radius:18px;
 }
 
 body.dark{
 
---bg:#09120f;
---card:#15201d;
+    --bg:#09120f;
+    --card:#15201d;
 
---text:#f3f7f5;
---muted:#9caeaa;
+    --text:#f3f7f5;
+    --muted:#9caeaa;
 
---border:#2c3b36;
+    --border:#2c3b36;
 
---soft:#19372e;
+    --soft:#19372e;
+    --soft-gold:#3b321d;
 
+    --shadow:
+        0 8px 25px rgba(0,0,0,.25);
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
 
-font-family:
-Tahoma,
-Arial,
-sans-serif;
+    font-family:
+        Tahoma,
+        Arial,
+        sans-serif;
 
-background:var(--bg);
+    background:var(--bg);
 
-color:var(--text);
+    color:var(--text);
 
-line-height:1.8;
+    line-height:1.8;
 
-transition:.3s;
+    min-height:100vh;
 
-min-height:100vh;
-
+    transition:
+        background .3s,
+        color .3s;
 }
 
 button,
 input{
-
-font-family:inherit;
-
+    font-family:inherit;
 }
 
 button{
+    cursor:pointer;
+    border:0;
+}
 
-cursor:pointer;
-
-border:0;
-
+button:focus-visible,
+input:focus-visible{
+    outline:3px solid rgba(13,164,127,.25);
+    outline-offset:2px;
 }
 
 
-/* =========================
+/* =====================================================
    الهيدر
-========================= */
+===================================================== */
 
 .header{
 
-position:relative;
+    position:relative;
 
-text-align:center;
+    text-align:center;
 
-color:#fff;
+    color:#fff;
 
-padding:30px 15px;
+    padding:
+        30px
+        15px
+        28px;
 
-background:
-linear-gradient(
-135deg,
-#064c43,
-#087f5b,
-#15977f
-);
+    background:
+        linear-gradient(
+            135deg,
+            #064c43,
+            #087f5b,
+            #15977f
+        );
 
-box-shadow:
-0 5px 20px #0003;
+    box-shadow:
+        0 5px 20px rgba(0,0,0,.15);
 
+    overflow:hidden;
+}
+
+.header::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:220px;
+    height:220px;
+
+    border-radius:50%;
+
+    background:#ffffff10;
+
+    top:-100px;
+    right:-70px;
+}
+
+.header::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:160px;
+    height:160px;
+
+    border-radius:50%;
+
+    background:#ffffff0b;
+
+    bottom:-80px;
+    left:-50px;
 }
 
 .creator{
 
-color:#ffe078;
+    position:relative;
 
-font-size:13px;
+    z-index:1;
 
-font-weight:bold;
+    color:#ffe078;
 
-letter-spacing:3px;
+    font-size:13px;
 
-margin-bottom:4px;
+    font-weight:bold;
 
+    letter-spacing:3px;
+
+    margin-bottom:3px;
 }
 
 .logo{
 
-font-family:
-"Traditional Arabic",
-serif;
+    position:relative;
 
-font-size:48px;
+    z-index:1;
 
-font-weight:bold;
+    font-family:
+        "Traditional Arabic",
+        serif;
 
+    font-size:50px;
+
+    font-weight:bold;
+
+    line-height:1.2;
 }
 
 .header p{
 
-opacity:.9;
+    position:relative;
 
-font-size:15px;
+    z-index:1;
 
+    opacity:.9;
+
+    font-size:15px;
 }
 
 .theme{
 
-position:absolute;
+    position:absolute;
 
-left:12px;
+    z-index:3;
 
-top:12px;
+    left:12px;
 
-padding:9px 13px;
+    top:12px;
 
-border-radius:12px;
+    padding:9px 13px;
 
-color:#fff;
+    border-radius:12px;
 
-background:#ffffff22;
+    color:#fff;
 
-border:
-1px solid #ffffff55;
+    background:#ffffff22;
 
+    border:
+        1px solid #ffffff55;
+
+    transition:.2s;
+}
+
+.theme:hover{
+    background:#ffffff35;
 }
 
 
-/* =========================
+/* =====================================================
    شريط التنقل
-========================= */
+===================================================== */
 
 .topbar{
 
-display:flex;
+    display:flex;
 
-justify-content:center;
+    justify-content:center;
 
-align-items:center;
+    align-items:center;
 
-gap:10px;
+    gap:10px;
 
-flex-wrap:wrap;
+    flex-wrap:wrap;
 
-padding:12px;
+    padding:12px;
 
-background:var(--card);
+    background:var(--card);
 
-border-bottom:
-1px solid var(--border);
+    border-bottom:
+        1px solid var(--border);
 
+    position:sticky;
+
+    top:0;
+
+    z-index:50;
+
+    backdrop-filter:blur(12px);
 }
 
 .topbar a{
 
-text-decoration:none;
+    text-decoration:none;
 
-color:var(--green);
+    color:var(--green);
 
-font-weight:bold;
+    font-weight:bold;
 
-padding:9px 18px;
+    padding:8px 17px;
 
-border:
-1px solid var(--border);
+    border:
+        1px solid var(--border);
 
-border-radius:12px;
+    border-radius:12px;
 
-background:var(--card);
+    background:var(--card);
 
-transition:.2s;
-
+    transition:.2s;
 }
 
-.topbar a:hover{
+.topbar a:hover,
+.topbar a.active{
 
-background:var(--green);
+    background:var(--green);
 
-color:#fff;
+    color:#fff;
 
+    border-color:var(--green);
+
+    transform:translateY(-1px);
 }
 
 
-/* =========================
+/* =====================================================
    المحتوى
-========================= */
+===================================================== */
 
 .container{
 
-width:min(1150px,94%);
+    width:min(1150px,94%);
 
-margin:auto;
+    margin:auto;
 
-padding:22px 0 70px;
-
+    padding:
+        28px 0
+        80px;
 }
 
 
-/* =========================
-   العنوان
-========================= */
+/* =====================================================
+   عنوان الصفحة
+===================================================== */
 
 .page-title{
 
-text-align:center;
+    text-align:center;
 
-margin-bottom:20px;
-
+    margin-bottom:24px;
 }
 
 .page-title h1{
 
-font-family:
-"Traditional Arabic",
-serif;
+    font-family:
+        "Traditional Arabic",
+        serif;
 
-font-size:40px;
+    font-size:42px;
 
-color:var(--green);
+    color:var(--green);
 
+    line-height:1.4;
 }
 
 .page-title p{
 
-color:var(--muted);
+    color:var(--muted);
 
+    font-size:15px;
 }
 
 
-/* =========================
+/* =====================================================
    البحث
-========================= */
+===================================================== */
 
 .search-box{
 
-display:flex;
+    display:flex;
 
-gap:9px;
+    gap:9px;
 
-margin-bottom:20px;
+    margin-bottom:20px;
 
+    background:var(--card);
+
+    padding:7px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:16px;
+
+    box-shadow:var(--shadow);
+}
+
+.search-input-wrap{
+
+    position:relative;
+
+    flex:1;
+}
+
+.search-icon{
+
+    position:absolute;
+
+    right:14px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:var(--muted);
+
+    pointer-events:none;
 }
 
 .search-box input{
 
-width:100%;
+    width:100%;
 
-padding:14px 16px;
+    padding:
+        13px
+        45px
+        13px
+        15px;
 
-border:
-1px solid var(--border);
+    border:0;
 
-border-radius:14px;
+    border-radius:12px;
 
-background:var(--card);
+    background:transparent;
 
-color:var(--text);
+    color:var(--text);
 
-font-size:16px;
+    font-size:16px;
 
-outline:none;
-
+    outline:none;
 }
 
 .search-box button{
 
-background:var(--green);
+    background:var(--green);
 
-color:#fff;
+    color:#fff;
 
-padding:12px 20px;
+    padding:
+        10px 20px;
 
-border-radius:13px;
+    border-radius:12px;
 
+    font-weight:bold;
+
+    transition:.2s;
+}
+
+.search-box button:hover{
+
+    background:var(--green-dark);
+
+    transform:translateY(-1px);
 }
 
 
-/* =========================
+/* =====================================================
    التبويبات
-========================= */
+===================================================== */
 
 .tabs{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:
-repeat(3,1fr);
+    grid-template-columns:
+        repeat(3,1fr);
 
-gap:10px;
+    gap:10px;
 
-margin-bottom:20px;
-
+    margin-bottom:20px;
 }
 
 .tab{
 
-padding:14px;
+    padding:14px;
 
-border-radius:15px;
+    border-radius:15px;
 
-background:var(--card);
+    background:var(--card);
 
-color:var(--text);
+    color:var(--text);
 
-border:
-1px solid var(--border);
+    border:
+        1px solid var(--border);
 
-font-weight:bold;
+    font-weight:bold;
 
+    transition:.2s;
+}
+
+.tab:hover{
+
+    border-color:var(--green);
+
+    color:var(--green);
 }
 
 .tab.active{
 
-background:var(--green);
+    background:var(--green);
 
-color:#fff;
+    color:#fff;
 
-border-color:var(--green);
+    border-color:var(--green);
 
+    box-shadow:
+        0 5px 15px rgba(8,127,91,.18);
 }
 
 
-/* =========================
-   القسم
-========================= */
+/* =====================================================
+   الأقسام
+===================================================== */
 
 .section{
 
-background:var(--card);
+    background:var(--card);
 
-border:
-1px solid var(--border);
+    border:
+        1px solid var(--border);
 
-border-radius:22px;
+    border-radius:22px;
 
-padding:22px;
+    padding:22px;
 
-margin-bottom:20px;
+    margin-bottom:20px;
 
-box-shadow:
-0 8px 25px #0000000b;
-
+    box-shadow:var(--shadow);
 }
 
 .section-title{
 
-display:flex;
+    display:flex;
 
-align-items:center;
+    align-items:center;
 
-justify-content:space-between;
+    justify-content:space-between;
 
-gap:10px;
+    gap:10px;
 
-margin-bottom:18px;
-
+    margin-bottom:18px;
 }
 
 .section-title h2{
 
-color:var(--green);
+    color:var(--green);
 
-font-size:25px;
+    font-size:25px;
+}
 
+.count-text{
+
+    color:var(--muted);
+
+    font-size:13px;
+
+    background:var(--soft);
+
+    padding:5px 10px;
+
+    border-radius:20px;
 }
 
 
-/* =========================
+/* =====================================================
    شبكة الأذكار
-========================= */
+===================================================== */
 
 .azkar-grid{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:
-repeat(2,1fr);
+    grid-template-columns:
+        repeat(2,1fr);
 
-gap:14px;
-
+    gap:15px;
 }
 
 
-/* =========================
+/* =====================================================
    بطاقة الذكر
-========================= */
+===================================================== */
 
 .zikr{
 
-position:relative;
+    position:relative;
 
-padding:22px;
+    padding:22px;
 
-border:
-1px solid var(--border);
+    border:
+        1px solid var(--border);
 
-border-radius:18px;
+    border-radius:18px;
 
-background:var(--card);
+    background:var(--card);
 
-transition:.2s;
+    transition:
+        transform .2s,
+        border-color .2s,
+        box-shadow .2s;
 
+    overflow:hidden;
+}
+
+.zikr::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    right:0;
+
+    width:5px;
+
+    height:100%;
+
+    background:var(--green);
+
+    opacity:0;
+
+    transition:.2s;
 }
 
 .zikr:hover{
 
-border-color:var(--green);
+    border-color:var(--green);
 
-transform:
-translateY(-2px);
+    transform:translateY(-3px);
 
+    box-shadow:
+        0 10px 25px rgba(8,127,91,.08);
+}
+
+.zikr:hover::before{
+    opacity:1;
 }
 
 .zikr-head{
 
-display:flex;
+    display:flex;
 
-justify-content:space-between;
+    justify-content:space-between;
 
-align-items:center;
+    align-items:center;
 
-gap:10px;
+    gap:10px;
 
-margin-bottom:15px;
-
+    margin-bottom:15px;
 }
 
 .zikr-title{
 
-font-size:19px;
+    font-size:19px;
 
-font-weight:bold;
+    font-weight:bold;
 
-color:var(--green);
-
+    color:var(--green);
 }
 
 .zikr-type{
 
-font-size:12px;
+    flex-shrink:0;
 
-padding:5px 9px;
+    font-size:12px;
 
-border-radius:20px;
+    padding:5px 9px;
 
-background:var(--soft);
+    border-radius:20px;
 
-color:var(--green);
+    background:var(--soft);
 
+    color:var(--green);
+
+    white-space:nowrap;
 }
 
 .zikr-text{
 
-font-family:
-"Traditional Arabic",
-"Amiri",
-serif;
+    font-family:
+        "Traditional Arabic",
+        "Amiri",
+        serif;
 
-font-size:27px;
+    font-size:27px;
 
-line-height:2.2;
+    line-height:2.2;
 
-color:var(--text);
+    color:var(--text);
 
-margin-bottom:18px;
-
+    margin-bottom:18px;
 }
 
 .zikr-info{
 
-color:var(--muted);
+    color:var(--muted);
 
-font-size:13px;
+    font-size:13px;
 
-margin-bottom:15px;
-
+    margin-bottom:15px;
 }
 
 
-/* =========================
+/* =====================================================
    الأزرار
-========================= */
+===================================================== */
 
 .zikr-actions{
 
-display:flex;
+    display:flex;
 
-gap:7px;
+    gap:7px;
 
-flex-wrap:wrap;
+    flex-wrap:wrap;
 
+    border-top:
+        1px solid var(--border);
+
+    padding-top:14px;
 }
 
 .btn{
 
-padding:9px 13px;
+    padding:
+        9px 13px;
 
-border-radius:11px;
+    border-radius:11px;
 
-font-size:14px;
+    font-size:14px;
 
+    font-weight:bold;
+
+    transition:.2s;
+}
+
+.btn:hover{
+
+    transform:translateY(-1px);
+
+    filter:brightness(.97);
 }
 
 .btn-save{
 
-background:var(--green);
+    background:var(--green);
 
-color:#fff;
-
+    color:#fff;
 }
 
 .btn-copy{
 
-background:#e7f1ed;
+    background:#e7f1ed;
 
-color:var(--green);
-
+    color:var(--green);
 }
 
 body.dark .btn-copy{
 
-background:#25332f;
+    background:#25332f;
 
-color:#fff;
-
+    color:#fff;
 }
 
 .btn-share{
 
-background:#edf5f2;
+    background:#edf5f2;
 
-color:var(--green);
-
+    color:var(--green);
 }
 
 body.dark .btn-share{
 
-background:#25332f;
+    background:#25332f;
 
-color:#fff;
-
+    color:#fff;
 }
 
 .btn-count{
 
-background:#f4ead0;
+    background:var(--soft-gold);
 
-color:#8b6919;
-
-}
-
-
-/* =========================
-   العداد
-========================= */
-
-.counter{
-
-display:flex;
-
-align-items:center;
-
-gap:8px;
-
-margin-top:12px;
-
-}
-
-.counter-number{
-
-min-width:48px;
-
-text-align:center;
-
-padding:7px 10px;
-
-border-radius:10px;
-
-background:var(--soft);
-
-color:var(--green);
-
-font-weight:bold;
-
-}
-
-.counter button{
-
-background:var(--green);
-
-color:#fff;
-
-width:36px;
-
-height:36px;
-
-border-radius:10px;
-
-font-size:18px;
-
-}
-
-
-/* =========================
-   المحفوظات
-========================= */
-
-.saved-section{
-
-margin-top:25px;
-
-}
-
-.saved-grid{
-
-display:grid;
-
-grid-template-columns:
-repeat(2,1fr);
-
-gap:14px;
-
-}
-
-.saved-card{
-
-padding:20px;
-
-border:
-1px solid var(--border);
-
-border-radius:18px;
-
-background:var(--card);
-
-}
-
-.saved-text{
-
-font-family:
-"Traditional Arabic",
-serif;
-
-font-size:26px;
-
-line-height:2;
-
-margin-bottom:15px;
-
-}
-
-.saved-actions{
-
-display:flex;
-
-gap:7px;
-
-flex-wrap:wrap;
-
+    color:#8b6919;
 }
 
 .delete{
 
-background:#ffe7e7;
+    background:#ffe7e7;
 
-color:var(--danger);
+    color:var(--danger);
+}
 
+body.dark .delete{
+
+    background:#3a2424;
+
+    color:#ff8c8c;
 }
 
 
-/* =========================
-   لا يوجد
-========================= */
+/* =====================================================
+   العداد
+===================================================== */
 
-.empty{
+.counter{
 
-text-align:center;
+    display:flex;
 
-padding:35px;
+    align-items:center;
 
-color:var(--muted);
+    gap:8px;
 
+    margin-top:14px;
+
+    flex-wrap:wrap;
+}
+
+.counter button{
+
+    background:var(--green);
+
+    color:#fff;
+
+    width:36px;
+
+    height:36px;
+
+    border-radius:10px;
+
+    font-size:18px;
+
+    transition:.2s;
+}
+
+.counter button:hover{
+
+    background:var(--green-dark);
+
+    transform:scale(1.04);
+}
+
+.counter-number{
+
+    min-width:50px;
+
+    text-align:center;
+
+    padding:7px 10px;
+
+    border-radius:10px;
+
+    background:var(--soft);
+
+    color:var(--green);
+
+    font-weight:bold;
+}
+
+.counter-label{
+
+    color:var(--muted);
+
+    font-size:13px;
+}
+
+.progress{
+
+    height:5px;
+
+    width:100%;
+
+    background:var(--border);
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin-top:10px;
+}
+
+.progress-bar{
+
+    height:100%;
+
+    width:0%;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--green),
+            var(--green2)
+        );
+
+    border-radius:20px;
+
+    transition:.25s;
 }
 
 
-/* =========================
-   زر العودة للأعلى
-========================= */
+/* =====================================================
+   المحفوظات
+===================================================== */
 
-.top-button{
-
-position:fixed;
-
-left:18px;
-
-bottom:18px;
-
-width:48px;
-
-height:48px;
-
-border-radius:50%;
-
-background:var(--green);
-
-color:#fff;
-
-font-size:20px;
-
-box-shadow:
-0 5px 20px #0003;
-
-display:none;
-
-}
-
-
-/* =========================
-   Footer
-========================= */
-
-footer{
-
-text-align:center;
-
-padding:25px;
-
-color:var(--muted);
-
-}
-
-footer strong{
-
-color:var(--green);
-
-}
-
-
-/* =========================
-   Responsive
-========================= */
-
-@media(max-width:800px){
-
-.azkar-grid{
-
-grid-template-columns:1fr;
-
+.saved-section{
+    margin-top:25px;
 }
 
 .saved-grid{
 
-grid-template-columns:1fr;
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:14px;
+}
+
+.saved-card{
+
+    padding:20px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:18px;
+
+    background:var(--card);
+
+    transition:.2s;
+}
+
+.saved-card:hover{
+
+    border-color:var(--green);
+
+    transform:translateY(-2px);
+}
+
+.saved-title{
+
+    color:var(--green);
+
+    font-weight:bold;
+
+    font-size:17px;
+
+    margin-bottom:7px;
+}
+
+.saved-text{
+
+    font-family:
+        "Traditional Arabic",
+        "Amiri",
+        serif;
+
+    font-size:26px;
+
+    line-height:2;
+
+    margin-bottom:15px;
+}
+
+.saved-actions{
+
+    display:flex;
+
+    gap:7px;
+
+    flex-wrap:wrap;
+
+    padding-top:13px;
+
+    border-top:
+        1px solid var(--border);
+}
+
+
+/* =====================================================
+   لا يوجد نتائج
+===================================================== */
+
+.empty{
+
+    text-align:center;
+
+    padding:40px 20px;
+
+    color:var(--muted);
+
+    width:100%;
+}
+
+.empty-icon{
+
+    display:block;
+
+    font-size:38px;
+
+    margin-bottom:8px;
+}
+
+
+/* =====================================================
+   Toast
+===================================================== */
+
+.toast-container{
+
+    position:fixed;
+
+    left:20px;
+
+    bottom:20px;
+
+    z-index:9999;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+    pointer-events:none;
+}
+
+.toast{
+
+    background:#173b35;
+
+    color:#fff;
+
+    padding:
+        12px 17px;
+
+    border-radius:13px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.2);
+
+    font-size:14px;
+
+    max-width:320px;
+
+    animation:
+        toastIn .3s ease;
 
 }
 
-.tabs{
+.toast.success{
+    border-right:4px solid #35c58f;
+}
 
-grid-template-columns:1fr;
+.toast.error{
+    border-right:4px solid #ff6b6b;
+}
+
+@keyframes toastIn{
+
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 
 }
+
+
+/* =====================================================
+   زر العودة للأعلى
+===================================================== */
+
+.top-button{
+
+    position:fixed;
+
+    left:18px;
+
+    bottom:18px;
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:50%;
+
+    background:var(--green);
+
+    color:#fff;
+
+    font-size:20px;
+
+    box-shadow:
+        0 5px 20px rgba(0,0,0,.2);
+
+    display:none;
+
+    z-index:100;
+
+    transition:.2s;
+}
+
+.top-button:hover{
+
+    background:var(--green-dark);
+
+    transform:translateY(-2px);
+}
+
+
+/* =====================================================
+   Footer
+===================================================== */
+
+footer{
+
+    text-align:center;
+
+    padding:25px;
+
+    color:var(--muted);
+
+    border-top:
+        1px solid var(--border);
+}
+
+footer strong{
+
+    color:var(--green);
+}
+
+
+/* =====================================================
+   Responsive
+===================================================== */
+
+@media(max-width:900px){
+
+    .azkar-grid,
+    .saved-grid{
+
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:700px){
+
+    .container{
+
+        width:94%;
+
+        padding-top:22px;
+    }
+
+    .tabs{
+
+        display:flex;
+
+        overflow-x:auto;
+
+        padding-bottom:3px;
+
+        scrollbar-width:none;
+    }
+
+    .tabs::-webkit-scrollbar{
+        display:none;
+    }
+
+    .tab{
+
+        min-width:145px;
+
+        white-space:nowrap;
+    }
 
 }
 
 @media(max-width:600px){
 
-.logo{
+    .header{
 
-font-size:39px;
+        padding:
+            28px
+            12px
+            25px;
+    }
+
+    .logo{
+        font-size:40px;
+    }
+
+    .creator{
+        font-size:11px;
+    }
+
+    .theme{
+
+        font-size:12px;
+
+        padding:8px 10px;
+    }
+
+    .page-title h1{
+        font-size:34px;
+    }
+
+    .page-title p{
+        font-size:14px;
+    }
+
+    .section{
+        padding:15px;
+        border-radius:18px;
+    }
+
+    .section-title h2{
+        font-size:21px;
+    }
+
+    .search-box{
+
+        flex-direction:column;
+
+        padding:6px;
+    }
+
+    .search-box button{
+
+        width:100%;
+
+        padding:12px;
+    }
+
+    .zikr{
+
+        padding:17px;
+    }
+
+    .zikr-title{
+        font-size:17px;
+    }
+
+    .zikr-text{
+
+        font-size:24px;
+
+        line-height:2.15;
+    }
+
+    .zikr-actions .btn,
+    .saved-actions .btn{
+
+        flex:1;
+
+        min-width:85px;
+    }
+
+    .saved-text{
+        font-size:24px;
+    }
+
+    .topbar{
+
+        justify-content:flex-start;
+
+        overflow-x:auto;
+
+        flex-wrap:nowrap;
+
+        scrollbar-width:none;
+    }
+
+    .topbar::-webkit-scrollbar{
+        display:none;
+    }
+
+    .topbar a{
+
+        flex-shrink:0;
+
+        width:auto;
+
+        white-space:nowrap;
+    }
+
+    .toast-container{
+
+        left:12px;
+
+        right:12px;
+
+        bottom:12px;
+    }
+
+    .toast{
+        max-width:none;
+    }
 
 }
 
-.page-title h1{
 
-font-size:34px;
+/* =====================================================
+   تقليل الحركة
+===================================================== */
 
-}
+@media(prefers-reduced-motion:reduce){
 
-.section{
+    *,
+    *::before,
+    *::after{
 
-padding:15px;
+        scroll-behavior:auto!important;
 
-}
+        animation-duration:.01ms!important;
 
-.zikr{
+        animation-iteration-count:1!important;
 
-padding:17px;
-
-}
-
-.zikr-text{
-
-font-size:24px;
-
-}
-
-.search-box{
-
-flex-direction:column;
-
-}
-
-.search-box button{
-
-width:100%;
-
-}
-
-.topbar a{
-
-width:100%;
-
-text-align:center;
-
-}
-
+        transition-duration:.01ms!important;
+    }
 }
 
 
-/* =========================
-   طباعة
-========================= */
+/* =====================================================
+   الطباعة
+===================================================== */
 
 @media print{
 
-.header,
-.topbar,
-.search-box,
-.tabs,
-.zikr-actions,
-.counter,
-.top-button,
-footer{
+    .header,
+    .topbar,
+    .search-box,
+    .tabs,
+    .zikr-actions,
+    .counter,
+    .top-button,
+    footer,
+    .saved-section,
+    .toast-container{
 
-display:none!important;
+        display:none!important;
+    }
 
-}
+    body{
 
-body{
+        background:#fff;
 
-background:#fff;
+        color:#000;
+    }
 
-color:#000;
+    .container{
 
-}
+        width:100%;
 
-.section{
+        padding:0;
+    }
 
-box-shadow:none;
+    .section{
 
-border:0;
+        box-shadow:none;
 
-}
+        border:0;
+    }
+
+    .zikr{
+
+        break-inside:avoid;
+
+        border:
+            1px solid #ddd;
+    }
 
 }
 
@@ -916,1246 +1387,1453 @@ border:0;
 <body>
 
 
-<!-- =========================
+<!-- =====================================================
      Header
-========================= -->
+===================================================== -->
 
 <header class="header">
 
-<button
-class="theme"
-onclick="toggleDark()"
-id="themeBtn">
+    <button
+        class="theme"
+        onclick="toggleDark()"
+        id="themeBtn"
+        aria-label="تغيير الوضع">
 
-🌙 الوضع الداكن
+        🌙 الوضع الداكن
 
-</button>
+    </button>
 
-<div class="creator">
+    <div class="creator">
+        BY ADAM AHMED
+    </div>
 
-BY ADAM AHMED
+    <div class="logo">
+        🤲 سراج
+    </div>
 
-</div>
-
-<div class="logo">
-
-🤲 سراج
-
-</div>
-
-<p>
-
-الأذكار والأدعية
-
-</p>
+    <p>
+        الأذكار والأدعية
+    </p>
 
 </header>
 
 
-<!-- =========================
+<!-- =====================================================
      Navigation
-========================= -->
+===================================================== -->
 
 <nav class="topbar">
 
-<a href="index.html">
+    <a href="index.html">
+        🏠 الرئيسية
+    </a>
 
-🏠 الرئيسية
+    <a href="index.html">
+        📖 القرآن
+    </a>
 
-</a>
+    <a href="azkar.html" class="active">
+        🤲 الأذكار
+    </a>
 
-<a href="index.html">
+    <a href="index.html">
+        🕌 الصلاة
+    </a>
 
-📖 القرآن
-
-</a>
-
-<a href="azkar.html">
-
-🤲 الأذكار
-
-</a>
-
-<a href="index.html">
-
-🕌 الصلاة
-
-</a>
-
-<a href="index.html">
-
-🧭 القبلة
-
-</a>
+    <a href="index.html">
+        🧭 القبلة
+    </a>
 
 </nav>
 
 
-<!-- =========================
-     Container
-========================= -->
+<!-- =====================================================
+     Main
+===================================================== -->
 
 <main class="container">
 
 
-<div class="page-title">
+    <!-- عنوان -->
 
-<h1>
+    <div class="page-title">
 
-🤲 الأذكار والأدعية
+        <h1>
+            🤲 الأذكار والأدعية
+        </h1>
 
-</h1>
+        <p>
+            اذكر الله واطمئن قلبك ❤️
+        </p>
 
-<p>
-
-اذكر الله واطمئن قلبك ❤️
-
-</p>
-
-</div>
+    </div>
 
 
-<!-- =========================
-     البحث
-========================= -->
+    <!-- البحث -->
 
-<div class="search-box">
+    <div class="search-box">
 
-<input
-id="searchInput"
-type="search"
-placeholder="🔎 ابحث عن ذكر..."
-oninput="searchAzkar()"
->
+        <div class="search-input-wrap">
 
-<button
-onclick="clearSearch()">
+            <span class="search-icon">
+                🔎
+            </span>
 
-مسح
+            <input
+                id="searchInput"
+                type="search"
+                placeholder="ابحث عن ذكر أو دعاء..."
+                autocomplete="off"
+                aria-label="البحث في الأذكار"
+                oninput="searchAzkar()">
 
-</button>
+        </div>
 
-</div>
+        <button
+            type="button"
+            onclick="clearSearch()">
 
+            مسح
 
-<!-- =========================
-     Tabs
-========================= -->
+        </button>
 
-<div class="tabs">
-
-<button
-class="tab active"
-onclick="showCategory('morning',this)">
-
-🌅 أذكار الصباح
-
-</button>
-
-<button
-class="tab"
-onclick="showCategory('evening',this)">
-
-🌙 أذكار المساء
-
-</button>
-
-<button
-class="tab"
-onclick="showCategory('general',this)">
-
-🤲 أذكار عامة
-
-</button>
-
-</div>
+    </div>
 
 
-<!-- =========================
-     أذكار
-========================= -->
+    <!-- Tabs -->
 
-<section class="section">
+    <div class="tabs">
 
-<div class="section-title">
+        <button
+            class="tab active"
+            onclick="showCategory('morning',this)">
 
-<h2 id="categoryTitle">
+            🌅 أذكار الصباح
 
-🌅 أذكار الصباح
+        </button>
 
-</h2>
+        <button
+            class="tab"
+            onclick="showCategory('evening',this)">
 
-<span class="small"
-id="countText">
-</span>
+            🌙 أذكار المساء
 
-</div>
+        </button>
+
+        <button
+            class="tab"
+            onclick="showCategory('general',this)">
+
+            🤲 أذكار عامة
+
+        </button>
+
+    </div>
 
 
-<div
-id="azkarGrid"
-class="azkar-grid">
+    <!-- الأذكار -->
 
-</div>
+    <section class="section">
 
-</section>
+        <div class="section-title">
+
+            <h2 id="categoryTitle">
+                🌅 أذكار الصباح
+            </h2>
+
+            <span
+                class="count-text"
+                id="countText">
+            </span>
+
+        </div>
 
 
-<!-- =========================
-     المحفوظات
-========================= -->
+        <div
+            id="azkarGrid"
+            class="azkar-grid">
+        </div>
 
-<section class="section saved-section">
+    </section>
 
-<div class="section-title">
 
-<h2>
+    <!-- المحفوظات -->
 
-❤️ الأذكار المحفوظة
+    <section class="section saved-section">
 
-</h2>
+        <div class="section-title">
 
-<button
-class="btn delete"
-onclick="clearSaved()">
+            <h2>
+                ❤️ الأذكار المحفوظة
+            </h2>
 
-حذف الكل
+            <button
+                class="btn delete"
+                onclick="clearSaved()">
 
-</button>
+                🗑️ حذف الكل
 
-</div>
+            </button>
 
-<div
-id="savedGrid"
-class="saved-grid">
+        </div>
 
-</div>
+        <div
+            id="savedGrid"
+            class="saved-grid">
 
-</section>
+        </div>
+
+    </section>
 
 
 </main>
 
 
-<!-- =========================
-     Top Button
-========================= -->
+<!-- زر العودة للأعلى -->
 
 <button
-id="topButton"
-class="top-button"
-onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    id="topButton"
+    class="top-button"
+    onclick="window.scrollTo({top:0,behavior:'smooth'})"
+    aria-label="العودة للأعلى">
 
-↑
+    ↑
 
 </button>
 
 
+<!-- Toast -->
+
+<div
+    id="toastContainer"
+    class="toast-container"
+    aria-live="polite">
+</div>
+
+
+<!-- Footer -->
+
 <footer>
 
-© 2026 سراج
+    © 2026 سراج
 
-<br>
+    <br>
 
-<strong>
+    <strong>
+        BY ADAM AHMED
+    </strong>
 
-BY ADAM AHMED
+    <br>
 
-</strong>
-
-<br>
-
-01017133588
+    01017133588
 
 </footer>
 
 
 <script>
 
-
-/* =========================
+/* =====================================================
    بيانات الأذكار
-========================= */
-
-const azkarData={
-
-
-morning:[
-
-{
-
-title:"أصبحنا وأصبح الملك لله",
-
-text:"أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ.",
-
-count:1,
-
-type:"الصباح"
-
-},
-
-{
-
-title:"آية الكرسي",
-
-text:"اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ.",
-
-count:1,
-
-type:"الصباح"
-
-},
-
-{
-
-title:"سيد الاستغفار",
-
-text:"اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ لَكَ بِذَنْبِي، فَاغْفِرْ لِي، فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ.",
-
-count:1,
-
-type:"الصباح"
-
-},
-
-{
-
-title:"رضيت بالله ربًا",
-
-text:"رَضِيتُ بِاللَّهِ رَبًّا، وَبِالإِسْلَامِ دِينًا، وَبِمُحَمَّدٍ ﷺ نَبِيًّا.",
-
-count:3,
-
-type:"الصباح"
-
-},
-
-{
-
-title:"سبحان الله وبحمده",
-
-text:"سُبْحَانَ اللَّهِ وَبِحَمْدِهِ.",
-
-count:100,
-
-type:"الصباح"
-
-},
-
-{
-
-title:"لا إله إلا الله",
-
-text:"لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ.",
-
-count:10,
-
-type:"الصباح"
-
-}
-
-],
-
-
-evening:[
-
-{
-
-title:"أمسينا وأمسى الملك لله",
-
-text:"أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ.",
-
-count:1,
-
-type:"المساء"
-
-},
-
-{
-
-title:"آية الكرسي",
-
-text:"اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ.",
-
-count:1,
-
-type:"المساء"
-
-},
-
-{
-
-title:"أعوذ بكلمات الله",
-
-text:"أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ.",
-
-count:3,
-
-type:"المساء"
-
-},
-
-{
-
-title:"رضيت بالله ربًا",
-
-text:"رَضِيتُ بِاللَّهِ رَبًّا، وَبِالإِسْلَامِ دِينًا، وَبِمُحَمَّدٍ ﷺ نَبِيًّا.",
-
-count:3,
-
-type:"المساء"
-
-},
-
-{
-
-title:"سبحان الله وبحمده",
-
-text:"سُبْحَانَ اللَّهِ وَبِحَمْدِهِ.",
-
-count:100,
-
-type:"المساء"
-
-}
-
-],
-
-
-general:[
-
-{
-
-title:"الاستغفار",
-
-text:"أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ.",
-
-count:100,
-
-type:"ذكر"
-
-},
-
-{
-
-title:"سبحان الله",
-
-text:"سُبْحَانَ اللَّهِ.",
-
-count:33,
-
-type:"ذكر"
-
-},
-
-{
-
-title:"الحمد لله",
-
-text:"الْحَمْدُ لِلَّهِ.",
-
-count:33,
-
-type:"ذكر"
-
-},
-
-{
-
-title:"الله أكبر",
-
-text:"اللَّهُ أَكْبَرُ.",
-
-count:34,
-
-type:"ذكر"
-
-},
-
-{
-
-title:"الصلاة على النبي ﷺ",
-
-text:"اللَّهُمَّ صَلِّ وَسَلِّمْ وَبَارِكْ عَلَى نَبِيِّنَا مُحَمَّدٍ ﷺ.",
-
-count:10,
-
-type:"ذكر"
-
-},
-
-{
-
-title:"دعاء",
-
-text:"رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ.",
-
-count:1,
-
-type:"دعاء"
-
-},
-
-{
-
-title:"حسبي الله",
-
-text:"حَسْبِيَ اللَّهُ لَا إِلَهَ إِلَّا هُوَ ۖ عَلَيْهِ تَوَكَّلْتُ وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ.",
-
-count:7,
-
-type:"ذكر"
-
-},
-
-{
-
-title:"لا حول ولا قوة إلا بالله",
-
-text:"لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ.",
-
-count:10,
-
-type:"ذكر"
-
-}
-
-]
+===================================================== */
+
+const azkarData = {
+
+    morning: [
+
+        {
+            title:"أصبحنا وأصبح الملك لله",
+            text:"أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ.",
+            count:1,
+            type:"الصباح"
+        },
+
+        {
+            title:"آية الكرسي",
+            text:"اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ.",
+            count:1,
+            type:"الصباح"
+        },
+
+        {
+            title:"سيد الاستغفار",
+            text:"اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ لَكَ بِذَنْبِي، فَاغْفِرْ لِي، فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ.",
+            count:1,
+            type:"الصباح"
+        },
+
+        {
+            title:"رضيت بالله ربًا",
+            text:"رَضِيتُ بِاللَّهِ رَبًّا، وَبِالإِسْلَامِ دِينًا، وَبِمُحَمَّدٍ ﷺ نَبِيًّا.",
+            count:3,
+            type:"الصباح"
+        },
+
+        {
+            title:"سبحان الله وبحمده",
+            text:"سُبْحَانَ اللَّهِ وَبِحَمْدِهِ.",
+            count:100,
+            type:"الصباح"
+        },
+
+        {
+            title:"لا إله إلا الله",
+            text:"لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ.",
+            count:10,
+            type:"الصباح"
+        }
+
+    ],
+
+
+    evening: [
+
+        {
+            title:"أمسينا وأمسى الملك لله",
+            text:"أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ.",
+            count:1,
+            type:"المساء"
+        },
+
+        {
+            title:"آية الكرسي",
+            text:"اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ.",
+            count:1,
+            type:"المساء"
+        },
+
+        {
+            title:"أعوذ بكلمات الله",
+            text:"أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ.",
+            count:3,
+            type:"المساء"
+        },
+
+        {
+            title:"رضيت بالله ربًا",
+            text:"رَضِيتُ بِاللَّهِ رَبًّا، وَبِالإِسْلَامِ دِينًا، وَبِمُحَمَّدٍ ﷺ نَبِيًّا.",
+            count:3,
+            type:"المساء"
+        },
+
+        {
+            title:"سبحان الله وبحمده",
+            text:"سُبْحَانَ اللَّهِ وَبِحَمْدِهِ.",
+            count:100,
+            type:"المساء"
+        }
+
+    ],
+
+
+    general: [
+
+        {
+            title:"الاستغفار",
+            text:"أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ.",
+            count:100,
+            type:"ذكر"
+        },
+
+        {
+            title:"سبحان الله",
+            text:"سُبْحَانَ اللَّهِ.",
+            count:33,
+            type:"ذكر"
+        },
+
+        {
+            title:"الحمد لله",
+            text:"الْحَمْدُ لِلَّهِ.",
+            count:33,
+            type:"ذكر"
+        },
+
+        {
+            title:"الله أكبر",
+            text:"اللَّهُ أَكْبَرُ.",
+            count:34,
+            type:"ذكر"
+        },
+
+        {
+            title:"الصلاة على النبي ﷺ",
+            text:"اللَّهُمَّ صَلِّ وَسَلِّمْ وَبَارِكْ عَلَى نَبِيِّنَا مُحَمَّدٍ ﷺ.",
+            count:10,
+            type:"ذكر"
+        },
+
+        {
+            title:"دعاء",
+            text:"رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ.",
+            count:1,
+            type:"دعاء"
+        },
+
+        {
+            title:"حسبي الله",
+            text:"حَسْبِيَ اللَّهُ لَا إِلَهَ إِلَّا هُوَ ۖ عَلَيْهِ تَوَكَّلْتُ وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ.",
+            count:7,
+            type:"ذكر"
+        },
+
+        {
+            title:"لا حول ولا قوة إلا بالله",
+            text:"لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ.",
+            count:10,
+            type:"ذكر"
+        }
+
+    ]
 
 };
 
 
-/* =========================
+/* =====================================================
    المتغيرات
-========================= */
+===================================================== */
 
-let currentCategory="morning";
+let currentCategory = "morning";
 
-let counters={};
+let counters = {};
 
 
-/* =========================
+/* =====================================================
    الأرقام العربية
-========================= */
+===================================================== */
 
-function ar(n){
+function ar(number){
 
-return String(n).replace(
-/[0-9]/g,
-x=>"٠١٢٣٤٥٦٧٨٩"[x]
-);
+    return String(number).replace(
+        /[0-9]/g,
+        digit => "٠١٢٣٤٥٦٧٨٩"[digit]
+    );
 
 }
 
 
-/* =========================
+/* =====================================================
    حماية HTML
-========================= */
+===================================================== */
 
 function escapeHTML(text){
 
-return String(text).replace(
-/[&<>"']/g,
-m=>({
+    return String(text).replace(
+        /[&<>"']/g,
 
-"&":"&amp;",
-"<":"&lt;",
-">":"&gt;",
-'"':"&quot;",
-"'":"&#039;"
+        char => ({
 
-}[m])
-);
+            "&":"&amp;",
+            "<":"&lt;",
+            ">":"&gt;",
+            '"':"&quot;",
+            "'":"&#039;"
+
+        }[char])
+    );
 
 }
 
 
-/* =========================
+/* =====================================================
+   Toast
+===================================================== */
+
+function showToast(message,type="success"){
+
+    const container =
+        document.getElementById("toastContainer");
+
+    const toast =
+        document.createElement("div");
+
+    toast.className =
+        `toast ${type}`;
+
+    toast.textContent = message;
+
+    container.appendChild(toast);
+
+    setTimeout(()=>{
+
+        toast.style.opacity="0";
+
+        toast.style.transform="translateY(10px)";
+
+        setTimeout(()=>{
+            toast.remove();
+        },250);
+
+    },2500);
+
+}
+
+
+/* =====================================================
    المحفوظات
-========================= */
+===================================================== */
 
 function getSaved(){
 
-try{
+    try{
 
-return JSON.parse(
-localStorage.getItem("savedAzkar")
-)||[];
+        const saved =
+            JSON.parse(
+                localStorage.getItem("savedAzkar")
+            );
 
-}catch(e){
+        return Array.isArray(saved)
+            ? saved
+            : [];
 
-return[];
+    }catch(error){
 
-}
+        return [];
+
+    }
 
 }
 
 
 function saveSaved(list){
 
-localStorage.setItem(
-"savedAzkar",
-JSON.stringify(list)
-);
+    try{
+
+        localStorage.setItem(
+            "savedAzkar",
+            JSON.stringify(list)
+        );
+
+    }catch(error){
+
+        showToast(
+            "تعذر حفظ الذكر على هذا الجهاز.",
+            "error"
+        );
+
+    }
 
 }
 
 
-/* =========================
+/* =====================================================
    حفظ ذكر
-========================= */
+===================================================== */
 
 function saveZikr(index){
 
-const item=
-azkarData[currentCategory][index];
+    const item =
+        azkarData[currentCategory][index];
 
-let saved=getSaved();
+    if(!item){
+        return;
+    }
 
-const exists=
-saved.some(
-x=>
-x.text===item.text
-);
+    let saved = getSaved();
 
-if(exists){
+    const exists =
+        saved.some(
+            savedItem =>
+                savedItem.text === item.text
+        );
 
-alert("❤️ الذكر موجود بالفعل في المحفوظات.");
+    if(exists){
 
-return;
+        showToast(
+            "❤️ الذكر موجود بالفعل في المحفوظات."
+        );
+
+        return;
+    }
+
+    saved.push({
+
+        title:item.title,
+
+        text:item.text,
+
+        type:item.type,
+
+        category:currentCategory
+
+    });
+
+    saveSaved(saved);
+
+    renderSaved();
+
+    showToast(
+        "❤️ تم حفظ الذكر بنجاح."
+    );
 
 }
 
-saved.push({
 
-title:item.title,
-
-text:item.text,
-
-type:item.type,
-
-category:currentCategory
-
-});
-
-saveSaved(saved);
-
-renderSaved();
-
-alert("❤️ تم حفظ الذكر.");
-
-
-}
-
-
-/* =========================
-   حذف ذكر
-========================= */
+/* =====================================================
+   حذف ذكر محفوظ
+===================================================== */
 
 function deleteSaved(index){
 
-let saved=getSaved();
+    const saved = getSaved();
 
-saved.splice(index,1);
+    if(!saved[index]){
+        return;
+    }
 
-saveSaved(saved);
+    saved.splice(index,1);
 
-renderSaved();
+    saveSaved(saved);
+
+    renderSaved();
+
+    showToast(
+        "🗑️ تم حذف الذكر."
+    );
 
 }
 
 
-/* =========================
-   حذف الكل
-========================= */
+/* =====================================================
+   حذف جميع المحفوظات
+===================================================== */
 
 function clearSaved(){
 
-if(!getSaved().length){
+    const saved = getSaved();
 
-return;
+    if(!saved.length){
+
+        showToast(
+            "لا توجد أذكار محفوظة."
+        );
+
+        return;
+    }
+
+    const confirmed =
+        confirm(
+            "هل تريد حذف جميع الأذكار المحفوظة؟"
+        );
+
+    if(!confirmed){
+        return;
+    }
+
+    localStorage.removeItem(
+        "savedAzkar"
+    );
+
+    renderSaved();
+
+    showToast(
+        "🗑️ تم حذف جميع المحفوظات."
+    );
 
 }
 
-if(
-confirm("هل تريد حذف جميع الأذكار المحفوظة؟")
-){
 
-localStorage.removeItem(
-"savedAzkar"
-);
-
-renderSaved();
-
-}
-
-}
-
-
-/* =========================
+/* =====================================================
    عرض المحفوظات
-========================= */
+===================================================== */
 
 function renderSaved(){
 
-const box=
-document.getElementById(
-"savedGrid"
-);
+    const box =
+        document.getElementById("savedGrid");
 
-const saved=getSaved();
+    const saved = getSaved();
 
-if(!saved.length){
+    if(!saved.length){
 
-box.innerHTML=`
+        box.style.gridTemplateColumns =
+            "1fr";
 
-<div class="empty">
+        box.innerHTML = `
 
-❤️ لا توجد أذكار محفوظة حتى الآن.
+            <div class="empty">
 
-<br>
+                <span class="empty-icon">
+                    ❤️
+                </span>
 
-اضغط على «حفظ ❤️» بجانب أي ذكر.
+                لا توجد أذكار محفوظة حتى الآن.
 
-</div>
+                <br>
 
-`;
+                اضغط على «حفظ ❤️» بجانب أي ذكر.
 
-box.style.gridTemplateColumns="1fr";
+            </div>
 
-return;
+        `;
+
+        return;
+    }
+
+    box.style.gridTemplateColumns = "";
+
+    box.innerHTML =
+        saved.map(
+            (item,index) => `
+
+                <div class="saved-card">
+
+                    <div class="saved-title">
+
+                        ${escapeHTML(item.title || "ذكر محفوظ")}
+
+                    </div>
+
+                    <div class="zikr-type">
+
+                        ${escapeHTML(item.type || "ذكر")}
+
+                    </div>
+
+                    <div class="saved-text">
+
+                        ${escapeHTML(item.text)}
+
+                    </div>
+
+                    <div class="saved-actions">
+
+                        <button
+                            class="btn btn-copy"
+                            onclick="copyTextByIndex(${index})">
+
+                            📋 نسخ
+
+                        </button>
+
+                        <button
+                            class="btn btn-share"
+                            onclick="shareSaved(${index})">
+
+                            📤 مشاركة
+
+                        </button>
+
+                        <button
+                            class="btn delete"
+                            onclick="deleteSaved(${index})">
+
+                            🗑️ حذف
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `
+        ).join("");
 
 }
 
-box.style.gridTemplateColumns="";
 
-box.innerHTML=
-saved.map(
-(item,index)=>`
-
-<div class="saved-card">
-
-<div class="zikr-type">
-
-${escapeHTML(item.type)}
-
-</div>
-
-<br>
-
-<div class="saved-text">
-
-${escapeHTML(item.text)}
-
-</div>
-
-<div class="saved-actions">
-
-<button
-class="btn btn-copy"
-onclick="copyText('${encodeURIComponent(item.text)}')">
-
-📋 نسخ
-
-</button>
-
-<button
-class="btn btn-share"
-onclick="shareText('${encodeURIComponent(item.text)}')">
-
-📤 مشاركة
-
-</button>
-
-<button
-class="btn delete"
-onclick="deleteSaved(${index})">
-
-🗑️ حذف
-
-</button>
-
-</div>
-
-</div>
-
-`
-).join("");
-
-}
-
-
-/* =========================
+/* =====================================================
    عرض القسم
-========================= */
+===================================================== */
 
 function showCategory(category,button){
 
-currentCategory=category;
+    if(!azkarData[category]){
+        return;
+    }
 
-document
-.querySelectorAll(".tab")
-.forEach(
-x=>x.classList.remove("active")
-);
+    currentCategory = category;
 
-button.classList.add("active");
+    document
+        .querySelectorAll(".tab")
+        .forEach(tab =>
+            tab.classList.remove("active")
+        );
 
-const titles={
+    button.classList.add("active");
 
-morning:"🌅 أذكار الصباح",
+    const titles = {
 
-evening:"🌙 أذكار المساء",
+        morning:"🌅 أذكار الصباح",
 
-general:"🤲 أذكار عامة"
+        evening:"🌙 أذكار المساء",
 
-};
+        general:"🤲 أذكار عامة"
 
-document.getElementById(
-"categoryTitle"
-).textContent=
-titles[category];
+    };
 
-document.getElementById(
-"searchInput"
-).value="";
+    document.getElementById(
+        "categoryTitle"
+    ).textContent = titles[category];
 
-renderAzkar();
+    document.getElementById(
+        "searchInput"
+    ).value = "";
+
+    renderAzkar();
 
 }
 
 
-/* =========================
+/* =====================================================
    عرض الأذكار
-========================= */
+===================================================== */
 
 function renderAzkar(list=null){
 
-const box=
-document.getElementById(
-"azkarGrid"
-);
+    const box =
+        document.getElementById("azkarGrid");
 
-const data=
-list||
-azkarData[currentCategory];
+    const fullData =
+        azkarData[currentCategory];
 
-document.getElementById(
-"countText"
-).textContent=
-`${ar(data.length)} أذكار`;
+    const data =
+        list === null
+            ? fullData
+            : list;
 
-if(!data.length){
+    document.getElementById(
+        "countText"
+    ).textContent =
+        `${ar(data.length)} أذكار`;
 
-box.innerHTML=`
+    if(!data.length){
 
-<div class="empty">
+        box.innerHTML = `
 
-لا توجد نتائج للبحث.
+            <div class="empty">
 
-</div>
+                <span class="empty-icon">
+                    🔎
+                </span>
 
-`;
+                لا توجد نتائج للبحث.
 
-return;
+                <br>
+
+                جرّب كلمة أخرى.
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+    box.innerHTML =
+        data.map(item => {
+
+            /*
+                مهم:
+                نبحث عن الفهرس الأصلي داخل
+                البيانات الأصلية، حتى لا يحدث
+                خطأ عند الضغط على حفظ بعد البحث.
+            */
+
+            const originalIndex =
+                fullData.indexOf(item);
+
+            const key =
+                currentCategory +
+                "_" +
+                originalIndex;
+
+            const current =
+                counters[key] || 0;
+
+            const percent =
+                item.count > 0
+                    ? Math.min(
+                        100,
+                        Math.round(
+                            current /
+                            item.count *
+                            100
+                        )
+                    )
+                    : 0;
+
+            return `
+
+                <article class="zikr">
+
+                    <div class="zikr-head">
+
+                        <div class="zikr-title">
+
+                            ${escapeHTML(item.title)}
+
+                        </div>
+
+                        <div class="zikr-type">
+
+                            ${escapeHTML(item.type)}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="zikr-text">
+
+                        ${escapeHTML(item.text)}
+
+                    </div>
+
+
+                    <div class="zikr-info">
+
+                        🔢 عدد التكرار المقترح:
+
+                        <strong>
+                            ${ar(item.count)}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="zikr-actions">
+
+                        <button
+                            class="btn btn-save"
+                            onclick="saveZikr(${originalIndex})">
+
+                            ❤️ حفظ
+
+                        </button>
+
+
+                        <button
+                            class="btn btn-copy"
+                            onclick="copyText(${JSON.stringify(item.text)})">
+
+                            📋 نسخ
+
+                        </button>
+
+
+                        <button
+                            class="btn btn-share"
+                            onclick="shareText(${JSON.stringify(item.text)})">
+
+                            📤 مشاركة
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="counter">
+
+                        <button
+                            onclick="increaseCounter('${key}',${item.count})"
+                            aria-label="زيادة العداد">
+
+                            +
+
+                        </button>
+
+                        <div
+                            class="counter-number"
+                            id="counter-${key}">
+
+                            ${ar(current)}
+
+                        </div>
+
+                        <button
+                            onclick="resetCounter('${key}')"
+                            aria-label="إعادة العداد">
+
+                            ↻
+
+                        </button>
+
+                        <span class="counter-label">
+
+                            من ${ar(item.count)}
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="progress">
+
+                        <div
+                            class="progress-bar"
+                            id="progress-${key}"
+                            style="width:${percent}%">
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            `;
+
+        }).join("");
 
 }
 
-box.innerHTML=
-data.map(
-(item,index)=>{
 
-const key=
-currentCategory+"_"+index;
-
-const current=
-counters[key]||0;
-
-return`
-
-<article class="zikr">
-
-<div class="zikr-head">
-
-<div class="zikr-title">
-
-${escapeHTML(item.title)}
-
-</div>
-
-<div class="zikr-type">
-
-${escapeHTML(item.type)}
-
-</div>
-
-</div>
-
-
-<div class="zikr-text">
-
-${escapeHTML(item.text)}
-
-</div>
-
-
-<div class="zikr-info">
-
-🔢 عدد التكرار المقترح:
-<strong>
-
-${ar(item.count)}
-
-</strong>
-
-</div>
-
-
-<div class="zikr-actions">
-
-<button
-class="btn btn-save"
-onclick="saveZikr(${index})">
-
-❤️ حفظ
-
-</button>
-
-
-<button
-class="btn btn-copy"
-onclick="copyText('${encodeURIComponent(item.text)}')">
-
-📋 نسخ
-
-</button>
-
-
-<button
-class="btn btn-share"
-onclick="shareText('${encodeURIComponent(item.text)}')">
-
-📤 مشاركة
-
-</button>
-
-</div>
-
-
-<div class="counter">
-
-<button
-onclick="increaseCounter('${key}',${item.count})">
-
-+
-
-</button>
-
-<div
-class="counter-number"
-id="counter-${key}">
-
-${ar(current)}
-
-</div>
-
-<button
-onclick="resetCounter('${key}')">
-
-↻
-
-</button>
-
-<span class="small">
-
-من ${ar(item.count)}
-
-</span>
-
-</div>
-
-</article>
-
-`;
-
-}).join("");
-
-}
-
-
-/* =========================
+/* =====================================================
    عداد الذكر
-========================= */
+===================================================== */
 
 function increaseCounter(key,max){
 
-if(!counters[key]){
+    if(!counters[key]){
+        counters[key] = 0;
+    }
 
-counters[key]=0;
+    if(counters[key] < max){
 
-}
+        counters[key]++;
+    }
 
-if(counters[key]<max){
+    updateCounterUI(key,max);
 
-counters[key]++;
+    if(counters[key] === max){
 
-}
+        if(navigator.vibrate){
 
-const el=
-document.getElementById(
-"counter-"+key
-);
+            navigator.vibrate([
+                100,
+                50,
+                100
+            ]);
 
-if(el){
+        }
 
-el.textContent=
-ar(counters[key]);
+        showToast(
+            "✨ أحسنت! اكتمل العدد."
+        );
 
-}
-
-if(
-counters[key]===max
-){
-
-if(navigator.vibrate){
-
-navigator.vibrate([
-100,
-50,
-100
-]);
+    }
 
 }
 
-}
+
+/* =====================================================
+   تحديث العداد
+===================================================== */
+
+function updateCounterUI(key,max){
+
+    const number =
+        document.getElementById(
+            "counter-"+key
+        );
+
+    const progress =
+        document.getElementById(
+            "progress-"+key
+        );
+
+    const current =
+        counters[key] || 0;
+
+    if(number){
+
+        number.textContent =
+            ar(current);
+    }
+
+    if(progress){
+
+        const percent =
+            max > 0
+                ? Math.min(
+                    100,
+                    Math.round(
+                        current /
+                        max *
+                        100
+                    )
+                )
+                : 0;
+
+        progress.style.width =
+            percent + "%";
+    }
 
 }
 
+
+/* =====================================================
+   إعادة العداد
+===================================================== */
 
 function resetCounter(key){
 
-counters[key]=0;
+    counters[key] = 0;
 
-const el=
-document.getElementById(
-"counter-"+key
-);
+    const number =
+        document.getElementById(
+            "counter-"+key
+        );
 
-if(el){
+    const progress =
+        document.getElementById(
+            "progress-"+key
+        );
 
-el.textContent="٠";
+    if(number){
+
+        number.textContent =
+            "٠";
+    }
+
+    if(progress){
+
+        progress.style.width =
+            "0%";
+    }
 
 }
 
-}
 
-
-/* =========================
+/* =====================================================
    البحث
-========================= */
+===================================================== */
 
 function searchAzkar(){
 
-const word=
-document.getElementById(
-"searchInput"
-).value
-.trim()
-.toLowerCase();
+    const input =
+        document.getElementById(
+            "searchInput"
+        );
 
-if(!word){
+    const word =
+        input.value
+            .trim()
+            .toLowerCase();
 
-renderAzkar();
+    if(!word){
 
-return;
+        renderAzkar();
 
-}
+        return;
+    }
 
-const data=
-azkarData[currentCategory];
+    const data =
+        azkarData[currentCategory];
 
-const results=
-data.filter(
-item=>
-item.title
-.toLowerCase()
-.includes(word)
-||
-item.text
-.toLowerCase()
-.includes(word)
-);
+    const results =
+        data.filter(item =>
 
-renderAzkar(results);
+            item.title
+                .toLowerCase()
+                .includes(word)
+
+            ||
+
+            item.text
+                .toLowerCase()
+                .includes(word)
+
+            ||
+
+            item.type
+                .toLowerCase()
+                .includes(word)
+
+        );
+
+    renderAzkar(results);
 
 }
 
 
 function clearSearch(){
 
-document.getElementById(
-"searchInput"
-).value="";
+    const input =
+        document.getElementById(
+            "searchInput"
+        );
 
-renderAzkar();
+    input.value = "";
+
+    renderAzkar();
+
+    input.focus();
 
 }
 
 
-/* =========================
+/* =====================================================
    النسخ
-========================= */
+===================================================== */
 
-async function copyText(encoded){
+async function copyText(text){
 
-const text=
-decodeURIComponent(encoded);
+    try{
 
-try{
+        if(
+            navigator.clipboard &&
+            window.isSecureContext
+        ){
 
-await navigator.clipboard.writeText(text);
+            await navigator.clipboard.writeText(
+                text
+            );
 
-alert("📋 تم نسخ الذكر.");
+        }else{
 
-}catch(e){
+            fallbackCopy(text);
 
-alert("تعذر نسخ الذكر.");
+        }
+
+        showToast(
+            "📋 تم نسخ الذكر."
+        );
+
+    }catch(error){
+
+        showToast(
+            "تعذر نسخ الذكر.",
+            "error"
+        );
+
+    }
 
 }
 
+
+/* =====================================================
+   نسخة احتياطية للنسخ
+===================================================== */
+
+function fallbackCopy(text){
+
+    const textarea =
+        document.createElement("textarea");
+
+    textarea.value = text;
+
+    textarea.style.position =
+        "fixed";
+
+    textarea.style.opacity =
+        "0";
+
+    document.body.appendChild(
+        textarea
+    );
+
+    textarea.focus();
+
+    textarea.select();
+
+    const success =
+        document.execCommand("copy");
+
+    textarea.remove();
+
+    if(!success){
+
+        throw new Error(
+            "Copy failed"
+        );
+
+    }
+
 }
 
 
-/* =========================
+/* =====================================================
+   نسخ محفوظ
+===================================================== */
+
+function copyTextByIndex(index){
+
+    const saved = getSaved();
+
+    if(!saved[index]){
+        return;
+    }
+
+    copyText(
+        saved[index].text
+    );
+
+}
+
+
+/* =====================================================
    المشاركة
-========================= */
+===================================================== */
 
-async function shareText(encoded){
+async function shareText(text){
 
-const text=
-decodeURIComponent(encoded);
+    const shareData = {
 
-const data={
+        title:"ذكر من سراج",
 
-title:"ذكر من سراج",
+        text:
+            `🤲 ${text}\n\n` +
+            `📖 سراج\n` +
+            `BY ADAM AHMED`
 
-text:
-`🤲 ${text}
+    };
 
-📖 سراج
-BY ADAM AHMED`
+    if(
+        navigator.share
+    ){
 
-};
+        try{
 
-if(navigator.share){
+            await navigator.share(
+                shareData
+            );
 
-try{
+            showToast(
+                "📤 تمت المشاركة."
+            );
 
-await navigator.share(data);
+        }catch(error){
 
-}catch(e){}
+            /*
+                المستخدم قد يغلق نافذة المشاركة،
+                لذلك لا نعرض رسالة خطأ.
+            */
 
-}else{
+        }
 
-await copyText(
-encodeURIComponent(
-text
-)
-);
+        return;
+    }
+
+    /*
+        إذا كان المتصفح لا يدعم المشاركة،
+        ننسخ النص بدلًا منها.
+    */
+
+    await copyText(
+        shareData.text
+    );
 
 }
 
+
+function shareSaved(index){
+
+    const saved = getSaved();
+
+    if(!saved[index]){
+        return;
+    }
+
+    shareText(
+        saved[index].text
+    );
+
 }
 
 
-/* =========================
+/* =====================================================
    الوضع الليلي
-========================= */
+===================================================== */
 
 function toggleDark(){
 
-document.body
-.classList
-.toggle("dark");
+    document.body.classList.toggle(
+        "dark"
+    );
 
-localStorage.setItem(
-"darkMode",
-document.body.classList.contains("dark")
-);
+    const dark =
+        document.body.classList.contains(
+            "dark"
+        );
 
-updateTheme();
+    localStorage.setItem(
+        "darkMode",
+        dark ? "true" : "false"
+    );
+
+    updateTheme();
 
 }
 
 
 function updateTheme(){
 
-const dark=
-document.body
-.classList
-.contains("dark");
+    const dark =
+        document.body.classList.contains(
+            "dark"
+        );
 
-document.getElementById(
-"themeBtn"
-).textContent=
+    const button =
+        document.getElementById(
+            "themeBtn"
+        );
 
-dark
-?
-"☀️ الوضع النهاري"
-:
-"🌙 الوضع الداكن";
+    button.textContent =
+        dark
+            ? "☀️ الوضع النهاري"
+            : "🌙 الوضع الداكن";
 
 }
 
 
+/* =====================================================
+   تحميل الوضع الليلي
+===================================================== */
+
 if(
-localStorage.getItem("darkMode")
-==="true"
+    localStorage.getItem(
+        "darkMode"
+    ) === "true"
 ){
 
-document.body
-.classList
-.add("dark");
+    document.body.classList.add(
+        "dark"
+    );
 
 }
 
 updateTheme();
 
 
-/* =========================
+/* =====================================================
    زر الأعلى
-========================= */
+===================================================== */
 
 window.addEventListener(
-"scroll",
-()=>{
+    "scroll",
+    () => {
 
-const button=
-document.getElementById(
-"topButton"
+        const button =
+            document.getElementById(
+                "topButton"
+            );
+
+        if(
+            window.scrollY > 400
+        ){
+
+            button.style.display =
+                "block";
+
+        }else{
+
+            button.style.display =
+                "none";
+
+        }
+
+    },
+    {passive:true}
 );
 
-if(window.scrollY>400){
 
-button.style.display="block";
-
-}else{
-
-button.style.display="none";
-
-}
-
-});
-
-
-/* =========================
+/* =====================================================
    التشغيل
-========================= */
+===================================================== */
 
 renderAzkar();
 
 renderSaved();
-
 
 </script>
 
