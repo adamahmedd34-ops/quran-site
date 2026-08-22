@@ -2,1925 +2,1960 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#07131d">
-<title>أثر — لوحة التحكم الإسلامية</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>أثر | رفيقك إلى الخير</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
 :root{
-  --bg:#07131d;
-  --bg2:#0a1823;
-  --card:#0d1d29;
-  --card2:#102431;
-  --border:#1c3441;
-  --green:#16b87f;
-  --green2:#087f5b;
-  --green3:#39d69c;
-  --gold:#d8a83e;
-  --text:#edf7f3;
-  --muted:#82949f;
-  --danger:#e96b6b;
-  --sidebar:82px;
-  --top:68px;
+    --bg:#031c18;
+    --bg2:#062923;
+    --panel:#092f28;
+    --panel2:#0d3b31;
+    --green:#35c47b;
+    --green2:#0b8f62;
+    --gold:#d7a94b;
+    --text:#f5f5ed;
+    --muted:#a9c0b8;
+    --line:rgba(255,255,255,.10);
+    --cream:#f5f0df;
+    --cream2:#fffaf0;
+    --dark:#07352d;
 }
-
-*{
-  scrollbar-width:thin;
-  scrollbar-color:#244351 transparent
-}
-
-html{scroll-behavior:smooth}
 
 body{
-  background:
-    radial-gradient(circle at 50% -10%,rgba(12,145,104,.13),transparent 35%),
-    linear-gradient(180deg,#07131d,#061019);
-  color:var(--text);
-  font-family:Tajawal,Cairo,Arial,sans-serif;
-  min-height:100vh;
-  line-height:1.7;
-}
-
-button,input,select{font-family:inherit}
-
-button{
-  border:0;
-  cursor:pointer;
-}
-
-/* ================= HEADER ================= */
-
-.topbar{
-  height:var(--top);
-  position:fixed;
-  top:0;
-  right:0;
-  left:0;
-  z-index:100;
-  display:flex;
-  align-items:center;
-  gap:20px;
-  padding:0 18px;
-  background:rgba(6,17,26,.94);
-  border-bottom:1px solid var(--border);
-  backdrop-filter:blur(18px);
-}
-
-.brand{
-  width:var(--sidebar);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  font-weight:900;
-  font-size:21px;
-  color:white;
-  flex-shrink:0;
-}
-
-.brand span{
-  color:var(--green3);
-  font-size:27px;
-}
-
-.topnav{
-  display:flex;
-  align-items:center;
-  gap:5px;
-  overflow:auto;
-  white-space:nowrap;
-  flex:1;
-}
-
-.topnav button{
-  color:#aebbc1;
-  background:transparent;
-  padding:10px 15px;
-  border-radius:10px;
-  font-weight:700;
-  transition:.2s;
-}
-
-.topnav button:hover,
-.topnav button.active{
-  color:white;
-  background:#12332e;
-}
-
-.topnav button.active{
-  color:#62d8ad;
-}
-
-.profile{
-  width:48px;
-  height:48px;
-  border-radius:50%;
-  background:#13252f;
-  border:1px solid var(--border);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:25px;
-  flex-shrink:0;
+    font-family:Tahoma,"Segoe UI",Arial,sans-serif;
+    background:
+        radial-gradient(circle at 15% 10%,#0c4538 0,transparent 28%),
+        radial-gradient(circle at 80% 20%,#063b31 0,transparent 30%),
+        var(--bg);
+    color:var(--text);
+    min-height:100vh;
 }
 
 /* ================= SIDEBAR ================= */
 
 .sidebar{
-  position:fixed;
-  top:var(--top);
-  bottom:0;
-  right:0;
-  width:var(--sidebar);
-  background:#081722;
-  border-left:1px solid var(--border);
-  z-index:90;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  padding:12px 7px;
+    position:fixed;
+    right:0;
+    top:0;
+    bottom:0;
+    width:145px;
+    background:#021814;
+    border-left:1px solid var(--line);
+    padding:18px 10px;
+    z-index:50;
 }
 
-.side-btn{
-  width:66px;
-  min-height:63px;
-  margin-bottom:5px;
-  border-radius:12px;
-  color:#7d919d;
-  background:transparent;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:2px;
-  font-size:11px;
-  font-weight:700;
-  transition:.2s;
+.logo{
+    text-align:center;
+    margin-bottom:24px;
 }
 
-.side-btn .ico{
-  font-size:21px;
+.logo-icon{
+    color:var(--green);
+    font-size:43px;
 }
 
-.side-btn:hover{
-  background:#102731;
-  color:white;
+.logo h1{
+    font-size:28px;
 }
 
-.side-btn.active{
-  color:#fff;
-  background:linear-gradient(180deg,#0d5949,#0a3c35);
-  box-shadow:inset 0 0 0 1px rgba(61,209,159,.12);
+.logo p{
+    color:var(--green);
+    font-size:12px;
+    margin-top:3px;
 }
 
-.side-bottom{
-  margin-top:auto;
+.side-menu{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.side-menu button{
+    border:0;
+    background:transparent;
+    color:#d9e6e1;
+    padding:11px 8px;
+    border-radius:13px;
+    cursor:pointer;
+    text-align:right;
+    font-size:14px;
+    transition:.2s;
+}
+
+.side-menu button:hover,
+.side-menu button.active{
+    background:linear-gradient(90deg,#07553e,#0a7656);
+    color:white;
+}
+
+.side-menu button span{
+    font-size:20px;
+    margin-left:7px;
+}
+
+.settings{
+    position:absolute;
+    bottom:20px;
+    right:10px;
+    left:10px;
 }
 
 /* ================= MAIN ================= */
 
 .main{
-  margin-right:var(--sidebar);
-  padding-top:var(--top);
-  min-height:100vh;
+    margin-right:145px;
+    min-height:100vh;
 }
 
-.page{
-  width:min(1450px,96%);
-  margin:auto;
-  padding:18px 0 50px;
+/* ================= TOPBAR ================= */
+
+.topbar{
+    height:72px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 25px;
+    border-bottom:1px solid var(--line);
 }
 
-.section{
-  display:none;
+.topnav{
+    display:flex;
+    gap:8px;
+    align-items:center;
+    overflow:auto;
 }
 
-.section.active{
-  display:block;
-  animation:fade .25s ease;
+.topnav button{
+    background:none;
+    border:0;
+    color:white;
+    padding:11px 15px;
+    border-radius:12px;
+    white-space:nowrap;
+    cursor:pointer;
 }
 
-@keyframes fade{
-  from{opacity:0;transform:translateY(6px)}
-  to{opacity:1;transform:none}
+.topnav button:hover,
+.topnav button.active{
+    background:#07583f;
 }
 
-/* ================= DASHBOARD ================= */
-
-.dashboard-grid{
-  display:grid;
-  grid-template-columns:1.65fr 1fr 1fr;
-  gap:10px;
+.profile{
+    display:flex;
+    align-items:center;
+    gap:10px;
 }
 
-.card{
-  background:linear-gradient(145deg,rgba(15,31,42,.98),rgba(9,24,34,.98));
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:16px;
-  box-shadow:0 12px 35px rgba(0,0,0,.12);
+.profile-avatar{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:#f3eee0;
+    color:#1b6b4f;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
 }
+
+/* ================= CONTENT ================= */
+
+.content{
+    padding:12px;
+    max-width:1450px;
+    margin:auto;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:1.35fr 1fr;
+    gap:10px;
+}
+
+/* ================= HERO ================= */
 
 .hero{
-  min-height:184px;
-  position:relative;
-  overflow:hidden;
-  background:
-    radial-gradient(circle at 88% 10%,rgba(48,212,156,.13),transparent 25%),
-    linear-gradient(135deg,#073f36,#08785b 62%,#075341);
+    min-height:325px;
+    border-radius:22px;
+    padding:28px;
+    position:relative;
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(3,30,25,.25),
+            rgba(5,53,43,.80)
+        ),
+        radial-gradient(
+            circle at 25% 75%,
+            #153e30,
+            transparent 38%
+        ),
+        linear-gradient(
+            140deg,
+            #184d3c,
+            #0a3028 55%,
+            #06221d
+        );
+
+    border:1px solid rgba(255,255,255,.12);
 }
 
 .hero:after{
-  content:"☪";
-  position:absolute;
-  left:25px;
-  bottom:-50px;
-  font-size:160px;
-  color:rgba(255,255,255,.025);
+    content:"☪";
+    position:absolute;
+    left:55px;
+    top:35px;
+    font-size:85px;
+    color:#e8d58b;
+    opacity:.85;
 }
 
 .hero-content{
-  position:relative;
-  z-index:2;
+    position:relative;
+    z-index:2;
+    max-width:600px;
+    margin-right:auto;
 }
 
-.hero h1{
-  font-size:24px;
-  margin-bottom:3px;
+.hero h2{
+    font-size:36px;
+    margin-top:55px;
+    margin-bottom:8px;
 }
 
-.hero h1 span{
-  color:#55d8aa;
+.hero h2 span{
+    color:#49d58e;
 }
 
 .hero p{
-  color:#c2d8d1;
-  font-size:13px;
+    color:#e4ece8;
+    font-size:17px;
 }
 
-.hero-info{
-  display:flex;
-  gap:0;
-  margin-top:25px;
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:10px;
-  overflow:hidden;
-  width:78%;
+.progress-circle{
+    position:absolute;
+    left:25px;
+    bottom:25px;
+    width:135px;
+    height:135px;
+    border-radius:50%;
+    background:
+        conic-gradient(
+            var(--green) 72%,
+            rgba(255,255,255,.10) 0
+        );
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
-.info-box{
-  flex:1;
-  padding:9px 13px;
-  border-left:1px solid rgba(255,255,255,.08);
-  text-align:center;
+.progress-circle:after{
+    content:"";
+    position:absolute;
+    width:105px;
+    height:105px;
+    border-radius:50%;
+    background:#0a3028;
 }
 
-.info-box:last-child{
-  border-left:0;
+.progress-circle div{
+    position:relative;
+    z-index:2;
+    text-align:center;
 }
 
-.info-box strong{
-  display:block;
-  font-size:17px;
+.progress-circle strong{
+    display:block;
+    font-size:30px;
 }
 
-.info-box span{
-  color:#8faaa2;
-  font-size:10px;
+.progress-circle small{
+    color:#bdd2ca;
 }
 
-/* progress circle */
+/* ================= DAILY CARDS ================= */
 
-.progress-card{
-  display:flex;
-  align-items:center;
-  gap:18px;
+.daily{
+    background:var(--cream);
+    color:#15322b;
+    border-radius:22px;
+    padding:18px;
 }
 
-.circle{
-  width:100px;
-  height:100px;
-  border-radius:50%;
-  background:conic-gradient(#39cf96 0 72%,#20343b 72% 100%);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  flex-shrink:0;
+.daily-title{
+    font-size:18px;
+    font-weight:bold;
+    margin-bottom:12px;
 }
 
-.circle:before{
-  content:"";
-  position:absolute;
-  inset:8px;
-  background:#0d1d29;
-  border-radius:50%;
+.daily-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
 }
 
-.circle-content{
-  position:relative;
-  text-align:center;
+.daily-card{
+    background:#fffaf0;
+    border:1px solid #ddd5c0;
+    border-radius:16px;
+    padding:14px;
+    text-align:center;
+    min-height:205px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
 }
 
-.circle-content strong{
-  display:block;
-  font-size:21px;
+.daily-icon{
+    font-size:45px;
+    margin:4px;
 }
 
-.circle-content small{
-  color:var(--muted);
-  font-size:9px;
+.daily-card h3{
+    font-size:16px;
 }
 
-.progress-info h3{
-  font-size:16px;
-}
-
-.progress-info p{
-  color:var(--muted);
-  font-size:11px;
-}
-
-/* stat cards */
-
-.stat-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:9px;
-}
-
-.stat-card{
-  background:#0b1a25;
-  border:1px solid var(--border);
-  border-radius:11px;
-  padding:14px 10px;
-  text-align:center;
-}
-
-.stat-icon{
-  font-size:26px;
-  margin-bottom:5px;
-}
-
-.stat-card h3{
-  font-size:12px;
-  color:#b6c5ca;
-}
-
-.percent{
-  color:#41ce99;
-  font-size:22px;
-  font-weight:900;
+.daily-card p{
+    font-size:13px;
+    color:#56635e;
 }
 
 .bar{
-  height:5px;
-  border-radius:10px;
-  background:#1d3039;
-  overflow:hidden;
-  margin-top:7px;
+    height:8px;
+    border-radius:10px;
+    background:#dedbcf;
+    overflow:hidden;
+    margin:9px 0;
 }
 
-.bar i{
-  display:block;
-  height:100%;
-  border-radius:inherit;
-  background:linear-gradient(90deg,#39ca96,#19a875);
+.bar span{
+    display:block;
+    height:100%;
+    background:#319b68;
+    border-radius:10px;
 }
 
-/* ================= SECTION HEAD ================= */
-
-.section-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin:20px 2px 10px;
+.btn{
+    border:0;
+    background:#08613f;
+    color:white;
+    padding:10px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
 }
 
-.section-head h2{
-  font-size:17px;
+/* ================= CARDS ================= */
+
+.card{
+    background:var(--cream);
+    color:#18342c;
+    border-radius:20px;
+    padding:18px;
+    margin-top:10px;
 }
 
-.section-head a{
-  color:#38c996;
-  font-size:12px;
+.card-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:14px;
 }
 
-/* ================= TODAY ================= */
-
-.content-grid{
-  display:grid;
-  grid-template-columns:1.3fr .9fr;
-  gap:10px;
+.card-title h2{
+    font-size:20px;
 }
 
-.today-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:9px;
+.card-title a{
+    color:#177452;
+    cursor:pointer;
+    font-size:13px;
 }
 
-.today-item{
-  background:#0b1b26;
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:14px 9px;
-  text-align:center;
+/* ================= LOWER GRID ================= */
+
+.lower-grid{
+    display:grid;
+    grid-template-columns:1.25fr .85fr .85fr;
+    gap:10px;
+    margin-top:10px;
 }
 
-.today-item .icon{
-  font-size:26px;
+.azkar-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:9px;
 }
 
-.today-item h3{
-  font-size:12px;
-  color:#b8c8cd;
+.azkar{
+    background:#fffaf0;
+    border:1px solid #ddd5c0;
+    border-radius:16px;
+    overflow:hidden;
 }
 
-.today-item strong{
-  color:#43d19c;
-  font-size:23px;
+.azkar-img{
+    height:95px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:52px;
+    background:
+        linear-gradient(
+            135deg,
+            #f6d59e,
+            #d8b8ca
+        );
 }
 
-.today-item small{
-  color:#70858e;
-  display:block;
-  font-size:10px;
+.azkar:nth-child(2) .azkar-img{
+    background:linear-gradient(135deg,#d4b3df,#f1c39e);
 }
 
-.today-item .bar{
-  margin-top:6px;
+.azkar:nth-child(3) .azkar-img{
+    background:linear-gradient(135deg,#192c62,#3e548b);
+}
+
+.azkar:nth-child(4) .azkar-img{
+    background:linear-gradient(135deg,#d8d4bf,#eee6d0);
+}
+
+.azkar-body{
+    padding:10px;
+    text-align:center;
+}
+
+.azkar-body h3{
+    font-size:15px;
+}
+
+.azkar-body p{
+    color:#68736e;
+    font-size:12px;
+    margin:7px 0;
 }
 
 /* ================= PRAYER ================= */
 
-.prayer-card{
-  min-height:230px;
+.prayer{
+    background:
+        linear-gradient(
+            180deg,
+            #0a503a,
+            #04271f
+        );
+    color:white;
 }
 
-.location{
-  color:#8ba0a8;
-  font-size:10px;
+.prayer-location{
+    color:#b9d6cc;
+    font-size:13px;
 }
 
-.prayer-next{
-  background:
-    linear-gradient(135deg,rgba(11,68,59,.9),rgba(8,38,45,.9)),
-    #10222c;
-  border-radius:10px;
-  padding:16px;
-  margin-bottom:8px;
-  text-align:center;
+.next-prayer{
+    text-align:center;
+    padding:12px;
 }
 
-.prayer-next small{
-  color:#91aaa4;
+.next-prayer .label{
+    color:#b5cfc5;
 }
 
-.prayer-next h2{
-  font-size:21px;
-  color:#fff;
+.next-prayer h2{
+    font-size:31px;
+    margin:5px;
 }
 
-.prayer-next strong{
-  display:block;
-  color:#52d9aa;
-  font-size:28px;
-  direction:ltr;
+.countdown{
+    color:#52d28d;
+    font-size:30px;
+    font-weight:bold;
 }
 
 .prayer-list{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:4px;
+    margin-top:10px;
 }
 
-.prayer-mini{
-  text-align:center;
-  color:#82969e;
-  font-size:9px;
-  padding:5px;
+.prayer-row{
+    display:flex;
+    justify-content:space-between;
+    padding:9px 5px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    font-size:13px;
 }
 
-.prayer-mini strong{
-  display:block;
-  color:#d8e2e4;
-  font-size:12px;
+.prayer-row.current{
+    background:#08704c;
+    border-radius:10px;
 }
 
 /* ================= QIBLA ================= */
 
-.qibla{
-  min-height:230px;
+.qibla-box{
+    text-align:center;
 }
 
 .compass{
-  width:155px;
-  height:155px;
-  border:1px solid #29414a;
-  border-radius:50%;
-  margin:8px auto;
-  position:relative;
-  background:
-    radial-gradient(circle,#0d222b,#08151e);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.compass:before,
-.compass:after{
-  content:"";
-  position:absolute;
-  background:#263d46;
+    width:170px;
+    height:170px;
+    margin:10px auto 14px;
+    border-radius:50%;
+    border:8px solid #173d35;
+    background:
+        radial-gradient(
+            circle,
+            #182e2a,
+            #0a1d1b
+        );
+    position:relative;
+    box-shadow:0 10px 30px #0004;
 }
 
 .compass:before{
-  width:1px;
-  height:90%;
+    content:"N";
+    position:absolute;
+    top:8px;
+    left:50%;
+    transform:translateX(-50%);
+    color:white;
+    font-weight:bold;
 }
 
 .compass:after{
-  width:90%;
-  height:1px;
+    content:"🕋";
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    font-size:42px;
 }
 
 .needle{
-  font-size:50px;
-  color:#36c895;
-  position:relative;
-  z-index:2;
-  transform:rotate(8deg);
+    position:absolute;
+    width:5px;
+    height:63px;
+    background:#4bd18b;
+    left:50%;
+    top:25px;
+    transform:translateX(-50%) rotate(8deg);
+    transform-origin:bottom;
+    clip-path:polygon(50% 0,100% 100%,50% 80%,0 100%);
 }
 
-.compass-label{
-  position:absolute;
-  font-size:9px;
-  color:#9aabb1;
+/* ================= STATS ================= */
+
+.stats{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:10px;
 }
 
-.n{top:7px}.s{bottom:7px}.e{right:8px}.w{left:8px}
-
-.qibla-info{
-  text-align:center;
-  color:#55cf9f;
-  font-size:11px;
+.stat-row{
+    display:grid;
+    grid-template-columns:70px 1fr 45px;
+    align-items:center;
+    gap:8px;
 }
 
-/* ================= WEEK ================= */
-
-.week-list{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
+.stat-icon{
+    font-size:24px;
 }
 
-.week-row{
-  display:grid;
-  grid-template-columns:70px 1fr 45px;
-  align-items:center;
-  gap:8px;
+.stat-row .bar{
+    margin:0;
 }
 
-.week-row span{
-  color:#9eafb5;
-  font-size:11px;
+/* ================= ACHIEVEMENTS ================= */
+
+.achievements{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:10px;
 }
 
-.week-row strong{
-  text-align:left;
-  color:#55d4a4;
-  font-size:11px;
+.achievement{
+    background:#fffaf0;
+    border:1px solid #ddd5c0;
+    border-radius:15px;
+    text-align:center;
+    padding:15px 7px;
 }
 
-.week-row .bar{
-  margin:0;
+.badge{
+    width:62px;
+    height:62px;
+    margin:auto auto 10px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:31px;
+    background:#e9f2e7;
+    border:3px solid #54a86e;
+}
+
+.achievement h3{
+    font-size:13px;
+}
+
+.achievement p{
+    color:#777;
+    font-size:11px;
+    margin-top:6px;
 }
 
 /* ================= RAMADAN ================= */
 
 .ramadan{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
+    background:
+        radial-gradient(circle at 80% 0,#124d3d,transparent 45%),
+        #062a23;
+    color:white;
+    border-radius:20px;
+    padding:20px;
+    margin-top:10px;
+    position:relative;
+    overflow:hidden;
 }
 
-.ramadan-box{
-  padding:14px;
-  border:1px solid var(--border);
-  border-radius:10px;
-  background:#0b1b25;
-  text-align:center;
+.ramadan h2{
+    font-size:25px;
 }
 
-.ramadan-box small{
-  color:#879ba4;
-  font-size:10px;
+.ramadan p{
+    color:#c4d9d2;
+    margin-top:5px;
 }
 
-.ramadan-box strong{
-  display:block;
-  font-size:22px;
-  color:#52d5a2;
+.ramadan-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    margin-top:18px;
+}
+
+.ramadan-item{
+    text-align:center;
+    border-left:1px solid rgba(255,255,255,.1);
+}
+
+.ramadan-item:last-child{
+    border-left:0;
+}
+
+.ramadan-item strong{
+    display:block;
+    font-size:25px;
+    color:#55d38e;
+    margin-top:5px;
 }
 
 /* ================= SECTIONS ================= */
 
-.large-card{
-  max-width:1100px;
-  margin:auto;
+.section{
+    display:none;
 }
 
-.title{
-  font-size:21px;
-  color:#55d4a4;
-  margin-bottom:14px;
+.section.active{
+    display:block;
 }
 
-.search{
-  display:flex;
-  gap:8px;
-  margin-bottom:15px;
-}
-
-input,select{
-  background:#091923;
-  border:1px solid var(--border);
-  color:white;
-  padding:13px;
-  border-radius:10px;
-  outline:0;
-}
-
-input:focus,select:focus{
-  border-color:#159d76;
-}
-
-.primary{
-  background:linear-gradient(135deg,#0b8e67,#12b783);
-  color:#fff;
-  padding:11px 18px;
-  border-radius:10px;
-  font-weight:800;
-}
-
-.secondary{
-  background:#142a34;
-  color:#79cdb1;
-  padding:11px 18px;
-  border-radius:10px;
-}
-
-.surahs{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-  gap:9px;
-}
-
-.surah{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  background:#0b1b26;
-  border:1px solid var(--border);
-  padding:13px;
-  border-radius:11px;
-  cursor:pointer;
-  transition:.2s;
-}
-
-.surah:hover{
-  border-color:#268c70;
-  transform:translateY(-2px);
-}
-
-.number{
-  width:43px;
-  height:43px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#12362f;
-  color:#53d4a2;
-  border-radius:11px;
-  flex-shrink:0;
-  font-weight:900;
-}
-
-.surah-name{
-  font-size:18px;
-  font-weight:900;
-}
-
-.small{
-  color:var(--muted);
-  font-size:11px;
-}
-
-.icon-btn{
-  width:35px;
-  height:35px;
-  border-radius:9px;
-  background:#142a34;
-  color:#5ed3a8;
-}
-
-.surah-actions{
-  margin-right:auto;
-}
-
-/* ================= QURAN READER ================= */
-
-.reader-top{
-  display:flex;
-  justify-content:space-between;
-  gap:8px;
-  margin-bottom:10px;
-  flex-wrap:wrap;
-}
-
-.back,.reader-actions button{
-  padding:10px 14px;
-  border-radius:9px;
-  background:#102530;
-  color:white;
-}
-
-.reader-actions{
-  display:flex;
-  gap:6px;
-  flex-wrap:wrap;
-}
-
-.audio{
-  margin-bottom:10px;
-}
-
-audio{
-  width:100%;
-  margin-top:10px;
-}
-
-.audio-buttons{
-  display:flex;
-  gap:6px;
-  margin-top:8px;
-}
-
-.mushaf{
-  background:#101c1c;
-  border:1px solid #30433e;
-  border-radius:12px;
-  padding:30px 25px;
-}
-
-.surah-head{
-  text-align:center;
-  border-bottom:1px solid var(--border);
-  padding-bottom:15px;
-}
-
-.surah-head h2{
-  color:#55d4a4;
-  font-size:34px;
-}
-
-.bismillah{
-  text-align:center;
-  color:#d8aa45;
-  font-family:"Traditional Arabic",serif;
-  font-size:28px;
-  padding:20px;
-}
-
-.quran{
-  font-family:"Traditional Arabic","Amiri",serif;
-  font-size:30px;
-  line-height:2.7;
-  text-align:justify;
-}
-
-.ayah{
-  padding:3px 5px;
-  border-radius:7px;
-}
-
-.ayah.playing{
-  background:#123a31;
-  color:#64ddb1;
-}
-
-.ayah-number{
-  display:inline-flex;
-  width:33px;
-  height:33px;
-  align-items:center;
-  justify-content:center;
-  border:1px solid #2eaf84;
-  border-radius:50%;
-  color:#48c99b;
-  font:10px Arial;
-  margin:0 5px;
-}
-
-.ayah-fav{
-  width:30px;
-  height:30px;
-  border-radius:50%;
-  background:#152c35;
-  color:#54cfa3;
-}
-
-/* ================= AZKAR ================= */
-
-.azkar-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
-  gap:9px;
-}
-
-.zekr{
-  background:#0b1b26;
-  border:1px solid var(--border);
-  border-radius:11px;
-  padding:18px;
-  margin-bottom:9px;
-}
-
-.zekr-text{
-  font-family:"Traditional Arabic",serif;
-  font-size:24px;
-  line-height:2;
-}
-
-.zekr-bottom{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-top:12px;
-}
-
-.count-btn{
-  background:#0b8e67;
-  color:white;
-  padding:8px 13px;
-  border-radius:9px;
-}
-
-/* ================= TASBEEH ================= */
-
-.tasbeeh-wrap{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  padding:15px;
-}
-
-.tasbeeh-machine{
-  width:340px;
-  height:420px;
-  border-radius:35px;
-  background:linear-gradient(145deg,#263b3a,#101f20);
-  border:1px solid #39504c;
-  box-shadow:inset 5px 5px 15px #ffffff0a,
-             0 25px 60px #0006;
-  position:relative;
-  padding:25px;
-}
-
-.tasbeeh-brand{
-  text-align:center;
-  color:#50d4a4;
-  font-weight:900;
-  font-size:19px;
-}
-
-.tasbeeh-screen{
-  height:100px;
-  margin-top:15px;
-  border-radius:15px;
-  background:#07110f;
-  border:5px solid #53635f;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  color:#b3f5d3;
-  box-shadow:inset 0 4px 15px #000;
-}
-
-.screen-count{
-  font:900 45px "Courier New";
-}
-
-.screen-label{
-  font-size:10px;
-  color:#72ae94;
-}
-
-.tasbeeh-button{
-  position:absolute;
-  bottom:35px;
-  left:50%;
-  transform:translateX(-50%);
-  width:125px;
-  height:125px;
-  border-radius:50%;
-  color:white;
-  font-size:20px;
-  font-weight:900;
-  background:radial-gradient(circle at 30% 25%,#2ad09a,#087f5b 65%,#034534);
-  border:8px solid #354844;
-  box-shadow:inset 0 8px 13px #ffffff40,
-             0 12px 25px #0008;
-}
-
-.tasbeeh-button:active{
-  transform:translateX(-50%) scale(.94);
-}
-
-.tasbeeh-reset{
-  margin-top:15px;
-  background:#182b32;
-  color:#e17c7c;
-  padding:10px 18px;
-  border-radius:9px;
-}
-
-/* ================= FAVORITES ================= */
-
-.favorite{
-  background:#0b1b26;
-  border:1px solid var(--border);
-  padding:18px;
-  border-radius:11px;
-  margin-bottom:9px;
-}
-
-.favorite-text{
-  font-family:"Traditional Arabic",serif;
-  font-size:24px;
-}
-
-/* ================= FOOTER ================= */
-
-footer{
-  text-align:center;
-  color:#617780;
-  padding:35px;
-  border-top:1px solid var(--border);
-  margin-top:25px;
-}
-
-/* ================= RESPONSIVE ================= */
+/* ================= MOBILE ================= */
 
 @media(max-width:1100px){
 
-  .dashboard-grid{
-    grid-template-columns:1fr 1fr;
-  }
+    .daily-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
 
-  .hero{
-    grid-column:1/-1;
-  }
+    .lower-grid{
+        grid-template-columns:1fr 1fr;
+    }
 
-  .content-grid{
-    grid-template-columns:1fr;
-  }
+    .azkar-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .achievements{
+        grid-template-columns:repeat(3,1fr);
+    }
 }
 
-@media(max-width:800px){
+@media(max-width:750px){
 
-  :root{
-    --sidebar:0px;
-    --top:60px;
-  }
+    .sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
+        border-left:0;
+        border-bottom:1px solid var(--line);
+    }
 
-  .topbar{
-    padding:0 8px;
-  }
+    .side-menu{
+        display:grid;
+        grid-template-columns:repeat(4,1fr);
+    }
 
-  .brand{
-    width:auto;
-    margin-left:5px;
-  }
+    .settings{
+        display:none;
+    }
 
-  .topnav button{
-    padding:8px 9px;
-    font-size:11px;
-  }
+    .main{
+        margin-right:0;
+    }
 
-  .sidebar{
-    top:auto;
-    bottom:0;
-    right:0;
-    left:0;
-    width:100%;
-    height:64px;
-    border-left:0;
-    border-top:1px solid var(--border);
-    flex-direction:row;
-    justify-content:space-around;
-    padding:3px;
-  }
+    .topbar{
+        display:none;
+    }
 
-  .side-btn{
-    width:auto;
-    flex:1;
-    min-height:56px;
-    margin:0;
-    font-size:9px;
-  }
+    .grid,
+    .lower-grid{
+        grid-template-columns:1fr;
+    }
 
-  .side-bottom{
-    display:none;
-  }
+    .daily-grid{
+        grid-template-columns:1fr 1fr;
+    }
 
-  .main{
-    margin-right:0;
-    padding-bottom:70px;
-  }
+    .azkar-grid{
+        grid-template-columns:1fr 1fr;
+    }
 
-  .dashboard-grid{
-    grid-template-columns:1fr;
-  }
+    .achievements{
+        grid-template-columns:1fr 1fr;
+    }
 
-  .hero{
-    grid-column:auto;
-  }
+    .ramadan-grid{
+        grid-template-columns:1fr 1fr;
+        gap:15px;
+    }
 
-  .hero-info{
-    width:100%;
-  }
+    .ramadan-item{
+        border:0;
+    }
 
-  .stat-grid{
-    grid-template-columns:repeat(3,1fr);
-  }
-
-  .today-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .ramadan{
-    grid-template-columns:1fr 1fr;
-  }
+    .hero h2{
+        font-size:28px;
+    }
 }
 
-@media(max-width:500px){
+@media(max-width:450px){
 
-  .page{
-    width:94%;
-  }
+    .side-menu{
+        grid-template-columns:repeat(3,1fr);
+    }
 
-  .profile{
-    width:39px;
-    height:39px;
-  }
+    .daily-grid,
+    .azkar-grid,
+    .achievements{
+        grid-template-columns:1fr;
+    }
 
-  .topnav{
-    display:none;
-  }
+    .progress-circle{
+        position:relative;
+        left:auto;
+        bottom:auto;
+        margin-top:25px;
+    }
 
-  .brand{
-    margin:auto;
-  }
-
-  .hero h1{
-    font-size:20px;
-  }
-
-  .hero-info{
-    margin-top:15px;
-  }
-
-  .info-box{
-    padding:7px 4px;
-  }
-
-  .info-box strong{
-    font-size:13px;
-  }
-
-  .progress-card{
-    justify-content:center;
-  }
-
-  .stat-grid{
-    grid-template-columns:1fr 1fr 1fr;
-  }
-
-  .stat-card{
-    padding:10px 5px;
-  }
-
-  .percent{
-    font-size:18px;
-  }
-
-  .prayer-list{
-    grid-template-columns:repeat(5,1fr);
-  }
-
-  .quran{
-    font-size:25px;
-  }
-
-  .mushaf{
-    padding:20px 10px;
-  }
-
-  .tasbeeh-machine{
-    width:300px;
-  }
-
-  .search{
-    flex-direction:column;
-  }
-
-  .section-head{
-    margin-top:14px;
-  }
+    .hero{
+        min-height:470px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<!-- ================= TOPBAR ================= -->
-
-<header class="topbar">
-
-  <div class="brand">
-    <span>🌿</span>
-    <b>أثر</b>
-  </div>
-
-  <nav class="topnav">
-    <button class="active" onclick="showSection('home',this)">⌂ الرئيسية</button>
-    <button onclick="showSection('quran',this)">📖 القرآن الكريم</button>
-    <button onclick="showSection('azkar',this)">🤲 الأذكار</button>
-    <button onclick="showSection('tasbeeh',this)">📿 السبحة</button>
-    <button onclick="showSection('prayer',this)">🕌 مواقيت الصلاة</button>
-    <button onclick="showSection('qibla',this)">🧭 القبلة</button>
-    <button onclick="showSection('favorites',this)">❤️ المفضلة</button>
-  </nav>
-
-  <div class="profile">🌿</div>
-
-</header>
-
-
 <!-- ================= SIDEBAR ================= -->
 
 <aside class="sidebar">
 
-  <button class="side-btn active" onclick="showSection('home',this)">
-    <span class="ico">🏠</span>
-    الرئيسية
-  </button>
+    <div class="logo">
+        <div class="logo-icon">🌿</div>
+        <h1>أثر</h1>
+        <p>خير رفيق لك</p>
+    </div>
 
-  <button class="side-btn" onclick="showSection('quran',this)">
-    <span class="ico">📖</span>
-    القرآن
-  </button>
+    <nav class="side-menu">
 
-  <button class="side-btn" onclick="showSection('azkar',this)">
-    <span class="ico">🤲</span>
-    الأذكار
-  </button>
+        <button class="active" onclick="showPage('home',this)">
+            <span>🏠</span> الرئيسية
+        </button>
 
-  <button class="side-btn" onclick="showSection('tasbeeh',this)">
-    <span class="ico">📿</span>
-    السبحة
-  </button>
+        <button onclick="showPage('quran',this)">
+            <span>📖</span> القرآن الكريم
+        </button>
 
-  <button class="side-btn" onclick="showSection('prayer',this)">
-    <span class="ico">🕌</span>
-    الصلاة
-  </button>
+        <button onclick="showPage('readers',this)">
+            <span>🎧</span> القراء
+        </button>
 
-  <button class="side-btn" onclick="showSection('qibla',this)">
-    <span class="ico">🧭</span>
-    القبلة
-  </button>
+        <button onclick="showPage('azkar',this)">
+            <span>🤲</span> الأذكار
+        </button>
 
-  <div class="side-bottom">
+        <button onclick="showPage('tasbeeh',this)">
+            <span>📿</span> السبحة
+        </button>
 
-    <button class="side-btn" onclick="toggleDark()">
-      <span class="ico">🌙</span>
-      الوضع
-    </button>
+        <button onclick="showPage('prayer',this)">
+            <span>🕌</span> مواقيت الصلاة
+        </button>
 
-    <button class="side-btn" onclick="showSection('more',this)">
-      <span class="ico">⚙️</span>
-      الإعدادات
-    </button>
+        <button onclick="showPage('qibla',this)">
+            <span>🧭</span> القبلة
+        </button>
 
-  </div>
+        <button onclick="showPage('stats',this)">
+            <span>📊</span> الإحصائيات
+        </button>
+
+        <button onclick="showPage('achievements',this)">
+            <span>🏆</span> الإنجازات
+        </button>
+
+        <button onclick="showPage('ramadan',this)">
+            <span>🌙</span> رمضان
+        </button>
+
+    </nav>
+
+    <div class="settings">
+        <button onclick="toggleTheme()">
+            ⚙️ الإعدادات
+        </button>
+    </div>
 
 </aside>
 
 
-<!-- ================= MAIN ================= -->
-
 <main class="main">
 
-<div class="page">
+<!-- ================= TOP ================= -->
+
+<header class="topbar">
+
+    <nav class="topnav">
+
+        <button class="active" onclick="showPage('home',this)">
+            🏠 الرئيسية
+        </button>
+
+        <button onclick="showPage('quran',this)">
+            📖 القرآن الكريم
+        </button>
+
+        <button onclick="showPage('readers',this)">
+            🎧 القراء
+        </button>
+
+        <button onclick="showPage('azkar',this)">
+            🤲 الأذكار
+        </button>
+
+        <button onclick="showPage('tasbeeh',this)">
+            📿 السبحة
+        </button>
+
+        <button onclick="showPage('prayer',this)">
+            🕌 الصلاة
+        </button>
+
+        <button onclick="showPage('qibla',this)">
+            🧭 القبلة
+        </button>
+
+        <button onclick="showPage('stats',this)">
+            📊 الإحصائيات
+        </button>
+
+        <button onclick="showPage('ramadan',this)">
+            🌙 رمضان
+        </button>
+
+    </nav>
+
+    <div class="profile">
+
+        <div>
+            <small>أهلاً بك</small>
+            <strong>آدم</strong>
+        </div>
+
+        <div class="profile-avatar">
+            🌿
+        </div>
+
+    </div>
+
+</header>
 
 
-<!-- ========================================================= -->
-<!-- HOME -->
-<!-- ========================================================= -->
+<div class="content">
+
+
+<!-- ======================================================
+     HOME
+====================================================== -->
 
 <section id="home" class="section active">
 
-<div class="dashboard-grid">
+    <div class="grid">
 
-  <!-- HERO -->
+        <!-- HERO -->
 
-  <div class="card hero">
+        <div class="hero">
 
-    <div class="hero-content">
+            <div class="hero-content">
 
-      <h1>
-        السلام عليكم يا <span>آدم 🌿</span>
-      </h1>
+                <h2>
+                    السلام عليكم يا
+                    <span>آدم</span> 🌿
+                </h2>
 
-      <p>
-        اجعل لك وردًا كل يوم، ولو كان قليلًا.
-      </p>
+                <p>
+                    اجعل لك وردًا كل يوم، ولو كان قليلاً.
+                </p>
 
-      <div class="hero-info">
+            </div>
 
-        <div class="info-box">
-          <span>الصلاة القادمة</span>
-          <strong id="heroPrayer">العشاء</strong>
+            <div class="progress-circle">
+
+                <div>
+                    <strong>72%</strong>
+                    <small>نسبة إنجاز اليوم</small>
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="info-box">
-          <span>الوقت المتبقي</span>
-          <strong id="heroCountdown">01:24:36</strong>
+
+        <!-- DAILY -->
+
+        <div class="daily">
+
+            <div class="daily-title">
+                🌿 وردك اليوم
+            </div>
+
+            <div class="daily-grid">
+
+                <div class="daily-card">
+
+                    <div class="daily-icon">🕌</div>
+
+                    <h3>الصلاة القادمة</h3>
+
+                    <p>العشاء</p>
+
+                    <strong>01:24:36</strong>
+
+                    <button class="btn">
+                        عرض المواقيت
+                    </button>
+
+                </div>
+
+
+                <div class="daily-card">
+
+                    <div class="daily-icon">📿</div>
+
+                    <h3>التسبيح</h3>
+
+                    <p>سبحان الله</p>
+
+                    <strong>347 / 500</strong>
+
+                    <div class="bar">
+                        <span style="width:69%"></span>
+                    </div>
+
+                    <button class="btn"
+                        onclick="showPage('tasbeeh')">
+                        متابعة التسبيح
+                    </button>
+
+                </div>
+
+
+                <div class="daily-card">
+
+                    <div class="daily-icon">🤲</div>
+
+                    <h3>الأذكار</h3>
+
+                    <p>أذكار المساء</p>
+
+                    <strong>8 / 12</strong>
+
+                    <div class="bar">
+                        <span style="width:67%"></span>
+                    </div>
+
+                    <button class="btn"
+                        onclick="showPage('azkar')">
+                        متابعة الأذكار
+                    </button>
+
+                </div>
+
+
+                <div class="daily-card">
+
+                    <div class="daily-icon">📖</div>
+
+                    <h3>القرآن الكريم</h3>
+
+                    <p>سورة الكهف</p>
+
+                    <strong>8 / 10 صفحات</strong>
+
+                    <div class="bar">
+                        <span style="width:80%"></span>
+                    </div>
+
+                    <button class="btn"
+                        onclick="showPage('quran')">
+                        متابعة القراءة
+                    </button>
+
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="info-box">
-          <span>اليوم</span>
-          <strong id="heroDate">اليوم</strong>
-        </div>
-
-      </div>
-
     </div>
 
-  </div>
 
-
-  <!-- DAILY PROGRESS -->
-
-  <div class="card progress-card">
-
-    <div class="circle">
-
-      <div class="circle-content">
-        <strong>72%</strong>
-        <small>نسبة اليوم</small>
-      </div>
-
-    </div>
-
-    <div class="progress-info">
-      <h3>إنجازك اليوم</h3>
-      <p>استمر، القليل الدائم خير.</p>
-
-      <div class="bar">
-        <i style="width:72%"></i>
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <!-- SMALL STATS -->
-
-  <div class="card">
-
-    <div class="stat-grid">
-
-      <div class="stat-card">
-        <div class="stat-icon">📖</div>
-        <h3>القرآن</h3>
-        <div class="percent">80%</div>
-        <div class="bar"><i style="width:80%"></i></div>
-      </div>
-
-      <div class="stat-card">
-        <div class="stat-icon">🤲</div>
-        <h3>الأذكار</h3>
-        <div class="percent">90%</div>
-        <div class="bar"><i style="width:90%"></i></div>
-      </div>
-
-      <div class="stat-card">
-        <div class="stat-icon">📿</div>
-        <h3>التسبيح</h3>
-        <div class="percent">60%</div>
-        <div class="bar"><i style="width:60%"></i></div>
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- TODAY -->
-
-<div class="section-head">
-  <h2>ملخص اليوم</h2>
-  <a>عرض الكل ←</a>
-</div>
-
-<div class="content-grid">
-
-  <div class="card">
-
-    <div class="today-grid">
-
-      <div class="today-item">
-        <div class="icon">📖</div>
-        <h3>القرآن الكريم</h3>
-        <strong>80%</strong>
-        <small>تقدم اليوم</small>
-        <div class="bar"><i style="width:80%"></i></div>
-      </div>
-
-      <div class="today-item">
-        <div class="icon">🤲</div>
-        <h3>الأذكار</h3>
-        <strong>90%</strong>
-        <small>تقدم اليوم</small>
-        <div class="bar"><i style="width:90%"></i></div>
-      </div>
-
-      <div class="today-item">
-        <div class="icon">📿</div>
-        <h3>التسبيح</h3>
-        <strong>60%</strong>
-        <small>تقدم اليوم</small>
-        <div class="bar"><i style="width:60%"></i></div>
-      </div>
-
-      <div class="today-item">
-        <div class="icon">🕌</div>
-        <h3>الصلاة</h3>
-        <strong>100%</strong>
-        <small>أداء اليوم</small>
-        <div class="bar"><i style="width:100%"></i></div>
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <!-- PRAYER -->
-
-  <div class="card prayer-card">
-
-    <div style="display:flex;justify-content:space-between">
-      <h3>مواقيت الصلاة</h3>
-      <span class="location">📍 القاهرة، مصر</span>
-    </div>
-
-    <div class="prayer-next">
-
-      <small>الصلاة القادمة</small>
-
-      <h2 id="nextPrayerName">العشاء</h2>
-
-      <strong id="nextPrayerTime">01:24:36</strong>
-
-    </div>
-
-    <div class="prayer-list">
-
-      <div class="prayer-mini">
-        الفجر
-        <strong id="fajr">04:12 ص</strong>
-      </div>
-
-      <div class="prayer-mini">
-        الظهر
-        <strong id="dhuhr">12:03 م</strong>
-      </div>
-
-      <div class="prayer-mini">
-        العصر
-        <strong id="asr">03:24 م</strong>
-      </div>
-
-      <div class="prayer-mini">
-        المغرب
-        <strong id="maghrib">06:24 م</strong>
-      </div>
-
-      <div class="prayer-mini">
-        العشاء
-        <strong id="isha">07:48 م</strong>
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- QIBLA + WEEK -->
-
-<div class="content-grid">
-
-  <div>
-
-    <div class="section-head">
-      <h2>القبلة</h2>
-      <a>عرض التفاصيل ←</a>
-    </div>
-
-    <div class="card qibla">
-
-      <div class="compass">
-
-        <span class="compass-label n">N</span>
-        <span class="compass-label e">E</span>
-        <span class="compass-label s">S</span>
-        <span class="compass-label w">W</span>
-
-        <div class="needle">▲</div>
-
-      </div>
-
-      <div class="qibla-info">
-        اتجاه شرق ↗
-        <br>
-        118° قبلة — المسافة 1202 كم
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div>
-
-    <div class="section-head">
-      <h2>إحصائيات هذا الأسبوع</h2>
-      <a>عرض التقارير ←</a>
-    </div>
+    <!-- INFORMATION -->
 
     <div class="card">
 
-      <div class="week-list">
+        <div class="card-title">
 
-        <div class="week-row">
-          <span>القرآن الكريم</span>
-          <div class="bar"><i style="width:80%"></i></div>
-          <strong>80%</strong>
+            <h2>📅 معلومات اليوم</h2>
+
+            <span>
+                المدينة: 📍 القاهرة، مصر
+            </span>
+
         </div>
 
-        <div class="week-row">
-          <span>الأذكار</span>
-          <div class="bar"><i style="width:90%"></i></div>
-          <strong>90%</strong>
-        </div>
+        <div class="daily-grid">
 
-        <div class="week-row">
-          <span>التسبيح</span>
-          <div class="bar"><i style="width:60%"></i></div>
-          <strong>60%</strong>
-        </div>
+            <div class="daily-card">
+                <h3>التاريخ الهجري</h3>
+                <strong>27 ذو القعدة 1445 هـ</strong>
+            </div>
 
-        <div class="week-row">
-          <span>الصلاة</span>
-          <div class="bar"><i style="width:100%"></i></div>
-          <strong>100%</strong>
-        </div>
+            <div class="daily-card">
+                <h3>التاريخ الميلادي</h3>
+                <strong>5 يونيو 2024</strong>
+            </div>
 
-      </div>
+            <div class="daily-card">
+                <h3>سلسلة الأيام</h3>
+                <strong>🔥 7 أيام</strong>
+            </div>
+
+            <div class="daily-card">
+                <h3>ورد اليوم</h3>
+                <strong>📖 مكتمل جزئيًا</strong>
+            </div>
+
+        </div>
 
     </div>
 
-  </div>
 
-</div>
+    <!-- LOWER -->
+
+    <div class="lower-grid">
+
+        <!-- AZKAR -->
+
+        <div class="card">
+
+            <div class="card-title">
+                <h2>🤲 الأذكار الذكية</h2>
+                <a onclick="showPage('azkar')">
+                    عرض الكل ←
+                </a>
+            </div>
+
+            <div class="azkar-grid">
+
+                <div class="azkar">
+                    <div class="azkar-img">🌅</div>
+                    <div class="azkar-body">
+                        <h3>أذكار الصباح</h3>
+                        <p>12 ذكر • 9 / 12</p>
+                        <button class="btn"
+                            onclick="showPage('azkar')">
+                            عرض الأذكار
+                        </button>
+                    </div>
+                </div>
+
+                <div class="azkar">
+                    <div class="azkar-img">🌇</div>
+                    <div class="azkar-body">
+                        <h3>أذكار المساء</h3>
+                        <p>12 ذكر • 8 / 12</p>
+                        <button class="btn"
+                            onclick="showPage('azkar')">
+                            عرض الأذكار
+                        </button>
+                    </div>
+                </div>
+
+                <div class="azkar">
+                    <div class="azkar-img">🌙</div>
+                    <div class="azkar-body">
+                        <h3>أذكار النوم</h3>
+                        <p>10 أذكار • 6 / 10</p>
+                        <button class="btn"
+                            onclick="showPage('azkar')">
+                            عرض الأذكار
+                        </button>
+                    </div>
+                </div>
+
+                <div class="azkar">
+                    <div class="azkar-img">🕌</div>
+                    <div class="azkar-body">
+                        <h3>بعد الصلاة</h3>
+                        <p>8 أذكار • 7 / 8</p>
+                        <button class="btn"
+                            onclick="showPage('azkar')">
+                            عرض الأذكار
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
 
 
-<!-- RAMADAN -->
+        <!-- PRAYER -->
 
-<div class="section-head">
-  <h2>رمضان</h2>
-</div>
+        <div class="card prayer">
 
-<div class="card">
+            <div class="card-title">
+                <h2>🕌 مواقيت الصلاة</h2>
+                <span class="prayer-location">
+                    📍 القاهرة، مصر
+                </span>
+            </div>
 
-  <div class="ramadan">
+            <div class="next-prayer">
 
-    <div class="ramadan-box">
-      <small>ختمة رمضان</small>
-      <strong>60%</strong>
-      <div class="bar"><i style="width:60%"></i></div>
+                <div class="label">
+                    الصلاة القادمة
+                </div>
+
+                <h2>العشاء</h2>
+
+                <div class="countdown"
+                     id="countdown">
+                    01:24:36
+                </div>
+
+                <small>متبقي</small>
+
+            </div>
+
+            <div class="prayer-list">
+
+                <div class="prayer-row">
+                    <span>🌅 الفجر</span>
+                    <span>04:12 ص</span>
+                </div>
+
+                <div class="prayer-row">
+                    <span>☀️ الشروق</span>
+                    <span>05:42 ص</span>
+                </div>
+
+                <div class="prayer-row">
+                    <span>🌞 الظهر</span>
+                    <span>12:03 م</span>
+                </div>
+
+                <div class="prayer-row">
+                    <span>🌤️ العصر</span>
+                    <span>03:24 م</span>
+                </div>
+
+                <div class="prayer-row">
+                    <span>🌇 المغرب</span>
+                    <span>06:24 م</span>
+                </div>
+
+                <div class="prayer-row current">
+                    <span>🌙 العشاء</span>
+                    <span>07:48 م</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- QIBLA -->
+
+        <div class="card">
+
+            <div class="card-title">
+                <h2>🧭 القبلة</h2>
+            </div>
+
+            <div class="qibla-box">
+
+                <div class="compass">
+
+                    <div class="needle"></div>
+
+                </div>
+
+                <strong>
+                    اتجاه القبلة
+                </strong>
+
+                <p>
+                    118° جنوب شرق
+                </p>
+
+                <p style="margin-top:7px">
+                    المسافة إلى مكة
+                    <br>
+                    1202 كم
+                </p>
+
+                <button class="btn"
+                        style="margin-top:10px">
+                    معايرة البوصلة
+                </button>
+
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="ramadan-box">
-      <small>الإفطار</small>
-      <strong>06:24</strong>
+
+    <!-- STATS -->
+
+    <div class="card">
+
+        <div class="card-title">
+            <h2>📊 إحصائيات هذا الأسبوع</h2>
+            <a onclick="showPage('stats')">
+                عرض التقرير ←
+            </a>
+        </div>
+
+        <div class="stats">
+
+            <div class="stat-row">
+                <div class="stat-icon">📖</div>
+                <div class="bar">
+                    <span style="width:80%"></span>
+                </div>
+                <strong>80%</strong>
+            </div>
+
+            <div class="stat-row">
+                <div class="stat-icon">🤲</div>
+                <div class="bar">
+                    <span style="width:90%"></span>
+                </div>
+                <strong>90%</strong>
+            </div>
+
+            <div class="stat-row">
+                <div class="stat-icon">📿</div>
+                <div class="bar">
+                    <span style="width:60%"></span>
+                </div>
+                <strong>60%</strong>
+            </div>
+
+            <div class="stat-row">
+                <div class="stat-icon">🕌</div>
+                <div class="bar">
+                    <span style="width:100%"></span>
+                </div>
+                <strong>100%</strong>
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="ramadan-box">
-      <small>الإمساك</small>
-      <strong>03:12</strong>
+
+    <!-- ACHIEVEMENTS -->
+
+    <div class="card">
+
+        <div class="card-title">
+            <h2>🏆 الإنجازات</h2>
+            <a onclick="showPage('achievements')">
+                عرض الكل ←
+            </a>
+        </div>
+
+        <div class="achievements">
+
+            <div class="achievement">
+                <div class="badge">🌿</div>
+                <h3>أول 100 تسبيحة</h3>
+                <p>أكملت أول 100 تسبيحة</p>
+            </div>
+
+            <div class="achievement">
+                <div class="badge">📖</div>
+                <h3>أول ختمة قرآن</h3>
+                <p>أكملت أول ختمة قرآن</p>
+            </div>
+
+            <div class="achievement">
+                <div class="badge">7️⃣</div>
+                <h3>7 أيام متتالية</h3>
+                <p>حافظت على وردك</p>
+            </div>
+
+            <div class="achievement">
+                <div class="badge">🌙</div>
+                <h3>30 يوم</h3>
+                <p>وردك لمدة 30 يومًا</p>
+            </div>
+
+            <div class="achievement">
+                <div class="badge">🔒</div>
+                <h3>100 يوم</h3>
+                <p>استمرارية رائعة</p>
+            </div>
+
+        </div>
+
     </div>
 
-  </div>
 
-</div>
+    <!-- RAMADAN -->
+
+    <div class="ramadan">
+
+        <h2>🌙 رمضان مبارك</h2>
+
+        <p>
+            اللهم بلغنا رمضان لا فاقدين ولا مفقودين
+        </p>
+
+        <div class="ramadan-grid">
+
+            <div class="ramadan-item">
+                نسبة الختمة
+                <strong>60%</strong>
+            </div>
+
+            <div class="ramadan-item">
+                الإفطار
+                <strong>06:24</strong>
+            </div>
+
+            <div class="ramadan-item">
+                الإمساك
+                <strong>03:12</strong>
+            </div>
+
+            <div class="ramadan-item">
+                اليوم
+                <strong>17</strong>
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- ========================================================= -->
-<!-- QURAN -->
-<!-- ========================================================= -->
+<!-- ======================================================
+     باقي الصفحات
+====================================================== -->
 
 <section id="quran" class="section">
 
-<div class="card large-card">
+    <div class="card">
+        <div class="card-title">
+            <h2>📖 القرآن الكريم</h2>
+        </div>
 
-  <h2 class="title">📖 القرآن الكريم</h2>
+        <h2>سورة الكهف</h2>
+        <p style="margin-top:10px">
+            أكمل من آخر موضع قراءة محفوظ.
+        </p>
 
-  <div class="search">
+        <div class="bar" style="margin-top:20px">
+            <span style="width:80%"></span>
+        </div>
 
-    <input
-      id="searchInput"
-      placeholder="اكتب كلمة أو جزءًا من آية..."
-      onkeydown="if(event.key==='Enter')searchQuran()"
-    >
-
-    <button class="primary" onclick="searchQuran()">بحث</button>
-
-  </div>
-
-  <div id="continueBox"></div>
-
-  <div id="surahList">
-
-    <h3 style="margin-bottom:12px">سور القرآن الكريم</h3>
-
-    <div id="surahs">
-      <div class="small">جاري تحميل السور...</div>
+        <button class="btn" style="margin-top:15px">
+            متابعة القراءة
+        </button>
     </div>
-
-  </div>
-
-
-  <div id="reader" style="display:none">
-
-    <div class="reader-top">
-
-      <button class="back" onclick="closeReader()">
-        ← السور
-      </button>
-
-      <div class="reader-actions">
-        <button onclick="previousSurah()">◀ السابقة</button>
-        <button onclick="nextSurah()">التالية ▶</button>
-      </div>
-
-    </div>
-
-
-    <div class="card audio">
-
-      <h3 class="title">🎧 التلاوة</h3>
-
-      <select id="reciterSelect" onchange="changeReciter()">
-
-        <option value="ar.alafasy">
-          مشاري العفاسي
-        </option>
-
-        <option value="ar.abdulsamad">
-          عبد الباسط عبد الصمد
-        </option>
-
-        <option value="ar.husary">
-          محمود خليل الحصري
-        </option>
-
-        <option value="ar.minshawi">
-          محمد صديق المنشاوي
-        </option>
-
-        <option value="ar.mahermuaiqly">
-          ماهر المعيقلي
-        </option>
-
-      </select>
-
-      <audio id="audioPlayer" controls></audio>
-
-      <div class="audio-buttons">
-        <button class="primary" onclick="playAudio()">▶ تشغيل</button>
-        <button class="secondary" onclick="pauseAudio()">⏸ إيقاف</button>
-        <button class="secondary" onclick="previousAyah()">⏮</button>
-        <button class="secondary" onclick="nextAyah()">⏭</button>
-      </div>
-
-    </div>
-
-
-    <div class="mushaf">
-
-      <div class="surah-head">
-
-        <h2 id="readerName"></h2>
-
-        <p id="readerInfo" class="small"></p>
-
-      </div>
-
-      <div id="bismillah" class="bismillah">
-        بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
-      </div>
-
-      <div id="quranText" class="quran"></div>
-
-    </div>
-
-  </div>
-
-</div>
 
 </section>
 
 
-<!-- ========================================================= -->
-<!-- AZKAR -->
-<!-- ========================================================= -->
+<section id="readers" class="section">
+
+    <div class="card">
+        <h2>🎧 القراء</h2>
+
+        <div class="daily-grid" style="margin-top:15px">
+
+            <div class="daily-card">
+                🎙️
+                <h3>عبد الباسط عبد الصمد</h3>
+                <button class="btn">▶ تشغيل</button>
+            </div>
+
+            <div class="daily-card">
+                🎙️
+                <h3>محمود خليل الحصري</h3>
+                <button class="btn">▶ تشغيل</button>
+            </div>
+
+            <div class="daily-card">
+                🎙️
+                <h3>مشاري العفاسي</h3>
+                <button class="btn">▶ تشغيل</button>
+            </div>
+
+            <div class="daily-card">
+                🎙️
+                <h3>ماهر المعيقلي</h3>
+                <button class="btn">▶ تشغيل</button>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
 
 <section id="azkar" class="section">
 
-<div class="card large-card">
+    <div class="azkar-page">
 
-  <h2 class="title">🤲 الأذكار</h2>
+        <!-- Header -->
+        <div class="azkar-header">
 
-  <div id="azkarHome">
+            <div>
+                <span class="azkar-small">🤲 وردك اليومي</span>
+                <h1>الأذكار</h1>
+                <p>
+                    اختر القسم الذي تريد قراءته وابدأ وردك
+                </p>
+            </div>
 
-    <h3 style="margin-bottom:10px">أذكار اليوم</h3>
+            <div class="azkar-total">
 
-    <div class="azkar-grid">
+                <span>إجمالي الإنجاز</span>
 
-      <button class="primary" onclick="openAzkar('morning')">
-        🌅 أذكار الصباح
-      </button>
+                <strong id="azkarTotal">
+                    0
+                </strong>
 
-      <button class="primary" onclick="openAzkar('evening')">
-        🌇 أذكار المساء
-      </button>
+                <small id="azkarPercent">
+                    0%
+                </small>
 
-      <button class="primary" onclick="openAzkar('sleep')">
-        🌙 أذكار النوم
-      </button>
+            </div>
 
-      <button class="primary" onclick="openAzkar('afterPrayer')">
-        🕌 بعد الصلاة
-      </button>
+        </div>
 
-      <button class="primary" onclick="openAzkar('general')">
-        📿 أذكار عامة
-      </button>
+
+        <!-- Categories -->
+
+        <div class="azkar-categories">
+
+            <button onclick="openAzkar('morning')">
+                <span>🌅</span>
+                <strong>أذكار الصباح</strong>
+                <small>ورد الصباح</small>
+            </button>
+
+            <button onclick="openAzkar('evening')">
+                <span>🌇</span>
+                <strong>أذكار المساء</strong>
+                <small>ورد المساء</small>
+            </button>
+
+            <button onclick="openAzkar('wake')">
+                <span>☀️</span>
+                <strong>أذكار الاستيقاظ</strong>
+                <small>بعد الاستيقاظ</small>
+            </button>
+
+            <button onclick="openAzkar('sleep')">
+                <span>🌙</span>
+                <strong>أذكار النوم</strong>
+                <small>قبل النوم</small>
+            </button>
+
+            <button onclick="openAzkar('prayer')">
+                <span>🕌</span>
+                <strong>بعد الصلاة</strong>
+                <small>أذكار الصلاة</small>
+            </button>
+
+            <button onclick="openAzkar('home')">
+                <span>🏠</span>
+                <strong>أذكار المنزل</strong>
+                <small>دخول وخروج المنزل</small>
+            </button>
+
+            <button onclick="openAzkar('mosque')">
+                <span>🕌</span>
+                <strong>أذكار المسجد</strong>
+                <small>دخول وخروج المسجد</small>
+            </button>
+
+            <button onclick="openAzkar('bathroom')">
+                <span>🚪</span>
+                <strong>أذكار الخلاء</strong>
+                <small>الدخول والخروج</small>
+            </button>
+
+            <button onclick="openAzkar('wudu')">
+                <span>💧</span>
+                <strong>أذكار الوضوء</strong>
+                <small>الوضوء</small>
+            </button>
+
+            <button onclick="openAzkar('food')">
+                <span>🍽️</span>
+                <strong>أذكار الطعام</strong>
+                <small>قبل وبعد الطعام</small>
+            </button>
+
+            <button onclick="openAzkar('travel')">
+                <span>🚗</span>
+                <strong>أذكار السفر</strong>
+                <small>أثناء السفر</small>
+            </button>
+
+            <button onclick="openAzkar('rain')">
+                <span>🌧️</span>
+                <strong>أذكار المطر</strong>
+                <small>عند نزول المطر</small>
+            </button>
+
+            <button onclick="openAzkar('distress')">
+                <span>🤲</span>
+                <strong>الكرب والهم</strong>
+                <small>عند الضيق</small>
+            </button>
+
+            <button onclick="openAzkar('repentance')">
+                <span>💚</span>
+                <strong>الاستغفار والتوبة</strong>
+                <small>الاستغفار</small>
+            </button>
+
+            <button onclick="openAzkar('protection')">
+                <span>🛡️</span>
+                <strong>التحصين</strong>
+                <small>الرقية والأذكار</small>
+            </button>
+
+            <button onclick="openAzkar('istikharah')">
+                <span>✨</span>
+                <strong>دعاء الاستخارة</strong>
+                <small>صلاة الاستخارة</small>
+            </button>
+
+            <button onclick="openAzkar('general')">
+                <span>📿</span>
+                <strong>أذكار عامة</strong>
+                <small>أذكار متنوعة</small>
+            </button>
+
+        </div>
+
+
+        <!-- Reader -->
+
+        <div id="azkarReader" class="azkar-reader">
+
+            <div class="reader-top">
+
+                <button onclick="closeAzkar()">
+                    ← الأقسام
+                </button>
+
+                <button
+                    class="reset-all"
+                    onclick="resetCurrentAzkar()">
+                    إعادة جميع العدادات
+                </button>
+
+            </div>
+
+            <div class="reader-title">
+
+                <span id="readerIcon">🌅</span>
+
+                <div>
+                    <h2 id="readerTitle">
+                        أذكار الصباح
+                    </h2>
+
+                    <p id="readerDescription">
+                        ورد الصباح
+                    </p>
+                </div>
+
+            </div>
+
+
+            <!-- Overall -->
+
+            <div class="section-progress">
+
+                <div class="section-progress-info">
+
+                    <span>إنجاز القسم</span>
+
+                    <strong id="sectionProgressText">
+                        0 / 0
+                    </strong>
+
+                </div>
+
+                <div class="big-progress">
+                    <span id="sectionProgressBar"></span>
+                </div>
+
+            </div>
+
+
+            <!-- Current Dhikr -->
+
+            <div class="dhikr-card">
+
+                <div class="dhikr-number">
+                    الذكر <span id="currentNumber">1</span>
+                    من
+                    <span id="totalDhikr">1</span>
+                </div>
+
+                <div class="dhikr-text"
+                     id="dhikrText">
+
+                    سبحان الله وبحمده
+
+                </div>
+
+                <div class="dhikr-count">
+
+                    <strong id="dhikrCurrent">
+                        0
+                    </strong>
+
+                    <span>
+                        /
+                    </span>
+
+                    <strong id="dhikrTarget">
+                        100
+                    </strong>
+
+                </div>
+
+                <div class="remaining"
+                     id="remainingText">
+
+                    متبقي 100 مرة
+
+                </div>
+
+
+                <button
+                    class="tasbeeh-button"
+                    onclick="increaseDhikr()">
+
+                    📿
+                    <span>اضغط للتسبيح</span>
+
+                </button>
+
+
+                <button
+                    class="reset-dhikr"
+                    onclick="resetDhikr()">
+
+                    إعادة هذا العداد
+
+                </button>
+
+            </div>
+
+
+            <!-- Settings -->
+
+            <div class="dhikr-settings">
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        id="vibrationToggle"
+                        checked>
+
+                    اهتزاز عند الضغط
+
+                </label>
+
+            </div>
+
+        </div>
 
     </div>
 
-  </div>
-
-
-  <div id="azkarContent" style="display:none">
-
-    <button class="secondary" onclick="closeAzkar()">
-      ← الأقسام
-    </button>
-
-    <h2 id="azkarTitle" class="title" style="margin-top:15px"></h2>
-
-    <div id="azkarList"></div>
-
-  </div>
-
-</div>
-
 </section>
-
-
-<!-- ========================================================= -->
-<!-- TASBEEH -->
-<!-- ========================================================= -->
 
 <section id="tasbeeh" class="section">
 
-<div class="card large-card">
+    <div class="card" style="text-align:center">
 
-  <h2 class="title">📿 السبحة الإلكترونية</h2>
+        <h2>📿 السبحة الإلكترونية</h2>
 
-  <div class="tasbeeh-wrap">
-
-    <div class="tasbeeh-machine">
-
-      <div class="tasbeeh-brand">
-        أثر • السبحة
-      </div>
-
-      <div class="tasbeeh-screen">
-
-        <div id="tasbeehCount" class="screen-count">
-          ٠
+        <div style="
+            font-size:75px;
+            margin:30px;
+            color:#23865e"
+            id="tasbeehCount">
+            0
         </div>
 
-        <div class="screen-label">
-          عدد التسبيحات
-        </div>
+        <button class="btn"
+                style="
+                    width:180px;
+                    height:70px;
+                    font-size:20px"
+                onclick="tasbeeh()">
+            سبحان الله
+        </button>
 
-      </div>
+        <p style="margin:20px">
+            الهدف: <strong>500</strong>
+        </p>
 
-      <button
-        class="tasbeeh-button"
-        onclick="tasbeeh()"
-      >
-        سَبِّح
-      </button>
+        <button class="btn"
+                onclick="resetTasbeeh()">
+            تصفير
+        </button>
 
     </div>
 
-    <button
-      class="tasbeeh-reset"
-      onclick="resetTasbeeh()"
-    >
-      ↺ تصفير العداد
-    </button>
-
-  </div>
-
-</div>
-
 </section>
 
-
-<!-- ========================================================= -->
-<!-- PRAYER -->
-<!-- ========================================================= -->
 
 <section id="prayer" class="section">
 
-<div class="card large-card">
+    <div class="card prayer">
 
-  <h2 class="title">🕌 مواقيت الصلاة</h2>
+        <h2>🕌 مواقيت الصلاة</h2>
 
-  <select id="city" onchange="loadPrayerTimes()">
+        <div class="prayer-list">
 
-    <option value="">اختر المحافظة</option>
+            <div class="prayer-row">
+                <span>الفجر</span>
+                <span>04:12 ص</span>
+            </div>
 
-    <option>Cairo</option>
-    <option>Giza</option>
-    <option>Alexandria</option>
-    <option>Dakahlia</option>
-    <option>Gharbia</option>
-    <option>Sharqia</option>
-    <option>Qalyubia</option>
-    <option>Monufia</option>
-    <option>Damietta</option>
-    <option>Beheira</option>
-    <option>Port Said</option>
-    <option>Ismailia</option>
-    <option>Suez</option>
-    <option>Fayoum</option>
-    <option>Beni Suef</option>
-    <option>Minya</option>
-    <option>Assiut</option>
-    <option>Sohag</option>
-    <option>Qena</option>
-    <option>Luxor</option>
-    <option>Aswan</option>
+            <div class="prayer-row">
+                <span>الشروق</span>
+                <span>05:42 ص</span>
+            </div>
 
-  </select>
+            <div class="prayer-row">
+                <span>الظهر</span>
+                <span>12:03 م</span>
+            </div>
 
-  <p id="prayerDate" class="small" style="margin:10px 0">
-    اختر المحافظة
-  </p>
+            <div class="prayer-row">
+                <span>العصر</span>
+                <span>03:24 م</span>
+            </div>
 
-  <div id="prayerTimes" class="prayer-list"></div>
+            <div class="prayer-row">
+                <span>المغرب</span>
+                <span>06:24 م</span>
+            </div>
 
-  <div class="prayer-next" style="margin-top:20px">
+            <div class="prayer-row current">
+                <span>العشاء</span>
+                <span>07:48 م</span>
+            </div>
 
-    <small>⏰ الصلاة القادمة</small>
+        </div>
 
-    <h2 id="nextPrayerName">--</h2>
-
-    <strong id="nextPrayerTime">--:--:--</strong>
-
-  </div>
-
-</div>
+    </div>
 
 </section>
 
-
-<!-- ========================================================= -->
-<!-- QIBLA -->
-<!-- ========================================================= -->
 
 <section id="qibla" class="section">
 
-<div class="card large-card" style="text-align:center">
+    <div class="card qibla-box">
 
-  <h2 class="title">🧭 اتجاه القبلة</h2>
+        <h2>🧭 اتجاه القبلة</h2>
 
-  <div class="compass">
+        <div class="compass">
+            <div class="needle"></div>
+        </div>
 
-    <span class="compass-label n">N</span>
-    <span class="compass-label e">E</span>
-    <span class="compass-label s">S</span>
-    <span class="compass-label w">W</span>
+        <h3>118° جنوب شرق</h3>
 
-    <div class="needle">▲</div>
+        <p>المسافة إلى مكة: 1202 كم</p>
 
-  </div>
-
-  <p id="qiblaText" class="qibla-info">
-    اضغط لبدء تحديد موقعك
-  </p>
-
-  <br>
-
-  <button class="primary" onclick="startCompass()">
-    📍 تحديد القبلة
-  </button>
-
-</div>
+    </div>
 
 </section>
 
 
-<!-- ========================================================= -->
-<!-- FAVORITES -->
-<!-- ========================================================= -->
+<section id="stats" class="section">
 
-<section id="favorites" class="section">
+    <div class="card">
 
-<div class="card large-card">
+        <h2>📊 الإحصائيات</h2>
 
-  <h2 class="title">❤️ المفضلة</h2>
+        <div class="stats" style="margin-top:20px">
 
-  <div id="favoritesList"></div>
+            <div class="stat-row">
+                <div>📖 القرآن</div>
+                <div class="bar">
+                    <span style="width:80%"></span>
+                </div>
+                <b>80%</b>
+            </div>
 
-</div>
+            <div class="stat-row">
+                <div>🤲 الأذكار</div>
+                <div class="bar">
+                    <span style="width:90%"></span>
+                </div>
+                <b>90%</b>
+            </div>
 
-</section>
+            <div class="stat-row">
+                <div>📿 التسبيح</div>
+                <div class="bar">
+                    <span style="width:60%"></span>
+                </div>
+                <b>60%</b>
+            </div>
 
+        </div>
 
-<!-- ========================================================= -->
-<!-- MORE -->
-<!-- ========================================================= -->
-
-<section id="more" class="section">
-
-<div class="card large-card">
-
-  <h2 class="title">✨ عن أثر</h2>
-
-  <p>
-    أثر — لوحة إسلامية متكاملة للقرآن الكريم والأذكار
-    والسبحة ومواقيت الصلاة والقبلة.
-  </p>
-
-  <br>
-
-  <strong style="color:#55d4a4">
-    وقف لله تعالى — مجاني بالكامل
-  </strong>
-
-</div>
+    </div>
 
 </section>
 
 
-<footer>
-  🌿 أثر
-  <br>
-  وقف لله تعالى — مجاني بالكامل
-</footer>
+<section id="achievements" class="section">
+
+    <div class="card">
+
+        <h2>🏆 الإنجازات</h2>
+
+        <div class="achievements"
+             style="margin-top:20px">
+
+            <div class="achievement">
+                <div class="badge">🌿</div>
+                <h3>أول 100 تسبيحة</h3>
+            </div>
+
+            <div class="achievement">
+                <div class="badge">📖</div>
+                <h3>أول ختمة</h3>
+            </div>
+
+            <div class="achievement">
+                <div class="badge">7️⃣</div>
+                <h3>7 أيام</h3>
+            </div>
+
+            <div class="achievement">
+                <div class="badge">🌙</div>
+                <h3>30 يوم</h3>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="ramadan" class="section">
+
+    <div class="ramadan">
+
+        <h2>🌙 رمضان مبارك</h2>
+
+        <p>
+            تابع ختمتك ووردك اليومي.
+        </p>
+
+        <div class="ramadan-grid">
+
+            <div class="ramadan-item">
+                الختمة
+                <strong>60%</strong>
+            </div>
+
+            <div class="ramadan-item">
+                الإفطار
+                <strong>06:24</strong>
+            </div>
+
+            <div class="ramadan-item">
+                الإمساك
+                <strong>03:12</strong>
+            </div>
+
+            <div class="ramadan-item">
+                اليوم
+                <strong>17</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
 
 </div>
 </main>
@@ -1928,1167 +1963,139 @@ footer{
 
 <script>
 
-/* =========================================================
-   GENERAL
-========================================================= */
+/* ================= NAVIGATION ================= */
 
-const API="https://api.alquran.cloud/v1";
+function showPage(id,button){
 
-let currentSurah=1;
-let currentAyah=0;
-let audioList=[];
-let prayerData=null;
+    document.querySelectorAll(".section")
+        .forEach(x=>{
+            x.classList.remove("active");
+        });
 
-function ar(n){
-  return String(n).replace(
-    /[0-9]/g,
-    x=>"٠١٢٣٤٥٦٧٨٩"[x]
-  );
-}
+    const page=document.getElementById(id);
 
-function esc(t){
-  return String(t).replace(
-    /[&<>"']/g,
-    m=>({
-      "&":"&amp;",
-      "<":"&lt;",
-      ">":"&gt;",
-      '"':"&quot;",
-      "'":"&#039;"
-    }[m])
-  );
-}
-
-
-/* =========================================================
-   NAVIGATION
-========================================================= */
-
-function showSection(id,btn){
-
-  document
-    .querySelectorAll(".section")
-    .forEach(x=>x.classList.remove("active"));
-
-  const section=document.getElementById(id);
-
-  if(section)
-    section.classList.add("active");
-
-  document
-    .querySelectorAll(".side-btn,.topnav button")
-    .forEach(x=>x.classList.remove("active"));
-
-  if(btn)
-    btn.classList.add("active");
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
-  if(id==="favorites")
-    loadFavorites();
-}
-
-
-/* =========================================================
-   DARK
-========================================================= */
-
-function toggleDark(){
-
-  document.body.classList.toggle("light");
-
-  if(document.body.classList.contains("light")){
-
-    document.documentElement.style.setProperty(
-      "--bg","#f4f8f6"
-    );
-
-  }else{
-
-    document.documentElement.style.setProperty(
-      "--bg","#07131d"
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   QURAN
-========================================================= */
-
-async function loadSurahs(){
-
-  const box=document.getElementById("surahs");
-
-  try{
-
-    const r=await fetch(API+"/surah");
-    const d=await r.json();
-
-    box.className="surahs";
-    box.innerHTML="";
-
-    d.data.forEach(s=>{
-
-      const div=document.createElement("div");
-
-      div.className="surah";
-
-      div.innerHTML=`
-
-        <div class="number">
-          ${ar(s.number)}
-        </div>
-
-        <div>
-
-          <div class="surah-name">
-            ${esc(s.name)}
-          </div>
-
-          <div class="small">
-            ${ar(s.numberOfAyahs)} آية
-          </div>
-
-        </div>
-
-        <div class="surah-actions">
-
-          <button
-            class="icon-btn"
-            onclick="
-              event.stopPropagation();
-              toggleSurahFav(${s.number})
-            "
-          >
-            ${isSurahFav(s.number)?"❤️":"♡"}
-          </button>
-
-        </div>
-      `;
-
-      div.onclick=()=>openSurah(s.number);
-
-      box.appendChild(div);
-
-    });
-
-  }catch{
-
-    box.innerHTML=
-      '<div class="small">تعذر تحميل السور</div>';
-
-  }
-
-}
-
-
-async function openSurah(number,ayah=0){
-
-  currentSurah=number;
-  currentAyah=ayah;
-
-  localStorage.lastSurah=number;
-  localStorage.lastAyah=ayah;
-
-  document.getElementById("surahList").style.display="none";
-  document.getElementById("reader").style.display="block";
-
-  try{
-
-    const r=await fetch(
-      `${API}/surah/${number}/quran-uthmani`
-    );
-
-    const d=await r.json();
-    const s=d.data;
-
-    document.getElementById("readerName")
-      .textContent=s.name;
-
-    document.getElementById("readerInfo")
-      .textContent=
-      `${ar(s.numberOfAyahs)} آية`;
-
-    document.getElementById("bismillah")
-      .style.display=
-      number===9?"none":"block";
-
-    document.getElementById("quranText")
-      .innerHTML=
-      s.ayahs.map((a,i)=>`
-
-        <span>
-
-          <span
-            class="ayah ${i===ayah?"playing":""}"
-            id="ayah${i}"
-            onclick="playAyah(${i})"
-          >
-
-            ${esc(a.text)}
-
-            <span class="ayah-number">
-              ${ar(a.numberInSurah)}
-            </span>
-
-          </span>
-
-          <button
-            class="ayah-fav"
-            onclick="
-              event.stopPropagation();
-              toggleFav(
-                ${number},
-                ${a.numberInSurah},
-                '${esc(a.text)}',
-                '${esc(s.name)}',
-                this
-              )
-            "
-          >
-            ${isFav(number,a.numberInSurah)?"❤️":"♡"}
-          </button>
-
-        </span>
-
-      `).join("");
-
-    await loadAudio();
-
-  }catch{
-
-    document.getElementById("quranText")
-      .textContent=
-      "حدث خطأ أثناء تحميل السورة";
-
-  }
-
-}
-
-
-function closeReader(){
-
-  document.getElementById("reader")
-    .style.display="none";
-
-  document.getElementById("surahList")
-    .style.display="block";
-
-}
-
-
-function previousSurah(){
-
-  if(currentSurah>1)
-    openSurah(currentSurah-1);
-
-}
-
-
-function nextSurah(){
-
-  if(currentSurah<114)
-    openSurah(currentSurah+1);
-
-}
-
-
-/* =========================================================
-   AUDIO
-========================================================= */
-
-async function loadAudio(){
-
-  try{
-
-    const rec=
-      document.getElementById("reciterSelect").value;
-
-    const r=
-      await fetch(
-        `${API}/surah/${currentSurah}/${rec}`
-      );
-
-    const d=await r.json();
-
-    audioList=
-      d.data.ayahs
-      .map(x=>x.audio)
-      .filter(Boolean);
-
-    document.getElementById("audioPlayer")
-      .src=
-      audioList[currentAyah]||audioList[0];
-
-  }catch{}
-
-}
-
-
-function changeReciter(){
-  loadAudio();
-}
-
-
-function playAyah(i){
-
-  currentAyah=i;
-
-  const p=
-    document.getElementById("audioPlayer");
-
-  p.src=audioList[currentAyah];
-
-  p.play();
-
-  document
-    .querySelectorAll(".ayah")
-    .forEach(x=>x.classList.remove("playing"));
-
-  const el=
-    document.getElementById(
-      "ayah"+currentAyah
-    );
-
-  if(el){
-
-    el.classList.add("playing");
-
-    el.scrollIntoView({
-      behavior:"smooth",
-      block:"center"
-    });
-
-  }
-
-}
-
-
-function playAudio(){
-  document.getElementById("audioPlayer").play();
-}
-
-function pauseAudio(){
-  document.getElementById("audioPlayer").pause();
-}
-
-
-function nextAyah(){
-
-  if(currentAyah<audioList.length-1){
-
-    currentAyah++;
-
-    playAyah(currentAyah);
-
-  }
-
-}
-
-
-function previousAyah(){
-
-  if(currentAyah>0){
-
-    currentAyah--;
-
-    playAyah(currentAyah);
-
-  }
-
-}
-
-
-document
-  .getElementById("audioPlayer")
-  .addEventListener(
-    "ended",
-    ()=>{
-      nextAyah();
+    if(page){
+        page.classList.add("active");
     }
-  );
 
-
-/* =========================================================
-   FAVORITES
-========================================================= */
-
-function getFavs(){
-
-  try{
-    return JSON.parse(
-      localStorage.favs||"[]"
-    );
-  }catch{
-    return [];
-  }
-
-}
-
-
-function saveFavs(x){
-
-  localStorage.favs=
-    JSON.stringify(x);
-
-}
-
-
-function isFav(s,a){
-
-  return getFavs()
-    .some(
-      x=>x.surah===s&&x.ayah===a
-    );
-
-}
-
-
-function toggleFav(
-  s,a,text,name,btn
-){
-
-  let x=getFavs();
-
-  const i=x.findIndex(
-    v=>v.surah===s&&v.ayah===a
-  );
-
-  if(i>=0)
-    x.splice(i,1);
-  else
-    x.push({
-      surah:s,
-      ayah:a,
-      text,
-      name
+    document.querySelectorAll(
+        ".side-menu button,.topnav button"
+    ).forEach(x=>{
+        x.classList.remove("active");
     });
 
-  saveFavs(x);
+    if(button){
+        button.classList.add("active");
+    }
 
-  btn.textContent=
-    isFav(s,a)?"❤️":"♡";
-
-  loadFavorites();
-
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
 }
 
 
-function loadFavorites(){
+/* ================= THEME ================= */
 
-  const box=
-    document.getElementById(
-      "favoritesList"
+function toggleTheme(){
+
+    document.body.classList.toggle("light");
+
+    if(document.body.classList.contains("light")){
+
+        document.body.style.background="#edf3ee";
+        document.body.style.color="#17352c";
+
+    }else{
+
+        document.body.style.background=
+            "radial-gradient(circle at 15% 10%,#0c4538 0,transparent 28%),#031c18";
+
+        document.body.style.color="#f5f5ed";
+    }
+}
+
+
+/* ================= TASBEEH ================= */
+
+let tasCount=
+    Number(
+        localStorage.getItem("atharTasbeeh") || 0
     );
 
-  const list=getFavs();
+function updateTasbeeh(){
 
-  if(!list.length){
+    const el=
+        document.getElementById("tasbeehCount");
 
-    box.innerHTML=`
-      <div style="
-        text-align:center;
-        color:#718791;
-        padding:30px
-      ">
-        ❤️ لا توجد آيات مفضلة
-      </div>
-    `;
+    if(el){
+        el.textContent=tasCount;
+    }
 
-    return;
-
-  }
-
-  box.innerHTML=
-    list.map((x,i)=>`
-
-      <div class="favorite">
-
-        <div class="small">
-          سورة ${esc(x.name)}
-          —
-          الآية ${ar(x.ayah)}
-        </div>
-
-        <div class="favorite-text">
-          ${esc(x.text)}
-        </div>
-
-        <br>
-
-        <button
-          class="primary"
-          onclick="
-            openSurah(
-              ${x.surah},
-              ${x.ayah-1}
-            )
-          "
-        >
-          📖 فتح
-        </button>
-
-        <button
-          class="secondary"
-          onclick="removeFav(${i})"
-        >
-          حذف
-        </button>
-
-      </div>
-
-    `).join("");
-
-}
-
-
-function removeFav(i){
-
-  let x=getFavs();
-
-  x.splice(i,1);
-
-  saveFavs(x);
-
-  loadFavorites();
-
-}
-
-
-function isSurahFav(n){
-
-  try{
-
-    return JSON.parse(
-      localStorage.surahFavs||"[]"
-    ).includes(n);
-
-  }catch{
-
-    return false;
-
-  }
-
-}
-
-
-function toggleSurahFav(n){
-
-  let x=[];
-
-  try{
-    x=JSON.parse(
-      localStorage.surahFavs||"[]"
+    localStorage.setItem(
+        "atharTasbeeh",
+        tasCount
     );
-  }catch{}
-
-  x=x.includes(n)
-    ?x.filter(a=>a!==n)
-    :[...x,n];
-
-  localStorage.surahFavs=
-    JSON.stringify(x);
-
-  loadSurahs();
-
 }
-
-
-/* =========================================================
-   SEARCH
-========================================================= */
-
-async function searchQuran(){
-
-  const q=
-    document
-      .getElementById("searchInput")
-      .value
-      .trim();
-
-  if(!q)
-    return alert("اكتب كلمة للبحث");
-
-  const box=
-    document.getElementById("surahs");
-
-  box.innerHTML=
-    '<div class="small">جاري البحث...</div>';
-
-  try{
-
-    const r=
-      await fetch(
-        `${API}/search/${encodeURIComponent(q)}/all/ar`
-      );
-
-    const d=await r.json();
-
-    const m=d.data.matches||[];
-
-    box.className="";
-
-    box.innerHTML=
-      m.slice(0,50)
-      .map(x=>`
-
-        <div
-          class="card"
-          style="margin-bottom:8px;cursor:pointer"
-          onclick="
-            openSurah(
-              ${x.surah.number},
-              ${x.numberInSurah-1}
-            )
-          "
-        >
-
-          <div
-            style="
-              font-family:'Traditional Arabic';
-              font-size:23px
-            "
-          >
-            ${esc(x.text)}
-          </div>
-
-          <div class="small">
-            سورة ${esc(x.surah.name)}
-            —
-            الآية ${ar(x.numberInSurah)}
-          </div>
-
-        </div>
-
-      `)
-      .join("")
-      ||
-      '<div class="small">لا توجد نتائج</div>';
-
-  }catch{
-
-    box.innerHTML=
-      '<div class="small">حدث خطأ في البحث</div>';
-
-  }
-
-}
-
-
-/* =========================================================
-   AZKAR
-========================================================= */
-
-const azkarData={
-
-  morning:[
-    ["أصبحنا وأصبح الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير.",1],
-    ["رضيت بالله ربًا، وبالإسلام دينًا، وبمحمد ﷺ نبيًا.",3],
-    ["سبحان الله وبحمده.",100],
-    ["لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير.",10]
-  ],
-
-  evening:[
-    ["أمسينا وأمسى الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير.",1],
-    ["رضيت بالله ربًا، وبالإسلام دينًا، وبمحمد ﷺ نبيًا.",3],
-    ["أعوذ بكلمات الله التامات من شر ما خلق.",3],
-    ["سبحان الله وبحمده.",100]
-  ],
-
-  afterPrayer:[
-    ["أستغفر الله.",3],
-    ["اللهم أنت السلام ومنك السلام تباركت يا ذا الجلال والإكرام.",1],
-    ["سبحان الله.",33],
-    ["الحمد لله.",33],
-    ["الله أكبر.",33]
-  ],
-
-  sleep:[
-    ["باسمك اللهم أموت وأحيا.",1],
-    ["سبحان الله.",33],
-    ["الحمد لله.",33],
-    ["الله أكبر.",34]
-  ],
-
-  general:[
-    ["سبحان الله وبحمده، سبحان الله العظيم.",100],
-    ["لا حول ولا قوة إلا بالله.",100],
-    ["لا إله إلا الله.",100],
-    ["اللهم صل وسلم وبارك على نبينا محمد.",10]
-  ]
-
-};
-
-
-function openAzkar(type){
-
-  document.getElementById("azkarHome")
-    .style.display="none";
-
-  document.getElementById("azkarContent")
-    .style.display="block";
-
-  const titles={
-    morning:"🌅 أذكار الصباح",
-    evening:"🌇 أذكار المساء",
-    afterPrayer:"🕌 أذكار بعد الصلاة",
-    sleep:"🌙 أذكار النوم",
-    general:"📿 أذكار عامة"
-  };
-
-  document.getElementById("azkarTitle")
-    .textContent=
-    titles[type];
-
-  document.getElementById("azkarList")
-    .innerHTML=
-    azkarData[type]
-    .map(x=>`
-
-      <div class="zekr">
-
-        <div class="zekr-text">
-          ${x[0]}
-        </div>
-
-        <div class="zekr-bottom">
-
-          <span class="small">
-            التكرار: ${ar(x[1])}
-          </span>
-
-          <button
-            class="count-btn"
-            onclick="
-              countZekr(this,${x[1]})
-            "
-          >
-            العدد: ٠
-          </button>
-
-        </div>
-
-      </div>
-
-    `)
-    .join("");
-
-}
-
-
-function closeAzkar(){
-
-  document.getElementById("azkarHome")
-    .style.display="block";
-
-  document.getElementById("azkarContent")
-    .style.display="none";
-
-}
-
-
-function countZekr(btn,max){
-
-  let n=
-    Number(btn.dataset.n||0);
-
-  if(n<max)
-    n++;
-
-  btn.dataset.n=n;
-
-  btn.textContent=
-    "العدد: "+ar(n);
-
-  if(n===max){
-
-    btn.style.background="#c79b38";
-
-    if(navigator.vibrate)
-      navigator.vibrate(30);
-
-  }
-
-}
-
-
-/* =========================================================
-   TASBEEH
-========================================================= */
-
-let tas=
-  Number(
-    localStorage.tas||0
-  );
-
-
-function updateTas(){
-
-  document.getElementById(
-    "tasbeehCount"
-  ).textContent=ar(tas);
-
-  localStorage.tas=tas;
-
-}
-
 
 function tasbeeh(){
 
-  tas++;
+    tasCount++;
 
-  updateTas();
+    updateTasbeeh();
 
-  if(navigator.vibrate)
-    navigator.vibrate(20);
+    if(navigator.vibrate){
+        navigator.vibrate(20);
+    }
+}
 
+function resetTasbeeh(){
+
+    tasCount=0;
+
+    updateTasbeeh();
 }
 
 
-function resetTas(){
+/* ================= COUNTDOWN ================= */
 
-  tas=0;
+let seconds=5076;
 
-  updateTas();
+function updateCountdown(){
 
+    seconds--;
+
+    if(seconds<0){
+        seconds=5076;
+    }
+
+    const h=
+        Math.floor(seconds/3600);
+
+    const m=
+        Math.floor((seconds%3600)/60);
+
+    const s=
+        seconds%60;
+
+    const text=
+        String(h).padStart(2,"0")
+        +":"
+        +String(m).padStart(2,"0")
+        +":"
+        +String(s).padStart(2,"0");
+
+    const el=
+        document.getElementById("countdown");
+
+    if(el){
+        el.textContent=text;
+    }
 }
 
+setInterval(updateCountdown,1000);
 
-/* =========================================================
-   PRAYER
-========================================================= */
-
-async function loadPrayerTimes(){
-
-  const city=
-    document.getElementById("city").value;
-
-  if(!city)
-    return;
-
-  localStorage.city=city;
-
-  try{
-
-    const r=
-      await fetch(
-        `https://api.aladhan.com/v1/timingsByCity?city=${encodeURIComponent(city)}&country=Egypt&method=5`
-      );
-
-    const d=await r.json();
-
-    prayerData=d.data;
-
-    const t=prayerData.timings;
-
-    document.getElementById(
-      "prayerDate"
-    ).textContent=
-      prayerData.date.readable+
-      " — "+
-      city;
-
-    document.getElementById("prayerTimes")
-      .innerHTML=`
-
-        <div class="prayer-mini">
-          الفجر
-          <strong>${time12(t.Fajr)}</strong>
-        </div>
-
-        <div class="prayer-mini">
-          الظهر
-          <strong>${time12(t.Dhuhr)}</strong>
-        </div>
-
-        <div class="prayer-mini">
-          العصر
-          <strong>${time12(t.Asr)}</strong>
-        </div>
-
-        <div class="prayer-mini">
-          المغرب
-          <strong>${time12(t.Maghrib)}</strong>
-        </div>
-
-        <div class="prayer-mini">
-          العشاء
-          <strong>${time12(t.Isha)}</strong>
-        </div>
-
-      `;
-
-    updateNextPrayer();
-
-  }catch{
-
-    console.log(
-      "تعذر تحميل مواقيت الصلاة"
-    );
-
-  }
-
-}
-
-
-function rawTime(t){
-
-  return String(t)
-    .split(" ")[0];
-
-}
-
-
-function mins(t){
-
-  const p=
-    rawTime(t).split(":");
-
-  return Number(p[0])*60+
-         Number(p[1]);
-
-}
-
-
-function time12(t){
-
-  let [h,m]=
-    rawTime(t)
-    .split(":")
-    .map(Number);
-
-  const ap=
-    h>=12?"م":"ص";
-
-  h=h%12||12;
-
-  return `
-    ${ar(h)}:${ar(
-      String(m).padStart(2,"0")
-    )} ${ap}
-  `;
-
-}
-
-
-function updateNextPrayer(){
-
-  if(!prayerData)
-    return;
-
-  const arr=[
-
-    ["Fajr","🌅 الفجر",prayerData.timings.Fajr],
-
-    ["Dhuhr","☀️ الظهر",prayerData.timings.Dhuhr],
-
-    ["Asr","🌤️ العصر",prayerData.timings.Asr],
-
-    ["Maghrib","🌇 المغرب",prayerData.timings.Maghrib],
-
-    ["Isha","🌙 العشاء",prayerData.timings.Isha]
-
-  ];
-
-  const now=new Date();
-
-  const nowMin=
-    now.getHours()*60+
-    now.getMinutes();
-
-  let next=
-    arr.find(
-      x=>mins(x[2])>nowMin
-    );
-
-  let tomorrow=false;
-
-  if(!next){
-
-    next=arr[0];
-
-    tomorrow=true;
-
-  }
-
-  document.getElementById(
-    "nextPrayerName"
-  ).textContent=
-    next[1]+
-    (tomorrow?" — غدًا":"");
-
-  document.getElementById(
-    "heroPrayer"
-  ).textContent=
-    next[1];
-
-  countdown(
-    next[2],
-    tomorrow
-  );
-
-}
-
-
-function countdown(t,tomorrow){
-
-  const [h,m]=
-    rawTime(t)
-    .split(":")
-    .map(Number);
-
-  const target=new Date();
-
-  target.setHours(
-    h,m,0,0
-  );
-
-  if(tomorrow)
-    target.setDate(
-      target.getDate()+1
-    );
-
-  const diff=
-    target-Date.now();
-
-  if(diff<=0){
-
-    updateNextPrayer();
-
-    return;
-
-  }
-
-  const hh=
-    Math.floor(
-      diff/3600000
-    );
-
-  const mm=
-    Math.floor(
-      (diff%3600000)/60000
-    );
-
-  const ss=
-    Math.floor(
-      (diff%60000)/1000
-    );
-
-  const value=
-    `${ar(
-      String(hh).padStart(2,"0")
-    )}:${ar(
-      String(mm).padStart(2,"0")
-    )}:${ar(
-      String(ss).padStart(2,"0")
-    )}`;
-
-  document.getElementById(
-    "nextPrayerTime"
-  ).textContent=value;
-
-  document.getElementById(
-    "heroCountdown"
-  ).textContent=value;
-
-  setTimeout(
-    ()=>countdown(t,tomorrow),
-    1000
-  );
-
-}
-
-
-/* =========================================================
-   QIBLA
-========================================================= */
-
-function startCompass(){
-
-  if(!navigator.geolocation){
-
-    alert(
-      "الهاتف لا يدعم تحديد الموقع"
-    );
-
-    return;
-
-  }
-
-  navigator.geolocation
-    .getCurrentPosition(
-
-      pos=>{
-
-        document.getElementById(
-          "qiblaText"
-        ).textContent=
-          "📍 تم تحديد موقعك — اتجاه القبلة تقريبي حسب موقعك.";
-
-      },
-
-      ()=>{
-        alert(
-          "اسمح للموقع بالوصول إلى موقعك."
-        );
-      }
-
-    );
-
-}
-
-
-/* =========================================================
-   DATE
-========================================================= */
-
-function updateDate(){
-
-  const d=new Date();
-
-  document.getElementById(
-    "heroDate"
-  ).textContent=
-    d.toLocaleDateString(
-      "ar-EG",
-      {
-        day:"numeric",
-        month:"long"
-      }
-    );
-
-}
-
-
-/* =========================================================
-   START
-========================================================= */
-
-loadSurahs();
-
-loadFavorites();
-
-updateTas();
-
-updateDate();
-
-if(localStorage.city){
-
-  const city=
-    document.getElementById("city");
-
-  city.value=
-    localStorage.city;
-
-  loadPrayerTimes();
-
-}
+updateTasbeeh();
 
 </script>
 
